@@ -1,6 +1,6 @@
 ## Joe Million - Ultimatum
 
-![mubeng demo](https://user-images.githubusercontent.com/25837540/104791302-ea40eb00-57cc-11eb-89e9-67730ffc2a22.gif)
+![mubeng demo](https://user-images.githubusercontent.com/25837540/104791591-ee213d00-57cd-11eb-81c5-1ee7fafaba8f.gif)
 
 ```
 (Hook)
