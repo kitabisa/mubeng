@@ -20,10 +20,9 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
 		Colors:         proxy.Color,
 	}
 
+	client = &http.Client{Transport: proxy.Transport}
 	if proxy.Verbose {
-		client = &http.Client{Transport: log.RoundTripper(proxy.Transport)}
-	} else {
-		client = &http.Client{Transport: proxy.Transport}
+		client.Transport = log.RoundTripper(proxy.Transport)
 	}
 
 	// http: Request.RequestURI can't be set in client requests.
