@@ -1,3 +1,10 @@
+
+## TODOs
+
+- [ ] TLS support. _Built-in certs maker?_
+- [ ] Rotate IP proxy `AFTER` request.
+- [ ] `mubeng` proxy server as service, daemonize it!
+
 ## Joe Million - Ultimatum
 
 ![mubeng demo](https://user-images.githubusercontent.com/25837540/104791591-ee213d00-57cd-11eb-81c5-1ee7fafaba8f.gif)
