@@ -28,6 +28,7 @@ func Run(opt *common.Options) {
 
 	handler := &Proxy{
 		list:    opt.List,
+		timeout: opt.Timeout,
 		verbose: opt.Verbose,
 	}
 

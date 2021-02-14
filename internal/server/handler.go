@@ -37,6 +37,8 @@ func (p *Proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	}
 
 	client, req = proxy.New(req)
+	client.Timeout = p.timeout
+
 	resp, err := client.Do(req)
 	if err != nil {
 		http.Error(wr, "Server Error", http.StatusInternalServerError)
