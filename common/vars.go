@@ -22,7 +22,7 @@ Options:
   -a, --address <ADDR>:<PORT>      Run proxy server.
   -c, --check                      To perform proxy live check.
   -t, --timeout                    Max. time allowed for proxy server/live check (default: 5s).
-  -r, --rotate <AFTER>             Rotate IP proxy AFTER request.
+  -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request.
   -v, --verbose                    Dump HTTP request/responses show died proxy checks.
   -d, --daemon                     Daemonize proxy server.
   -o, --output <FILE>              Log output from proxy servers or live proxy checks.
