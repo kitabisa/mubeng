@@ -21,7 +21,7 @@ Options:
   -f, --file <FILE>                Proxy file.
   -a, --address <ADDR>:<PORT>      Run proxy server.
   -c, --check                      To perform proxy live check.
-  -t, --timeout                    Max. time allowed for proxy server/live check (default: 5s).
+  -t, --timeout                    Max. time allowed for proxy server/live check (default: 30s).
   -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request.
   -v, --verbose                    Dump HTTP request/responses show died proxy checks.
   -o, --output <FILE>              Log output from proxy servers or live proxy checks.
