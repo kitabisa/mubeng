@@ -1,96 +1,32 @@
+<h1 align="center">
+  <br>
+  <a href="#"><img src="https://user-images.githubusercontent.com/25837540/107883163-dbf70380-6f1f-11eb-856f-e69e733313e5.png" width="400px" alt="mubeng"></a>
+</h1>
+
+<h4 align="center">An HTTP proxy server as IP rotation, and proxy checker, all applicable HTTP/S and SOCKS5 protocols with ease.</h4>
+
+<p align="center">
+	<a href="#"><img src="https://img.shields.io/badge/kitabisa-security%20project-blue"></a>
+	<a href="https://golang.org"><img src="https://img.shields.io/badge/made%20with-Go-brightgreen"></a>
+	<!-- <a href="https://goreportcard.com/report/ktbs.dev/mubeng"><img src="https://goreportcard.com/badge/ktbs.dev/mubeng"></a> -->
+	<a href="https://github.com/kitabisa/mubeng/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen"></a>
+	<a href="#"><img src="https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green"></a>
+	<!-- <a href="https://github.com/kitabisa/mubeng/releases"><img src="https://img.shields.io/github/release/kitabisa/mubeng"></a> -->
+	<!-- <a href="https://github.com/kitabisa/mubeng/issues"><img src="https://img.shields.io/github/issues/kitabisa/mubeng"></a> -->
+</p>
+
+<p align="center">
+  <a href="https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md">Contribute</a> •
+  <a href="https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md">What's new</a> •
+  <a href="https://pkg.go.dev/ktbs.dev/mubeng">Documentations</a> •
+  <a href="https://github.com/kitabisa/mubeng/issues/new/choose">Report Issues</a>
+</p>
+
+---
+
 
 ## TODOs
 
 - [ ] TLS support. _Built-in certs maker?_
 - [ ] Rotate IP proxy `AFTER` request.
 - [ ] `mubeng` proxy server as service, daemonize it!
-
-## Joe Million - Ultimatum
-
-![mubeng demo](https://user-images.githubusercontent.com/25837540/104791591-ee213d00-57cd-11eb-81c5-1ee7fafaba8f.gif)
-
-```
-(Hook)
-Yeah
-Kemana mati mengantarku
-Langkah kaki ke atas tuk
-Antar hati ke belatung
-Yeah
-Lidah latih tak lelah
-Lidah lagi mengkhianati
-Tetap aku tak dengar
-
-(Verse 1)
-Teratur seratus jenazah yang bernama
-Beribu tumpukan tubuh yang tak bernama
-Ku belajar dari mana tanyakan saja ke sana
-Yang berangkat ke Irian karena emas yang dilihat
-Apa ku ada pilihan jadi raja di sini
-Aku tak lagi inginkan memimpin dalam sepi
-Aku putuskan sepihak turun ke bumi melihat
-Sejauh manakah lidah dapat bawaku pergi
-Kurasi tiap diksi amunisi juga misil
-Koalisi dengan ISIS lelaki dengan ambisi
-Distraksi tiap distrik masukan rap bagai listrik
-Mimpi 16 jadi 12 belas digit
-Dua belah sisi ku temukan beda visi
-Hanya menimbulkan bising manfaatkan jadi fisi
-Ledakan buka dinding masa depan bagi indi
-Sebarkan murah vinyl sebelum kasirmu kuhabisi
-
-(Hook)
-
-(Verse 2)
-Tak berlabel ku mandiri kau bertanya tentang Def Bloc
-Itu cuma laptop Rand Slam dan Senartogok
-Jika Indo heboh maafkan kami khilaf
-Main lidah bagai silat tendang pilar tapak rima
-Breaks tampak indah saat ku tambahkan tinta
-Berhentilah tuk mengira engkau bisa menghentikan
-Kami dengan modal iman saat pemimpinmu hilang
-Bawa mimbar dalam liang lubang pantat berbintang
-Hentikan berbincang jika berbingkai
-Kau cuma pintar Hompimpa depan rumah
-Lupakan sekolah pabrik pun kan tolak
-Otakmu diolah jadi daging Pronas
-Hormat pada ormas zonasi bak cosa nostra
-Ku juga ingin buat onar tiap kota
-Tapi Medium Rare ku juga cukup frontal
-Empat orang total ubah oral jadi pelontar
-Kata hantam batas-batasan di skena lokal
-Lahir era orba sampai gelombang media sosial
-Tangan tetap seka jidat berkeringat mereka
-Titik merah tiap daerah rap naikkan bendera
-
-(Hook)
-
-(Verse 3)
-Nukilan tulisan nuklir penuhi
-Tiap sudut kampung ultimatum langsung
-Buktikan lusinan ilusi absurd
-Pelacur yang lakon lainnya aktor
-Kegeluti multi kukuluti loop breaks
-Lubrikasi mesin suara ku pesing
-Seni yang terbentuk dari ludah kami
-Pada muka nabi palsu ku dandani
-Ku dan Dani tak jauh terpaut 
-Dia sisipkan janin dalam Mulan Jameela
-Aku? Dalam rahim rima dan jadilah
-Verse yang sangat gila sebut itu kontroversial
-Tak ada yang spesial ku bagai di anastesia
-Setiap sajian sajak ku letal tuk yang bebal
-Saat ku main kata sandingkan ku dengan Setya
-Rap ku kebutuhan primer yang seharga tersier
-Sia sia bandingkan para insan tanpa kiblat
-Tiap barisan ajar lisan kearifan antariksa
-Karawitan hajar pincang sampai pingsan yang tak pintar
-Angkat cinta akan indah frasa Indonesia kita
-Narsis dengan tinta ku berzinah dengan stigma
-Penyakitku hanya gila dalam bilik nalar hilang
-Liar tiap kalimat angkat bilah bambu tikam
-Paradigma paradoks cinta tanah air DKI
-Tantang para lokal dengan hobi pancaroba
-Jangan coba tanpa obat doping untuk jalan otak
-Salah total anda kontak tata prosa pada kotak
-Speaker kan terbongkar bagai rahasia PKI
-```
