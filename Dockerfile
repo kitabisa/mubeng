@@ -1,6 +1,6 @@
 FROM golang:1.14.2-alpine3.11 as build
 
-LABEL description="An HTTP proxy server as IP rotation, and proxy checker, all applicable HTTP/S and SOCKS5 protocols with ease."
+LABEL description="An proxy checker, and HTTP proxy server as IP rotator, all applicable HTTP/S & SOCKS5 protocols with ease."
 LABEL repository="https://github.com/kitabisa/mubeng"
 LABEL maintainer="dwisiswant0"
 

@@ -3,7 +3,7 @@
   <a href="#"><img src="https://user-images.githubusercontent.com/25837540/107883163-dbf70380-6f1f-11eb-856f-e69e733313e5.png" width="400px" alt="mubeng"></a>
 </h1>
 
-<h4 align="center">An HTTP proxy server as IP rotation, and proxy checker, all applicable HTTP/S and SOCKS5 protocols with ease.</h4>
+<h4 align="center">An proxy checker, and HTTP proxy server as IP rotator, all applicable HTTP/S & SOCKS5 protocols with ease.</h4>
 
 <p align="center">
 	<a href="#"><img src="https://img.shields.io/badge/kitabisa-security%20project-blue"></a>
