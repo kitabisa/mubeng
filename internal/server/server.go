@@ -11,8 +11,6 @@ import (
 	"ktbs.dev/mubeng/common"
 )
 
-var log *logo.Logger
-
 // Run proxy server with a user defined listener.
 //
 // An active log have 2 receivers, especially stdout and into file if opt.Output isn't empty.

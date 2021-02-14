@@ -1,5 +1,12 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
 
-var client *http.Client
+	"github.com/mbndr/logo"
+)
+
+var (
+	client *http.Client
+	log    *logo.Logger
+)
