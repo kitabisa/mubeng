@@ -13,9 +13,9 @@ type Options struct {
 	Timeout time.Duration
 	Rotate  int
 	Verbose bool
-	Daemon  bool
 	Output  string
 	Result  *os.File
 	List    []string
 	// After int
+	// Daemon  bool
 }
