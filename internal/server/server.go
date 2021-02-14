@@ -16,7 +16,7 @@ import (
 // An active log have 2 receivers, especially stdout and into file if opt.Output isn't empty.
 // Then close the proxy server if it receives a signal that interrupts the program.
 func Run(opt *common.Options) {
-	cli := logo.NewReceiver(os.Stdout, "")
+	cli := logo.NewReceiver(os.Stderr, "")
 	cli.Color = true
 	cli.Level = logo.DEBUG
 
