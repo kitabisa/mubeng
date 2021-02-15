@@ -192,7 +192,7 @@ This project exists thanks to all the people who contribute. To learn how to set
 
 # Pronunciation
 
-_TODO_
+`jv_ID` • **/mo͞oˌbēNG/** — mubeng nganti mumet. (ꦩꦸꦧꦺꦁ​ꦔꦤ꧀ꦠꦶ​ꦩꦸꦩꦺꦠ꧀)
 
 # Changes
 
