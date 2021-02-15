@@ -11,6 +11,7 @@ jobs:
       - uses: bubkoo/contributors-list@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commitMessage: "Update CONTRIBUTORS"
           svgPath: .github/CONTRIBUTORS.svg
           userNameHeight: 19
           itemTemplate: >
