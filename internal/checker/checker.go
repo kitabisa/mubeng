@@ -17,39 +17,27 @@ import (
 // Displays proxies that have died if verbose mode is enabled,
 // or save live proxies into user defined files.
 func Do(opt *common.Options) {
-	jobs := make(chan string)
+	for _, proxy := range opt.List {
+		wg.Add(1)
 
-	wg.Add(1)
-	go func() {
-		for address := range jobs {
+		go func(address string) {
 			cc, err := check(address, opt.Timeout)
 			if err != nil {
 				if opt.Verbose {
-					res = aurora.Red("[DIED]").String()
+					fmt.Printf("[%s] %s\n", aurora.Red("DIED"), address)
 				}
 			} else {
-				res = fmt.Sprintf("[%s] [%s]", aurora.Green("LIVE"), aurora.Magenta(cc))
+				fmt.Printf("[%s] [%s] %s\n", aurora.Green("LIVE"), aurora.Magenta(cc), address)
 
 				if opt.Output != "" {
 					fmt.Fprintf(opt.Result, "%s\n", address)
 				}
 			}
 
-			if res != "" {
-				fmt.Printf("%s %s\n", res, address)
-			}
-
-			res = ""
-		}
-
-		defer wg.Done()
-	}()
-
-	for _, proxy := range opt.List {
-		jobs <- proxy
+			defer wg.Done()
+		}(proxy)
 	}
 
-	close(jobs)
 	wg.Wait()
 }
 
