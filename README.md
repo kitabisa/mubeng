@@ -168,7 +168,7 @@ The above case also uses `--output` flag to save a live proxy into file `(live.t
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25837540/107990170-6a45b500-7006-11eb-83b9-a9bcf01efaf1.png">
-  <i>(Figure: Checking proxies with mubeng)</i>
+  <i>(Figure: Checking proxies mubeng with max. 5s timeout)</i>
 </p>
 
 ### Proxy IP rotator
@@ -183,7 +183,7 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25837540/107988830-6c5a4480-7003-11eb-9ac5-2b91d3136958.png">
-  <i>(Figure: Running mubeng as proxy IP rotator)</i>
+  <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
 ### Burp Suite Upstream Proxy
