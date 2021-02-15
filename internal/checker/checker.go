@@ -71,6 +71,7 @@ func check(address string, timeout time.Duration) (string, error) {
 
 	client, req = proxy.New(req)
 	client.Timeout = timeout
+	req.Header.Add("Connection", "close")
 
 	resp, err := client.Do(req)
 	if err != nil {
