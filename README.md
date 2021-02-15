@@ -85,7 +85,7 @@ Here are all the options it supports.
 | -c, --check                   	| To perform proxy live check.                                 	|
 | -t, --timeout                 	| Max. time allowed for proxy server/live check (default: 30s). |
 | -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request.                    |
-| -v, --verbose                 	| Dump HTTP request/responses show died proxy checks.          	|
+| -v, --verbose                 	| Dump HTTP request/responses or show died proxy checks.        |
 | -o, --output <FILE>           	| Log output from proxy servers or live proxy checks.          	|
 
 
