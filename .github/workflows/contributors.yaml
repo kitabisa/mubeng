@@ -1,0 +1,22 @@
+name: Update contributors
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bubkoo/contributors-list@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          svgPath: .github/CONTRIBUTORS.svg
+          userNameHeight: 19
+          itemTemplate: >
+            <g transform="translate({{ x }}, {{ y }})">
+              <a xlink:href="{{{ url }}}" class="contributor-link" target="_blank" rel="nofollow sponsored" title="{{{ name }}}" id="{{{ name }}}">
+                <image width="{{ width }}" height="{{ height }}" xlink:href="{{{ avatar }}}" />
+                <text x="32" y="74" text-anchor="middle" alignment-baseline="middle" font-size="10" font-family="monospace" fill="%2301ACEC">{{{ name }}}</text>
+              </a>
+            </g>
