@@ -8,7 +8,6 @@ import (
 var (
 	client *http.Client
 	myip   myIP
-	res    string
 	wg     sync.WaitGroup
 
 	endpoint = "https://api.myip.com/"
