@@ -62,7 +62,7 @@
 - Run proxy server as proxy IP rotation, or
 - Perform proxy checks.
 
-So, you don't need any extra proxy checking tools out there if you want to do that, because we also leave it entirely up to user to provide the proxy resources, therefore it's **NOT** under any policy for any use of this tool, but developers assume no liability and are not responsible for any misuse or damage. Be responsible for your actions!
+So, you don't need any extra proxy checking tools out there if you want to do that, and we also leave it entirely up to user to provide the proxy resources, therefore it's **NOT** under any policy for any use of this tool, but developers assume no liability and are not responsible for any misuse or damage. Be responsible for your actions!
 
 # Demo
 
