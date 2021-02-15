@@ -11,6 +11,7 @@ var (
 		"Keep-Alive",
 		"Proxy-Authenticate",
 		"Proxy-Authorization",
+		"Proxy-Connection",
 		"Te", // canonicalized version of "TE"
 		"Trailers",
 		"Transfer-Encoding",
