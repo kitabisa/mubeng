@@ -24,8 +24,8 @@ func Options() *common.Options {
 	flag.DurationVar(&opt.Timeout, "t", 30*time.Second, "")
 	flag.DurationVar(&opt.Timeout, "timeout", 30*time.Second, "")
 
-	flag.IntVar(&opt.Rotate, "r", 10, "")
-	flag.IntVar(&opt.Rotate, "rotate", 10, "")
+	flag.IntVar(&opt.Rotate, "r", 1, "")
+	flag.IntVar(&opt.Rotate, "rotate", 1, "")
 
 	flag.BoolVar(&opt.Verbose, "v", false, "")
 	flag.BoolVar(&opt.Verbose, "verbose", false, "")
