@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md">Contributing</a> •
-  <a href="https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md">What's new</a> •
+  <a href="#contributors">Contributing</a> •
+  <a href="#changes">What's new</a> •
   <a href="https://pkg.go.dev/ktbs.dev/mubeng">Documentation</a> •
   <a href="https://github.com/kitabisa/mubeng/issues/new/choose">Report Issues</a>
 </p>
@@ -26,7 +26,24 @@
 
 # Table of Contents
 
-_TODO_
+- [Installation](#installation)
+  - [Binary](#binary)
+  - [Docker](#docker)
+  - [Source](#source)
+- [Usage](#usage)
+  - [Basic](#basic)
+  - [Options](#options)
+  - [Examples](#examples)
+    - [Proxy checker](#proxy-checker)
+    - [Proxy IP rotator](#proxy-ip-rotator)
+- [Limitations](#limitations)
+- [Roadmap](#roadmap)
+- [Contributors](#contributors)
+- [Pronunciation](#pronunciation)
+- [Changes](#changes)
+- [License](#license)
+
+---
 
 # Installation
 
@@ -77,6 +94,10 @@ For usage, it's always required to provide your proxy list, whether it is used t
 ## Options
 
 Here are all the options it supports.
+
+```bash
+▶ mubeng -h
+```
 
 | **Flag**                      	| **Description**                                              	|
 |-------------------------------	|--------------------------------------------------------------	|
@@ -135,20 +156,26 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
 
 Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv5 protocol, even though the resource you have is SOCKSv5. In other words, the SOCKSv5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
 
-# TODOs
+# Roadmap
 
-- [ ] TLS support. _Built-in certs maker?_
+- [ ] Support HTTPS protocol for proxy server.
 - [ ] Rotate IP proxy `AFTER` request.
 - [ ] `mubeng` proxy server as service, daemonize it!
 
-## Pronunciation
+# Contributors
+
+[![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/mubeng/issues)
+
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md).
+
+# Pronunciation
 
 _TODO_
 
-## Changes
+# Changes
 
 For changes, see [CHANGELOG.md](https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md).
 
-## License
+# License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the Apache license. Kitabisa mubeng and any contributions are Copyright © by Dwi Siswanto 2021.
+This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/mubeng/blob/master/LICENSE). Kitabisa mubeng and any contributions are Copyright © by Dwi Siswanto 2021.
