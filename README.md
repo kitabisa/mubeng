@@ -25,6 +25,7 @@
 ---
 
 - [Features](#features)
+- [Why mubeng?](#why-mubeng)
 - [Demo](#demo)
 - [Installation](#installation)
   - [Binary](#binary)
@@ -53,6 +54,15 @@
 - **HTTP/S & SOCKSv5** proxy protocols apply.
 - **All parameters & URIs are passed**.
 - **Minimal configuration**: You can just run it against your proxy file, and choose the action you want!
+
+# Why mubeng?
+
+`mubeng` has 2 core functionality:
+
+- Run proxy server as proxy IP rotation, or
+- Perform proxy checks.
+
+So, you don't need any extra proxy checking tools out there if you want to do that, because we also leave it entirely up to user to provide the proxy resources, therefore it's **NOT** under any policy for any use of this tool, but developers assume no liability and are not responsible for any misuse or damage. Be responsible for your actions!
 
 # Demo
 
@@ -124,11 +134,6 @@ Here are all the options it supports.
 
 
 ## Examples
-
-`mubeng` has 2 core functionality:
-
-- Perform proxy checks, or
-- Run proxy server as proxy IP rotation.
 
 For example, you've proxy list `(proxies.txt)` as:
 
