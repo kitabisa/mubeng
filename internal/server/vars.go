@@ -7,6 +7,8 @@ import (
 )
 
 var (
+	rotate string
 	client *http.Client
 	log    *logo.Logger
+	ok     = 1
 )

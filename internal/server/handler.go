@@ -20,7 +20,15 @@ func (p *Proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	rotate := p.list[rand.Intn(len(p.list))]
+	// Rotate proxy IP every AFTER request
+	if (rotate == "") || (ok >= p.rotate) {
+		rotate = p.list[rand.Intn(len(p.list))]
+		if ok >= p.rotate {
+			ok = 1
+		}
+	} else {
+		ok++
+	}
 
 	tr, err := mubeng.Transport(rotate)
 	if err != nil {
