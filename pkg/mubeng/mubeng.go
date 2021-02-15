@@ -3,6 +3,7 @@ package mubeng
 import (
 	"net"
 	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/henvic/httpretty"
@@ -33,7 +34,9 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
 		req.Header.Del(h)
 	}
 
-	if host, _, err := net.SplitHostPort(proxy.Address); err == nil {
+	proxyURL, _ := url.Parse(proxy.Address)
+
+	if host, _, err := net.SplitHostPort(proxyURL.Host); err == nil {
 		if prior, ok := req.Header["X-Forwarded-For"]; ok {
 			host = strings.Join(prior, ", ") + ", " + host
 		}
