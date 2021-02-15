@@ -24,8 +24,8 @@
 
 ---
 
-# Table of Contents
-
+- [Features](#features)
+- [Demo](#demo)
 - [Installation](#installation)
   - [Binary](#binary)
   - [Docker](#docker)
@@ -44,6 +44,19 @@
 - [License](#license)
 
 ---
+
+# Features
+
+- **Proxy IP rotator**: Rotates your IP address for every specific request.
+- **Proxy checker**: Check your proxy IP which is still alive.
+- **All HTTP methods** are supported.
+- **HTTP/S & SOCKSv5** proxy protocols apply.
+- **All parameters & URIs are passed**.
+- **Minimal configuration**: You can just run it against your proxy file, and choose the action you want!
+
+# Demo
+
+_TODO_
 
 # Installation
 
