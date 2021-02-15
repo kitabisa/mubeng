@@ -29,7 +29,6 @@ Options:
 Examples:
   mubeng -f proxies.txt --check --output live.txt
   mubeng -a localhost:8080 -f live.txt -r 10
-  mubeng -f live.txt --output file.log -d
 
 `
 )
