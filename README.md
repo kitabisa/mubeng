@@ -60,11 +60,11 @@
 
 `mubeng` has 2 core functionality:
 
-### Run proxy server as proxy IP rotation
+### 1. Run proxy server as proxy IP rotation
 
 This is useful to bypass different kinds of IP blocking, e.g. bruteforce protection, API rate-limiting or WAF blocking based on IP.
 
-### Perform proxy checks.
+### 2. Perform proxy checks
 
 So, you don't need any extra proxy checking tools out there if you want to do that.
 
