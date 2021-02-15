@@ -123,7 +123,7 @@ The above case also uses `--output` flag to save a live proxy into file `(live.t
 
 ### Proxy IP rotator
 
-Furthermore, if you wish to do IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)`, you must use `-a` _(--address)_ flag instead of `-c` _(--check)_ to run proxy server:
+Furthermore, if you wish to do IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)` or if you have your own list, you must use `-a` _(--address)_ flag instead of `-c` _(--check)_ to run proxy server:
 
 ```bash
 ▶ mubeng -a localhost:8080 -f live.txt -r 10
