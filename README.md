@@ -37,6 +37,7 @@
   - [Examples](#examples)
     - [Proxy checker](#proxy-checker)
     - [Proxy IP rotator](#proxy-ip-rotator)
+      - [Burp Suite Upstream Proxy](#burp-suite-upstream-proxy)
 - [Limitations](#limitations)
 - [Roadmap](#roadmap)
 - [Contributors](#contributors)
@@ -165,10 +166,19 @@ The above case also uses `--output` flag to save a live proxy into file `(live.t
 Furthermore, if you wish to do IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)` or if you have your own list, you must use `-a` _(--address)_ flag instead of `-c` _(--check)_ to run proxy server:
 
 ```bash
-▶ mubeng -a localhost:8080 -f live.txt -r 10
+▶ mubeng -a localhost:8089 -f live.txt -r 10
 ```
 
 The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value you provide `(10)`.
+
+### Burp Suite Upstream Proxy
+
+In that case you can also use `mubeng` (Proxy IP rotator) as an upstream proxy in Burp Suite, acting in-between Burp Suite and mubeng to the internet, so you don't need any additional extensions in Burp Suite for that. To demonstrate this:
+
+![Burp Suite Upstream Proxy](https://user-images.githubusercontent.com/25837540/107985702-24d0ba00-6ffd-11eb-9489-c19e52c921f5.jpg)
+<p align="center"><i>(Figure: Settings Burp Suite Upstream Proxy to mubeng)</i></p>
+
+In your Burp Suite instance, select **Project options** menu, and click **Connections** tab. In the **Upstream Proxy Servers** section, check **Override user options** then press **Add** button to add your upstream proxy rule. After that, fill required columns _(Destination host, Proxy host & Proxy port)_ with correct details.
 
 # Limitations
 
