@@ -203,7 +203,7 @@ In your Burp Suite instance, select **Project options** menu, and click **Connec
 It acts the same way when you using an upstream proxy. OWASP ZAP allows you to connect to another proxy for outgoing connections in OWASP ZAP session. To chain it with a mubeng proxy:
 
 <p align="center">
-	<img src="https://user-images.githubusercontent.com/25837540/108057987-f1863d80-7085-11eb-8ead-fc8318e2d233.png">
+	<img src="https://user-images.githubusercontent.com/25837540/108060995-41670380-708a-11eb-83ad-c781421af473.png">
 	<i>(Figure: Settings proxy chain connection in OWASP ZAP to mubeng)</i>
 </p>
 
