@@ -34,6 +34,7 @@
 - [Usage](#usage)
   - [Basic](#basic)
   - [Options](#options)
+  	- [Notes](#notes)
   - [Examples](#examples)
     - [Proxy checker](#proxy-checker)
     - [Proxy IP rotator](#proxy-ip-rotator)
@@ -56,6 +57,7 @@
 - **HTTP/S & SOCKSv5** proxy protocols apply.
 - **All parameters & URIs are passed**.
 - **Easy to use**: You can just run it against your proxy file, and choose the action you want! There is no need for additional configuration.
+- **Cross-platform**: whether you are Windows, Linux, Mac, or even Raspberry Pi, you can run it very well.
 
 # Why mubeng?
 
@@ -141,6 +143,26 @@ Here are all the options it supports.
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy checks.        |
 | -o, --output <FILE>           	| Log output from proxy servers or live proxy checks.          	|
 
+<table>
+	<td>
+		<h3>NOTES:</h3>
+		<ul>
+			<li>Rotations are counted for all requests, even if the request fails.</li>
+			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, but
+				<ul>
+					<li>we <b>DO NOT</b> explicitly display the request body, and</li>
+					<li>all cookie values in headers will be redacted automatically.</li>
+				</ul>
+			</li>
+			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, requests and responses are <b>NOT</b> written to the log file.</li>
+			<li>A timeout option <code>(-t/--timeout)</code> value is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m".
+				<ul>
+					<li>Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".</li>
+				</ul>
+			</li>
+		</ul>
+	</td>
+</table>
 
 ## Examples
 
@@ -188,18 +210,6 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
   <img src="https://user-images.githubusercontent.com/25837540/107988830-6c5a4480-7003-11eb-9ac5-2b91d3136958.png">
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
-
-
-<table>
-	<td>
-		<b>NOTES:</b>
-		<ul>
-			<li>Rotations are counted for all requests, even if the request fails.</li>
-			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, all cookie values in headers will also be redacted automatically and we <b>DO NOT</b> explicitly display the request body.</li>
-			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, requests and responses are <b>NOT</b> written to the log file.</li>
-		</ul>
-	</td>
-</table>
 
 ### [Burp Suite](https://portswigger.net/burp/documentation/desktop/getting-started/installing-burp) Upstream Proxy
 
