@@ -38,6 +38,7 @@
     - [Proxy checker](#proxy-checker)
     - [Proxy IP rotator](#proxy-ip-rotator)
       - [Burp Suite Upstream Proxy](#burp-suite-upstream-proxy)
+      - [OWASP ZAP Proxy Chain](#owasp-zap-proxy-chain)
 - [Limitations](#limitations)
 - [Roadmap](#roadmap)
 - [Contributors](#contributors)
@@ -186,7 +187,7 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
-### Burp Suite Upstream Proxy
+### [Burp Suite](https://portswigger.net/burp/documentation/desktop/getting-started/installing-burp) Upstream Proxy
 
 In that case you can also use `mubeng` (Proxy IP rotator) as an upstream proxy in Burp Suite, acting in-between Burp Suite and mubeng to the internet, so you don't need any additional extensions in Burp Suite for that. To demonstrate this:
 
@@ -195,7 +196,19 @@ In that case you can also use `mubeng` (Proxy IP rotator) as an upstream proxy i
   <i>(Figure: Settings Burp Suite Upstream Proxy to mubeng)</i>
 </p>
 
-In your Burp Suite instance, select **Project options** menu, and click **Connections** tab. In the **Upstream Proxy Servers** section, check **Override user options** then press **Add** button to add your upstream proxy rule. After that, fill required columns _(Destination host, Proxy host & Proxy port)_ with correct details.
+In your Burp Suite instance, select **Project options** menu, and click **Connections** tab. In the **Upstream Proxy Servers** section, check **Override user options** then press **Add** button to add your upstream proxy rule. After that, fill required columns _(Destination host, Proxy host & Proxy port)_ with correct details. Click **OK** to save settings.
+
+### [OWASP ZAP](https://www.zaproxy.org/download/) Proxy Chain
+
+It acts the same way when you using an upstream proxy. OWASP ZAP allows you to connect to another proxy for outgoing connections in OWASP ZAP session. To chain it with a mubeng proxy:
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/25837540/108057987-f1863d80-7085-11eb-8ead-fc8318e2d233.png">
+	<i>(Figure: Settings proxy chain connection in OWASP ZAP to mubeng)</i>
+</p>
+
+
+Select **Tools** in the menu bar in your ZAP session window, then select the **Options** _(shortcut: Ctrl+Alt+O)_ submenu, and go to **Connection** section. In that window, scroll to **Use proxy chain** part then check **Use an outgoing proxy server**. After that, fill required columns _(Address/Domain Name & Port)_ with correct details. Click **OK** to save settings.
 
 # Limitations
 
