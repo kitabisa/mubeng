@@ -65,7 +65,6 @@ func check(address string, timeout time.Duration) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -76,6 +75,8 @@ func check(address string, timeout time.Duration) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	defer resp.Body.Close()
 
 	return myip.CC, nil
 }
