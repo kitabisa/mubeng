@@ -55,7 +55,7 @@
 - **All HTTP methods** are supported.
 - **HTTP/S & SOCKSv5** proxy protocols apply.
 - **All parameters & URIs are passed**.
-- **Minimal configuration**: You can just run it against your proxy file, and choose the action you want!
+- **Easy to use**: You can just run it against your proxy file, and choose the action you want! There is no need for additional configuration.
 
 # Why mubeng?
 
@@ -97,7 +97,9 @@ Using [Go _(v1.15+)_](https://golang.org/doc/install) compiler:
 ▶ GO111MODULE=on go get -u ktbs.dev/mubeng/cmd/mubeng
 ```
 
-> **NOTE:** The same command above also works for updating.
+<table>
+	<td><b>NOTE:</b> The same command above also works for updating.</td>
+</table>
 
 ### — or
 
@@ -159,7 +161,7 @@ socks5://127.0.0.1:2121
 
 ### Proxy checker
 
-Pass `--check` flag to command to perform proxy checks:
+Pass `--check` flag in command to perform proxy checks:
 
 ```bash
 ▶ mubeng -f proxies.txt --check --output live.txt
@@ -187,10 +189,17 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
-**NOTE:**
-- Rotations are counted for all requests, even if the request fails.
-- HTTP traffic requests and responses is displayed when verbose mode `(-v/--verbose)` is enabled, all cookie values in headers will also be redacted automatically and we **DO NOT** explicitly display the request body.
-- If you use output option `(-o/--output)` to run proxy IP rotator, requests and responses are **NOT** written to the log file.
+
+<table>
+	<td>
+		<b>NOTES:</b>
+		<ul>
+			<li>Rotations are counted for all requests, even if the request fails.</li>
+			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, all cookie values in headers will also be redacted automatically and we <b>DO NOT</b> explicitly display the request body.</li>
+			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, requests and responses are <b>NOT</b> written to the log file.</li>
+		</ul>
+	</td>
+</table>
 
 ### [Burp Suite](https://portswigger.net/burp/documentation/desktop/getting-started/installing-burp) Upstream Proxy
 
