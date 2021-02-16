@@ -174,7 +174,7 @@ The above case also uses `--output` flag to save a live proxy into file `(live.t
 
 ### Proxy IP rotator
 
-Furthermore, if you wish to do IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)` or if you have your own list, you must use `-a` _(--address)_ flag instead of `-c` _(--check)_ to run proxy server:
+Furthermore, if you wish to do proxy IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)` _(or if you have your own list)_, you must use `-a` _(--address)_ flag instead of `-c` _(--check)_ to run proxy server:
 
 ```bash
 ▶ mubeng -a localhost:8089 -f live.txt -r 10
@@ -187,9 +187,14 @@ The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value y
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
+**NOTE:**
+- Rotations are counted for all requests, even if the request fails.
+- HTTP traffic requests and responses is displayed when verbose mode `(-v/--verbose)` is enabled, all cookie values in headers will also be redacted automatically and we **DO NOT** explicitly display the request body.
+- If you use output option `(-o/--output)` to run proxy IP rotator, requests and responses are **NOT** written to the log file.
+
 ### [Burp Suite](https://portswigger.net/burp/documentation/desktop/getting-started/installing-burp) Upstream Proxy
 
-In that case you can also use `mubeng` (Proxy IP rotator) as an upstream proxy in Burp Suite, acting in-between Burp Suite and mubeng to the internet, so you don't need any additional extensions in Burp Suite for that. To demonstrate this:
+In case you want to use `mubeng` _(proxy IP rotator)_ as an upstream proxy in Burp Suite, acting in-between Burp Suite and mubeng to the internet, so you don't need any additional extensions in Burp Suite for that. To demonstrate this:
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25837540/107985702-24d0ba00-6ffd-11eb-9489-c19e52c921f5.jpg">
@@ -200,7 +205,7 @@ In your Burp Suite instance, select **Project options** menu, and click **Connec
 
 ### [OWASP ZAP](https://www.zaproxy.org/download/) Proxy Chain
 
-It acts the same way when you using an upstream proxy. OWASP ZAP allows you to connect to another proxy for outgoing connections in OWASP ZAP session. To chain it with a mubeng proxy:
+It acts the same way when you using an upstream proxy. OWASP ZAP allows you to connect to another proxy for outgoing connections in OWASP ZAP session. To chain it with a mubeng proxy server:
 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/25837540/108060995-41670380-708a-11eb-83ad-c781421af473.png">
