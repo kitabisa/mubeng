@@ -1,13 +1,17 @@
 package server
 
 import (
+	"bufio"
 	"context"
 	"math/rand"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
+	"regexp"
 	"time"
 
+	"github.com/elazarl/goproxy"
 	"github.com/mbndr/logo"
 	"ktbs.dev/mubeng/common"
 )
@@ -31,16 +35,41 @@ func Run(opt *common.Options) {
 
 	log = logo.NewLogger(cli, out)
 
-	handler := &Proxy{
-		list:    opt.List,
-		rotate:  opt.Rotate,
-		timeout: opt.Timeout,
-		verbose: opt.Verbose,
-	}
+	handler := &Proxy{}
+	handler.Options = opt
+	handler.HTTPProxy = goproxy.NewProxyHttpServer()
+	handler.HTTPProxy.OnRequest(goproxy.ReqHostMatches(regexp.MustCompile("^.*$"))).HandleConnect(goproxy.AlwaysMitm)
+	handler.HTTPProxy.OnRequest(goproxy.ReqHostMatches(regexp.MustCompile("^.*:80$"))).HijackConnect(func(req *http.Request, client net.Conn, ctx *goproxy.ProxyCtx) {
+		defer func() {
+			if e := recover(); e != nil {
+				ctx.Logf("error connecting to remote: %v", e)
+				client.Write([]byte("HTTP/1.1 500 Cannot reach destination\r\n\r\n"))
+			}
+			client.Close()
+		}()
+		clientBuf := bufio.NewReadWriter(bufio.NewReader(client), bufio.NewWriter(client))
+		remote, err := net.Dial("tcp", req.URL.Host)
+		log.Fatal(err)
+		client.Write([]byte("HTTP/1.1 200 Ok\r\n\r\n"))
+		remoteBuf := bufio.NewReadWriter(bufio.NewReader(remote), bufio.NewWriter(remote))
+		for {
+			req, err := http.ReadRequest(clientBuf.Reader)
+			log.Fatal(err)
+			log.Fatal(req.Write(remoteBuf))
+			log.Fatal(remoteBuf.Flush())
+			resp, err := http.ReadResponse(remoteBuf.Reader, req)
+			log.Fatal(err)
+			log.Fatal(resp.Write(clientBuf.Writer))
+			log.Fatal(clientBuf.Flush())
+		}
+	})
+	handler.HTTPProxy.OnRequest().DoFunc(handler.OnRequest)
+	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.OnConnect)
+	handler.HTTPProxy.OnResponse().DoFunc(handler.OnResponse)
 
 	server := &http.Server{
 		Addr:    opt.Address,
-		Handler: handler,
+		Handler: handler.HTTPProxy,
 	}
 
 	go func() {

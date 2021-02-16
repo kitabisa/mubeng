@@ -1,11 +1,12 @@
 package server
 
-import "time"
+import (
+	"github.com/elazarl/goproxy"
+	"ktbs.dev/mubeng/common"
+)
 
 // Proxy as ServeMux in proxy server handler.
 type Proxy struct {
-	list    []string
-	rotate  int
-	timeout time.Duration
-	verbose bool
+	HTTPProxy *goproxy.ProxyHttpServer
+	Options   *common.Options
 }
