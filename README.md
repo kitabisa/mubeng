@@ -240,7 +240,7 @@ Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCK
 
 # Roadmap
 
-- [ ] Support HTTPS protocol for proxy server.
+- [x] ~Support HTTPS protocol for proxy server.~
 - [x] ~Rotate IP proxy `AFTER` request.~
 - [ ] `mubeng` proxy server as service, daemonize it!
 
