@@ -207,7 +207,7 @@ Furthermore, if you wish to do proxy IP rotator from proxies that are still aliv
 The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value you provide `(10)`.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25837540/107988830-6c5a4480-7003-11eb-9ac5-2b91d3136958.png">
+  <img src="https://user-images.githubusercontent.com/25837540/108269526-b3ca0780-71a0-11eb-986c-f8e98bab8433.jpg">
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
