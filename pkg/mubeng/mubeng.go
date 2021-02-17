@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-
-	"github.com/henvic/httpretty"
 )
 
 // New define HTTP client & request of http.Request itself.
@@ -15,16 +13,7 @@ import (
 // also removes Hop-by-hop headers when it is sent to backend (see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html),
 // then add X-Forwarded-For header value with the IP address value of rotator proxy IP.
 func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
-	log := &httpretty.Logger{
-		ResponseHeader: proxy.Verbose,
-		RequestHeader:  proxy.Verbose,
-		Colors:         proxy.Color,
-	}
-
 	client = &http.Client{Transport: proxy.Transport}
-	if proxy.Verbose {
-		client.Transport = log.RoundTripper(proxy.Transport)
-	}
 
 	// http: Request.RequestURI can't be set in client requests.
 	// http://golang.org/src/pkg/net/http/client.go

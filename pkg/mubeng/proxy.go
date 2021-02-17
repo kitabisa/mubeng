@@ -6,6 +6,4 @@ import "net/http"
 type Proxy struct {
 	Address   string
 	Transport *http.Transport
-	Verbose   bool
-	Color     bool
 }
