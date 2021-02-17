@@ -26,7 +26,6 @@
 
 - [Features](#features)
 - [Why mubeng?](#why-mubeng)
-- [Demo](#demo)
 - [Installation](#installation)
   - [Binary](#binary)
   - [Docker](#docker)
@@ -72,10 +71,6 @@ This is useful to bypass different kinds of IP blocking, e.g. bruteforce protect
 So, you don't need any extra proxy checking tools out there if you want to do that.
 
 We also leave it entirely up to user to provide the proxy resources, therefore it's **NOT** under any policy for any use of this tool, but developers assume no liability and are not responsible for any misuse or damage. Be responsible for your actions!
-
-# Demo
-
-_TODO_
 
 # Installation
 
@@ -154,7 +149,7 @@ Here are all the options it supports.
 					<li>all cookie values in headers will be redacted automatically.</li>
 				</ul>
 			</li>
-			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, requests and responses are <b>NOT</b> written to the log file.</li>
+			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, request and response headers are <b>NOT</b> written to the log file.</li>
 			<li>A timeout option <code>(-t/--timeout)</code> value is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m".
 				<ul>
 					<li>Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".</li>
