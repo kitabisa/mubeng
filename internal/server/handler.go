@@ -12,9 +12,12 @@ import (
 
 // onRequest handles client request
 func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+	resChan := make(chan *http.Response)
+	errChan := make(chan error, 1)
+
 	log.Debugf("%s %s %s", req.RemoteAddr, req.Method, req.URL)
 
-	// Rotate proxy IP every AFTER request
+	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
 		rotate = p.Options.List[rand.Intn(len(p.Options.List))]
 		if ok >= p.Options.Rotate {
@@ -24,41 +27,50 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		ok++
 	}
 
-	tr, err := mubeng.Transport(rotate)
-	if err != nil {
+	go func() {
+		tr, err := mubeng.Transport(rotate)
+		if err != nil {
+			errChan <- err
+			return
+		}
+
+		proxy := &mubeng.Proxy{
+			Address:   rotate,
+			Transport: tr,
+		}
+
+		client, req = proxy.New(req)
+		client.Timeout = p.Options.Timeout
+		if p.Options.Verbose {
+			client.Transport = dump.RoundTripper(tr)
+		}
+
+		resp, err := client.Do(req)
+		if err != nil {
+			errChan <- err
+			return
+		}
+		defer resp.Body.Close()
+
+		// Copying response body
+		buf, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			errChan <- err
+			return
+		}
+
+		resp.Body = ioutil.NopCloser(bytes.NewBuffer(buf))
+		resChan <- resp
+	}()
+
+	select {
+	case err := <-errChan:
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy transport error: "+err.Error())
+		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy Server Error")
+	case resp := <-resChan:
+		log.Debug(req.RemoteAddr, " ", resp.Status)
+		return req, resp
 	}
-
-	proxy := &mubeng.Proxy{
-		Address:   rotate,
-		Transport: tr,
-	}
-
-	client, req = proxy.New(req)
-	client.Timeout = p.Options.Timeout
-	if p.Options.Verbose {
-		client.Transport = dump.RoundTripper(tr)
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy error: "+err.Error())
-	}
-	defer resp.Body.Close()
-
-	// Copying response body
-	buf, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy Error: "+err.Error())
-	}
-
-	resp.Body = ioutil.NopCloser(bytes.NewBuffer(buf))
-	log.Debug(req.RemoteAddr, " ", resp.Status)
-
-	return req, resp
 }
 
 // onConnect handles CONNECT method
