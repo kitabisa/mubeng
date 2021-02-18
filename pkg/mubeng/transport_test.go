@@ -14,6 +14,7 @@ func TestTransport(t *testing.T) {
 		p string
 	}
 
+	failProxy := "gopher://localhost:70"
 	httpProxy := "http://localhost:80"
 	socks5Proxy := "socks5://localhost:3128"
 
@@ -59,6 +60,14 @@ func TestTransport(t *testing.T) {
 				DisableKeepAlives: true,
 			},
 			wantErr: false,
+		},
+		{
+			name: "Unsupported proxy proxy protocol scheme",
+			args: args{
+				p: failProxy,
+			},
+			wantTr:  nil,
+			wantErr: true,
 		},
 	}
 
