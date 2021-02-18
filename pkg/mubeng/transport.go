@@ -27,7 +27,7 @@ func Transport(p string) (tr *http.Transport, err error) {
 		tr = &http.Transport{
 			Dial: dialer.Dial,
 		}
-	case "http", "https":
+	case "http":
 		tr = &http.Transport{
 			Proxy: http.ProxyURL(proxyURL),
 		}
