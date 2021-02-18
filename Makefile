@@ -8,8 +8,8 @@ LINT_BIN = "https://install.goreleaser.com/github.com/golangci/golangci-lint.sh"
 mubeng: test build
 
 test:
-	@echo "Testing ${APP_NAME} ${VERSION}"
-	@go test -short ./...
+	@echo "Testing ${APP_NAME} package ${VERSION}"
+	@go test -short ktbs.dev/mubeng/pkg/mubeng
 
 test-extra: golangci-lint test
 
