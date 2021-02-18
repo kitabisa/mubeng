@@ -2,6 +2,7 @@ package server
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -15,8 +16,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	resChan := make(chan *http.Response)
 	errChan := make(chan error, 1)
 
-	log.Debugf("%s %s %s", req.RemoteAddr, req.Method, req.URL)
-
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
 		rotate = p.Options.List[rand.Intn(len(p.Options.List))]
@@ -28,6 +27,13 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	}
 
 	go func() {
+		if (req.URL.Scheme != "http") && (req.URL.Scheme != "https") {
+			errChan <- fmt.Errorf("Unsupported protocol scheme: %s", req.URL.Scheme)
+			return
+		}
+
+		log.Debugf("%s %s %s", req.RemoteAddr, req.Method, req.URL)
+
 		tr, err := mubeng.Transport(rotate)
 		if err != nil {
 			errChan <- err
