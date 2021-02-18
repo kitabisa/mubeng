@@ -70,8 +70,6 @@ This is useful to bypass different kinds of IP blocking, e.g. bruteforce protect
 
 So, you don't need any extra proxy checking tools out there if you want to do that.
 
-We also leave it entirely up to user to provide the proxy resources, therefore it's **NOT** under any policy for any use of this tool, but developers assume no liability and are not responsible for any misuse or damage. Be responsible for your actions!
-
 # Installation
 
 ## Binary
@@ -187,7 +185,7 @@ Pass `--check` flag in command to perform proxy checks:
 The above case also uses `--output` flag to save a live proxy into file `(live.txt)` from checking result.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25837540/107990170-6a45b500-7006-11eb-83b9-a9bcf01efaf1.png">
+  <img src="https://user-images.githubusercontent.com/25837540/108407803-cd2d8b00-7256-11eb-8560-f0c99042c970.png">
   <i>(Figure: Checking proxies mubeng with max. 5s timeout)</i>
 </p>
 
@@ -237,8 +235,9 @@ Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCK
 
 - [x] ~Support HTTPS/CONNECT method for proxy server.~
 - [x] ~Rotate IP proxy for every specific request.~
-- [ ] Able to run proxy server as daemon.
 - [ ] Support HTTPS proxy check/rotation.
+- [ ] Able to run proxy server as daemon.
+- [ ] Support AWS gateway endpoint proxy.
 
 # Contributors
 
