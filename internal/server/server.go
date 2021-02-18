@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"math/rand"
 	"net/http"
 	"os"
 	"os/signal"
@@ -13,10 +12,6 @@ import (
 	"github.com/mbndr/logo"
 	"ktbs.dev/mubeng/common"
 )
-
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
 
 // Run proxy server with a user defined listener.
 //
