@@ -27,7 +27,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	tr, err := mubeng.Transport(rotate)
 	if err != nil {
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, "text/plain", http.StatusInternalServerError, "Proxy transport error: "+err.Error())
+		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy transport error: "+err.Error())
 	}
 
 	proxy := &mubeng.Proxy{
@@ -44,7 +44,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, "text/plain", http.StatusBadGateway, "Proxy error: "+err.Error())
+		return req, goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy error: "+err.Error())
 	}
 	defer resp.Body.Close()
 
@@ -52,12 +52,12 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	buf, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, "text/plain", http.StatusInternalServerError, "Proxy Error: "+err.Error())
+		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy Error: "+err.Error())
 	}
 
 	resp.Body = ioutil.NopCloser(bytes.NewBuffer(buf))
-
 	log.Debug(req.RemoteAddr, " ", resp.Status)
+
 	return req, resp
 }
 
