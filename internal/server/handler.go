@@ -27,7 +27,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	tr, err := mubeng.Transport(rotate)
 	if err != nil {
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, "text/plain", http.StatusInternalServerError, "Proxy transport error")
+		return req, goproxy.NewResponse(req, "text/plain", http.StatusInternalServerError, "Proxy transport error: "+err.Error())
 	}
 
 	proxy := &mubeng.Proxy{
@@ -56,11 +56,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	}
 
 	resp.Body = ioutil.NopCloser(bytes.NewBuffer(buf))
-
-	// Removing hop-by-hop headers
-	for _, h := range mubeng.HopHeaders {
-		resp.Header.Del(h)
-	}
 
 	log.Debug(req.RemoteAddr, " ", resp.Status)
 	return req, resp
