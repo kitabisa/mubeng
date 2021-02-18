@@ -45,7 +45,7 @@ func Options() *common.Options {
 	showBanner()
 
 	if err := validate(opt); err != nil {
-		gologger.Fatalf("Error! %s", err)
+		gologger.Fatalf("Error! %s.", err)
 	}
 
 	return opt

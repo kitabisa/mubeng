@@ -3,9 +3,11 @@ package runner
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"os"
 
 	"ktbs.dev/mubeng/common"
+	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
 // validate user-supplied option values before Runner.
@@ -19,6 +21,11 @@ func validate(opt *common.Options) error {
 	opt.List, err = readFile(opt.File)
 	if err != nil {
 		return err
+	}
+
+	opt.List = uniq(opt.List)
+	if len(opt.List) < 1 {
+		return fmt.Errorf("open %s: has no valid proxy URLs", opt.File)
 	}
 
 	if opt.Output != "" {
@@ -46,4 +53,21 @@ func readFile(path string) ([]string, error) {
 		lines = append(lines, scanner.Text())
 	}
 	return lines, scanner.Err()
+}
+
+func uniq(list []string) []string {
+	keys := make(map[string]bool)
+	uniq := []string{}
+
+	for _, proxy := range list {
+		if _, value := keys[proxy]; !value {
+			_, err := mubeng.Transport(proxy)
+			if err == nil {
+				keys[proxy] = true
+				uniq = append(uniq, proxy)
+			}
+		}
+	}
+
+	return uniq
 }
