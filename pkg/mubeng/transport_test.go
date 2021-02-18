@@ -3,9 +3,9 @@ package mubeng
 import (
 	"net/http"
 	"net/url"
-	"reflect"
 	"testing"
 
+	"github.com/go-test/deep"
 	"golang.org/x/net/proxy"
 )
 
@@ -69,8 +69,8 @@ func TestTransport(t *testing.T) {
 				t.Errorf("Transport() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(gotTr, tt.wantTr) {
-				t.Errorf("Transport() = %v, want %v", gotTr, tt.wantTr)
+			if diff := deep.Equal(gotTr, tt.wantTr); diff != nil {
+				t.Error(diff)
 			}
 		})
 	}

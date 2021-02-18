@@ -3,8 +3,9 @@ package mubeng
 import (
 	"net/http"
 	"net/url"
-	"reflect"
 	"testing"
+
+	"github.com/go-test/deep"
 )
 
 func TestProxy_New(t *testing.T) {
@@ -63,11 +64,11 @@ func TestProxy_New(t *testing.T) {
 				Transport: tt.fields.Transport,
 			}
 			got, got1 := proxy.New(tt.args.req)
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Proxy.New() got = %v, want %v", got, tt.want)
+			if diff := deep.Equal(got, tt.want); diff != nil {
+				t.Error(diff)
 			}
-			if !reflect.DeepEqual(got1, tt.want1) {
-				t.Errorf("Proxy.New() got1 = %v, want %v", got1, tt.want1)
+			if diff1 := deep.Equal(got1, tt.want1); diff1 != nil {
+				t.Error(diff1)
 			}
 		})
 	}
