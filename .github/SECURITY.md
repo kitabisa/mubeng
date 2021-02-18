@@ -1,5 +1,5 @@
 # Security Policy
-When I started out **teler**, I had very little or no knowledge on Golang. So I believe there could be many security vulnerabilities.
+When I started out **mubeng**, I had very little or no knowledge on Golang. So I believe there could be many security vulnerabilities.
 
 The community will be thankful to your contributions. :star:
 

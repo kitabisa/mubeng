@@ -1,6 +1,6 @@
 # CONTRIBUTION LICENSE AGREEMENT
 
-This Contribution License Agreement (the “CLA”) is between the individual set forth in the signature block (“You”) and teler, (“Kitabisa”), effective as of the date of Your signature and sets forth the terms pursuant to which You provides Contributions to Kitabisa.
+This Contribution License Agreement (the “CLA”) is between the individual set forth in the signature block (“You”) and mubeng, (“Kitabisa”), effective as of the date of Your signature and sets forth the terms pursuant to which You provides Contributions to Kitabisa.
 
 You accept and agree to the following terms and conditions for Your present and future Contributions submitted to Kitabisa. In return, Kitabisa will not use Your Contributions in a way that is contrary to Kitabisa’s business objectives. Except for the license granted herein to Kitabisa and recipients of software distributed by Kitabisa, You reserve all right, title, and interest in and to Your Contributions.
 
