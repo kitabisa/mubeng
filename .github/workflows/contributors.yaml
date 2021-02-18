@@ -1,4 +1,4 @@
-name: Update contributors
+name: Contributors
 on:
   push:
     branches:
@@ -6,6 +6,7 @@ on:
 
 jobs:
   contributors:
+    name: "Update contributors"
     runs-on: ubuntu-latest
     steps:
       - uses: bubkoo/contributors-list@v1

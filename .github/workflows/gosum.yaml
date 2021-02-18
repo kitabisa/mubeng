@@ -11,6 +11,7 @@ on:
 
 jobs:
   gosum:
+    name: "Go mod tidy up"
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

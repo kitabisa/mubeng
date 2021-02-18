@@ -6,6 +6,7 @@ on:
 
 jobs: 
   release: 
+    name: "Release binary"
     runs-on: ubuntu-latest
     steps: 
       - name: "Check out code"
