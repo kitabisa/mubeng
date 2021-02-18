@@ -70,7 +70,7 @@ This is useful to avoid different kinds of IP ban, i.e. bruteforce protection, A
 
 ### 2. Perform proxy checks
 
-So, you don't need any extra proxy checking tools out there if you want to do that.
+So, you don't need any extra proxy checking tools out there if you want to check your proxy pool.
 
 # Installation
 
