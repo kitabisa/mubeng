@@ -131,10 +131,10 @@ Here are all the options it supports.
 | -f, --file `<FILE>`           	| Proxy file.                                                  	|
 | -a, --address `<ADDR>:<PORT>` 	| Run proxy server.                                            	|
 | -c, --check                   	| To perform proxy live check.                                 	|
-| -t, --timeout                 	| Max. time allowed for proxy server/live check (default: 30s). |
-| -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request.                    |
-| -v, --verbose                 	| Dump HTTP request/responses or show died proxy checks.        |
-| -o, --output <FILE>           	| Log output from proxy servers or live proxy checks.          	|
+| -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
+| -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
+| -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
+| -o, --output <FILE>           	| Log output from proxy server or live check.          	        |
 
 <table>
 	<td>

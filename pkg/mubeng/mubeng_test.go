@@ -8,7 +8,7 @@ import (
 	"github.com/go-test/deep"
 )
 
-func TestProxy_New(t *testing.T) {
+func TestProxyNew(t *testing.T) {
 	type fields struct {
 		Address   string
 		Transport *http.Transport
