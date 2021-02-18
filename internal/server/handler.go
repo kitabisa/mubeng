@@ -10,8 +10,8 @@ import (
 	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
-// OnRequest handles client request
-func (p *Proxy) OnRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+// onRequest handles client request
+func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 	log.Debugf("%s %s %s", req.RemoteAddr, req.Method, req.URL)
 
 	// Rotate proxy IP every AFTER request
@@ -66,13 +66,13 @@ func (p *Proxy) OnRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	return req, resp
 }
 
-// OnConnect handles CONNECT method
-func (p *Proxy) OnConnect(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
+// onConnect handles CONNECT method
+func (p *Proxy) onConnect(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
 	return goproxy.MitmConnect, host
 }
 
-// OnResponse handles backend responses, and removing hop-by-hop headers
-func (p *Proxy) OnResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Response {
+// onResponse handles backend responses, and removing hop-by-hop headers
+func (p *Proxy) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Response {
 	for _, h := range mubeng.HopHeaders {
 		resp.Header.Del(h)
 	}

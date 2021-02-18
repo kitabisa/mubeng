@@ -40,9 +40,9 @@ func Run(opt *common.Options) {
 	handler := &Proxy{}
 	handler.Options = opt
 	handler.HTTPProxy = goproxy.NewProxyHttpServer()
-	handler.HTTPProxy.OnRequest().DoFunc(handler.OnRequest)
-	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.OnConnect)
-	handler.HTTPProxy.OnResponse().DoFunc(handler.OnResponse)
+	handler.HTTPProxy.OnRequest().DoFunc(handler.onRequest)
+	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.onConnect)
+	handler.HTTPProxy.OnResponse().DoFunc(handler.onResponse)
 
 	server := &http.Server{
 		Addr:    opt.Address,
