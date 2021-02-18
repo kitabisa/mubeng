@@ -14,7 +14,7 @@ For small things like fixing typos in documentation, you can [make edits through
 Prerequisites:
 
 - make
-- [Go 1.13+](https://golang.org/doc/install)
+- [Go 1.14+](https://golang.org/doc/install)
 
 Fork and clone **[mubeng](https://github.com/kitabisa/mubeng)** repository.
 
@@ -43,6 +43,6 @@ Please also update the [CHANGELOG.md](https://github.com/kitabisa/mubeng/blob/ma
 
 ### Pull request checks
 
-First, please accept our [CLA](https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTION_LICENSE_AGREEMENT.md).
+By submitting your pull request, you are agreeing to our [Contributing License Agreement](https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTION_LICENSE_AGREEMENT.md).
 
 Also, we run a few checks in CI by using GitHub actions, you can see them [here](https://github.com/kitabisa/mubeng/tree/master/.github/workflows).
