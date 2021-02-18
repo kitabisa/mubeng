@@ -53,18 +53,20 @@
 - **Proxy IP rotator**: Rotates your IP address for every specific request.
 - **Proxy checker**: Check your proxy IP which is still alive.
 - **All HTTP methods** are supported.
-- **HTTP/S & SOCKSv5** proxy protocols apply.
+- **HTTP & SOCKSv5** proxy protocols apply.
 - **All parameters & URIs are passed**.
-- **Easy to use**: You can just run it against your proxy file, and choose the action you want! There is no need for additional configuration.
+- **Easy to use**: You can just run it against your proxy file, and choose the action you want!
 - **Cross-platform**: whether you are Windows, Linux, Mac, or even Raspberry Pi, you can run it very well.
 
 # Why mubeng?
+
+It's fairly simple, there is no need for additional configuration.
 
 `mubeng` has 2 core functionality:
 
 ### 1. Run proxy server as proxy IP rotation
 
-This is useful to bypass different kinds of IP blocking, e.g. bruteforce protection, API rate-limiting or WAF blocking based on IP.
+This is useful to avoid different kinds of IP ban, i.e. bruteforce protection, API rate-limiting or WAF blocking based on IP. We also leave it entirely up to user to use proxy pool resources from anywhere.
 
 ### 2. Perform proxy checks
 
@@ -110,7 +112,7 @@ Manual building executable from source code:
 
 # Usage
 
-For usage, it's always required to provide your proxy list, whether it is used to check or run as a proxy server for your proxy IP rotation.
+For usage, it's always required to provide your proxy list, whether it is used to check or run as a proxy server or as proxy pool for your proxy IP rotation.
 
 ## Basic
 
@@ -138,17 +140,18 @@ Here are all the options it supports.
 
 <table>
 	<td>
-		<h3>NOTES:</h3>
+		<h4>NOTES:</h4>
 		<ul>
 			<li>Rotations are counted for all requests, even if the request fails.</li>
+			<li>Verbose mode <code>(-v/--verbose)</code> and timeout <code>(-t/--timeout)</code> apply to both proxy check and proxy server actions.</li>
 			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, but
 				<ul>
-					<li>we <b>DO NOT</b> explicitly display the request body, and</li>
-					<li>all cookie values in headers will be redacted automatically.</li>
+					<li>We <b>DO NOT</b> explicitly display the request body, and</li>
+					<li>All cookie values in headers will be redacted automatically.</li>
 				</ul>
 			</li>
 			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, request and response headers are <b>NOT</b> written to the log file.</li>
-			<li>A timeout option <code>(-t/--timeout)</code> value is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m".
+			<li>A timeout option <code>(-t/--timeout)</code> value is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "5s", "300ms", "-1.5h" or "2h45m".
 				<ul>
 					<li>Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".</li>
 				</ul>
@@ -159,7 +162,7 @@ Here are all the options it supports.
 
 ## Examples
 
-For example, you've proxy list `(proxies.txt)` as:
+For example, you've proxy pool `(proxies.txt)` as:
 
 <table>
 	<td>
