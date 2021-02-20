@@ -55,6 +55,7 @@ func readFile(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
+// uniq to avoid invalid/duplicate proxy URLs
 func uniq(list []string) []string {
 	keys := make(map[string]bool)
 	uniq := []string{}
