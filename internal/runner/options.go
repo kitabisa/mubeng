@@ -30,8 +30,8 @@ func Options() *common.Options {
 	flag.BoolVar(&opt.Verbose, "v", false, "")
 	flag.BoolVar(&opt.Verbose, "verbose", false, "")
 
-	// flag.BoolVar(&opt.Daemon, "d", false, "")
-	// flag.BoolVar(&opt.Daemon, "daemon", false, "")
+	flag.BoolVar(&opt.Daemon, "d", false, "")
+	flag.BoolVar(&opt.Daemon, "daemon", false, "")
 
 	flag.StringVar(&opt.Output, "o", "", "")
 	flag.StringVar(&opt.Output, "output", "", "")

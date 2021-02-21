@@ -16,5 +16,5 @@ type Options struct {
 	Output  string
 	Result  *os.File
 	List    []string
-	// Daemon  bool
+	Daemon  bool
 }

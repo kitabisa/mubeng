@@ -12,6 +12,10 @@ import (
 func New(opt *common.Options) error {
 	if opt.Address != "" {
 		server.Run(opt)
+
+		// if opt.Daemon {
+		// 	// TODO
+		// }
 	} else if opt.Check {
 		if isConnected() {
 			checker.Do(opt)
