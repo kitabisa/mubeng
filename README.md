@@ -143,7 +143,11 @@ Here are all the options it supports.
 	<td>
 		<h4>NOTES:</h4>
 		<ul>
-			<li>Rotations are counted for all requests, even if the request fails.</li>
+			<li>Rotations are counted for all requests, even if the request fails.
+				<ul>
+					<li>Rotation means random, <b>NOT</b> choosing a proxy after that/increment from proxy pool. We do not set up conditions if a proxy has been used. So, there is no guarantee if your request reaches the <i>N</i> value <code>(-r/--rotate)</code> your IP proxy will rotate.</li>
+				</ul>
+			</li>
 			<li>Daemon mode <code>(-d/--daemon)</code> will install mubeng as a service on the (Linux/OSX) system/setting up callback (Windows).</li>
 			<li>Verbose mode <code>(-v/--verbose)</code> and timeout <code>(-t/--timeout)</code> apply to both proxy check and proxy server actions.</li>
 			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, but
