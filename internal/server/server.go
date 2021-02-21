@@ -39,7 +39,7 @@ func Run(opt *common.Options) {
 	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.onConnect)
 	handler.HTTPProxy.OnResponse().DoFunc(handler.onResponse)
 
-	server := &http.Server{
+	server = &http.Server{
 		Addr:    opt.Address,
 		Handler: handler.HTTPProxy,
 	}
@@ -59,5 +59,10 @@ func Run(opt *common.Options) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+	Stop(ctx)
+}
+
+// Stop will terminate proxy server
+func Stop(ctx context.Context) {
 	_ = server.Shutdown(ctx)
 }

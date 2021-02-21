@@ -9,6 +9,7 @@ import (
 
 var (
 	rotate string
+	server *http.Server
 	client *http.Client
 	dump   *httpretty.Logger
 	mime   = "text/plain"
