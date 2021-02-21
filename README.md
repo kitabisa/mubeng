@@ -18,7 +18,7 @@
 <p align="center">
   <a href="#contributors">Contributing</a> •
   <a href="#changes">What's new</a> •
-  <a href="https://pkg.go.dev/ktbs.dev/mubeng">Documentation</a> •
+  <a href="https://pkg.go.dev/ktbs.dev/mubeng/pkg/mubeng">Documentation</a> •
   <a href="https://github.com/kitabisa/mubeng/issues/new/choose">Report Issues</a>
 </p>
 
@@ -146,7 +146,7 @@ Here are all the options it supports.
 			<li>Verbose mode <code>(-v/--verbose)</code> and timeout <code>(-t/--timeout)</code> apply to both proxy check and proxy server actions.</li>
 			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, but
 				<ul>
-					<li>We <b>DO NOT</b> explicitly display the request body, and</li>
+					<li>We <b>DO NOT</b> explicitly display the request/response body, and</li>
 					<li>All cookie values in headers will be redacted automatically.</li>
 				</ul>
 			</li>
