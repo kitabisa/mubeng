@@ -13,7 +13,7 @@ import (
 func New(opt *common.Options) error {
 	if opt.Address != "" {
 		if opt.Daemon {
-			return daemon.Init(opt)
+			return daemon.New(opt)
 		}
 
 		server.Run(opt)

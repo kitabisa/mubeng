@@ -1,36 +1,16 @@
 package daemon
 
 import (
-	"context"
 	"path/filepath"
 	"strconv"
-	"time"
 
 	"github.com/kardianos/service"
 	"github.com/projectdiscovery/gologger"
 	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/internal/server"
 )
 
-type program struct {
-	opt *common.Options
-}
-
-func (p *program) Start(s service.Service) error {
-	go server.Run(p.opt)
-	return nil
-}
-
-func (p *program) Stop(s service.Service) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	server.Stop(ctx)
-	return nil
-}
-
-// Init to initialize mubeng in daemon by forking first arguments
-func Init(opt *common.Options) error {
+// New to initialize mubeng in daemon
+func New(opt *common.Options) error {
 	file, err := filepath.Abs(opt.File)
 	if err != nil {
 		return err
