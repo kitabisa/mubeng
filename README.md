@@ -132,6 +132,7 @@ Here are all the options it supports.
 |-------------------------------	|--------------------------------------------------------------	|
 | -f, --file `<FILE>`           	| Proxy file.                                                  	|
 | -a, --address `<ADDR>:<PORT>` 	| Run proxy server.                                            	|
+| -d, --daemon                      | Daemonize proxy server.                                       |
 | -c, --check                   	| To perform proxy live check.                                 	|
 | -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
 | -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
@@ -143,6 +144,7 @@ Here are all the options it supports.
 		<h4>NOTES:</h4>
 		<ul>
 			<li>Rotations are counted for all requests, even if the request fails.</li>
+			<li>Daemon mode <code>(-d/--daemon)</code> will install mubeng as a service on the (Linux/OSX) system/setting up callback (Windows).</li>
 			<li>Verbose mode <code>(-v/--verbose)</code> and timeout <code>(-t/--timeout)</code> apply to both proxy check and proxy server actions.</li>
 			<li>HTTP traffic requests and responses is displayed when verbose mode <code>(-v/--verbose)</code> is enabled, but
 				<ul>
@@ -150,7 +152,7 @@ Here are all the options it supports.
 					<li>All cookie values in headers will be redacted automatically.</li>
 				</ul>
 			</li>
-			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, request and response headers are <b>NOT</b> written to the log file.</li>
+			<li>If you use output option <code>(-o/--output)</code> to run proxy IP rotator, request/response headers are <b>NOT</b> written to the log file.</li>
 			<li>A timeout option <code>(-t/--timeout)</code> value is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "5s", "300ms", "-1.5h" or "2h45m".
 				<ul>
 					<li>Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".</li>
@@ -233,14 +235,6 @@ Select **Tools** in the menu bar in your ZAP session window, then select the **O
 # Limitations
 
 Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv5 protocol, even though the resource you have is SOCKSv5. In other words, the SOCKSv5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
-
-# Roadmap
-
-- [x] ~Support HTTPS/CONNECT method for proxy server.~
-- [x] ~Rotate IP proxy for every specific request.~
-- [ ] Support HTTPS proxy check/rotation.
-- [ ] Able to run proxy server as daemon.
-- [ ] Support AWS gateway endpoint proxy.
 
 # Contributors
 

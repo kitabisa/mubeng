@@ -45,21 +45,22 @@ func Run(opt *common.Options) {
 	}
 
 	log = logo.NewLogger(cli, out)
-	go func() {
-		log.Info("Starting proxy server on ", opt.Address)
-		if err := server.ListenAndServe(); err != nil {
-			log.Fatal(err)
-		}
-	}()
 
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt)
+	go func() {
+		<-stop
 
-	<-stop
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	Stop(ctx)
+		Stop(ctx)
+	}()
+
+	log.Infof("[PID: %d] Starting proxy server on %s", os.Getpid(), opt.Address)
+	if err := server.ListenAndServe(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // Stop will terminate proxy server

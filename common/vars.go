@@ -20,6 +20,7 @@ var (
 Options:
   -f, --file <FILE>                Proxy file.
   -a, --address <ADDR>:<PORT>      Run proxy server.
+  -d, --daemon                     Daemonize proxy server.
   -c, --check                      To perform proxy live check.
   -t, --timeout                    Max. time allowed for proxy server/check (default: 30s).
   -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request (default: 1).
