@@ -76,7 +76,7 @@ So, you don't need any extra proxy checking tools out there if you want to check
 
 ## Binary
 
-Simply, download a pre-built binary from [releases page](https://github.com/kitabisa/mubeng/releases), unpack and run!
+Simply, download a pre-built binary from [releases page](https://github.com/kitabisa/mubeng/releases) and run!
 
 ## Docker
 
