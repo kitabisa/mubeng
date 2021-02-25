@@ -91,7 +91,7 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 Using [Go _(v1.15+)_](https://golang.org/doc/install) compiler:
 
 ```bash
-▶ GO111MODULE=on go get ktbs.dev/mubeng/cmd/mubeng
+▶ GO111MODULE=on go get -u ktbs.dev/mubeng/cmd/mubeng
 ```
 
 <table>

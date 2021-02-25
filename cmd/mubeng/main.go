@@ -9,6 +9,6 @@ func main() {
 	opt := runner.Options()
 
 	if err := runner.New(opt); err != nil {
-		gologger.Fatalf("Error! %s", err)
+		gologger.Fatal().Msgf("Error! %s", err)
 	}
 }

@@ -49,7 +49,7 @@ func New(opt *common.Options) error {
 		return err
 	}
 
-	gologger.Infof("Running as daemon...")
+	gologger.Info().Msg("Running as daemon...")
 
 	err = service.Control(s, "start")
 	if err != nil {

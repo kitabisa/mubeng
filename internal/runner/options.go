@@ -52,22 +52,22 @@ func Options() *common.Options {
 		lat, ver := isLatest()
 
 		if !lat && ver != "" {
-			gologger.Infof("New version v%s is available!", ver)
+			gologger.Info().Msgf("New version v%s is available!", ver)
 
 			if doUpdate {
-				gologger.Infof("Updating...")
+				gologger.Info().Msgf("Updating...")
 				if err := updateNow(ver); err != nil {
-					gologger.Fatalf("Error while update! %s.", err)
+					gologger.Fatal().Msgf("Error while update! %s.", err)
 				}
 
-				gologger.Infof("Successfully update!")
+				gologger.Info().Msgf("Successfully update!")
 				os.Exit(1)
 			}
 		}
 	}
 
 	if err := validate(opt); err != nil {
-		gologger.Fatalf("Error! %s.", err)
+		gologger.Fatal().Msgf("Error! %s.", err)
 	}
 
 	return opt
