@@ -138,6 +138,7 @@ Here are all the options it supports.
 | -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
 | -o, --output <FILE>           	| Log output from proxy server or live check.          	        |
+| -u, --update                  	| Update mubeng to the latest stable version.          	        |
 
 <table>
 	<td>

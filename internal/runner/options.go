@@ -2,6 +2,7 @@ package runner
 
 import (
 	"flag"
+	"os"
 	"time"
 
 	"github.com/projectdiscovery/gologger"
@@ -36,6 +37,9 @@ func Options() *common.Options {
 	flag.StringVar(&opt.Output, "o", "", "")
 	flag.StringVar(&opt.Output, "output", "", "")
 
+	flag.BoolVar(&doUpdate, "u", false, "")
+	flag.BoolVar(&doUpdate, "update", false, "")
+
 	flag.Usage = func() {
 		showBanner()
 		showUsage()
@@ -44,14 +48,26 @@ func Options() *common.Options {
 	flag.Parse()
 	showBanner()
 
-	if err := validate(opt); err != nil {
-		gologger.Fatalf("Error! %s.", err)
+	if isConnected() {
+		lat, ver := isLatest()
+
+		if !lat && ver != "" {
+			gologger.Infof("New version v%s is available!", ver)
+
+			if doUpdate {
+				gologger.Infof("Updating...")
+				if err := updateNow(ver); err != nil {
+					gologger.Fatalf("Error while update! %s.", err)
+				}
+
+				gologger.Infof("Successfully update!")
+				os.Exit(1)
+			}
+		}
 	}
 
-	if isConnected() {
-		if lat, ver := isLatest(); !lat && ver != "" {
-			gologger.Infof("New version v%s is available!", ver)
-		}
+	if err := validate(opt); err != nil {
+		gologger.Fatalf("Error! %s.", err)
 	}
 
 	return opt

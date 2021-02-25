@@ -9,6 +9,7 @@ require (
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/hashicorp/go-version v1.2.1 // indirect
 	github.com/henvic/httpretty v0.0.6
+	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/kardianos/service v1.2.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/mbndr/logo v0.0.1
