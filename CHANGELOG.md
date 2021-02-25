@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.2.1
+
+- Patch
+  - Fix break updater logic.
+
 ### v0.2.0
 
 - Minor
