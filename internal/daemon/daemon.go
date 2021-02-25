@@ -1,6 +1,7 @@
 package daemon
 
 import (
+	"runtime"
 	"strconv"
 
 	"github.com/kardianos/service"
@@ -27,16 +28,11 @@ func New(opt *common.Options) error {
 	o["Restart"] = "on-success"
 	o["SuccessExitStatus"] = "1 2 8 SIGKILL"
 
-	cfg := &service.Config{
-		Name:        common.App,
-		DisplayName: common.App,
-		Description: "An incredibly fast proxy checker & IP rotator with ease.",
-		Arguments:   args,
-		Option:      o,
-	}
+	cfg.Arguments = args
+	cfg.Option = o
 
 	p := &program{opt: opt}
-	s, err := service.New(p, cfg)
+	s, err := service.New(p, &cfg)
 	if err != nil {
 		return err
 	}
@@ -44,16 +40,20 @@ func New(opt *common.Options) error {
 	// Stop & uninstall current mubeng service, then re-installing & start
 	_ = service.Control(s, "stop")
 	_ = service.Control(s, "uninstall")
-	err = service.Control(s, "install")
-	if err != nil {
-		return err
-	}
 
-	gologger.Info().Msg("Running as daemon...")
+	if runtime.GOOS == "windows" {
+		err = service.Control(s, "install")
+		if err != nil {
+			return err
+		}
 
-	err = service.Control(s, "start")
-	if err != nil {
-		return err
+		gologger.Info().Msg("Service installed!")
+		gologger.Info().Msg("Type 'net start mubeng' to start it up in daemon.")
+	} else {
+		_ = service.Control(s, "install")
+
+		gologger.Info().Msg("Running as daemon...")
+		return service.Control(s, "start")
 	}
 
 	return nil

@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.3.0
+
+- Patch
+  - Fix unable to run proxy server in daemon at Windows.
+
 ### v0.2.1
 
 - Patch

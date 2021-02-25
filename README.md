@@ -151,7 +151,7 @@ Here are all the options it supports.
 			</li>
 			<li>Daemon mode <code>(-d/--daemon)</code> will install mubeng as a service on the (Linux/OSX) system<s>/setting up callback (Windows)</s>.
 				<ul>
-					<li>Hence you can control service with <code>journalctl</code>/<code>service</code> command to start/stop proxy server.</li>
+					<li>Hence you can control service with <code>journalctl</code>, <code>service</code> or <code>net</code> (for Windows) command to start/stop proxy server.</li>
 					<li>Whenever you activate the daemon mode, it works by forcibly stop and uninstalling the existing mubeng service, then re-install and starting it up in daemon.</li>
 				</ul>
 			</li>
@@ -245,10 +245,6 @@ Select **Tools** in the menu bar in your ZAP session window, then select the **O
 # Limitations
 
 Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv5 protocol, even though the resource you have is SOCKSv5. In other words, the SOCKSv5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
-
-## Known Bugs
-
-- Unable to run proxy IP rotator as a daemon on Windows.
 
 # Contributors
 
