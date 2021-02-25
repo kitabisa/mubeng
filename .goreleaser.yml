@@ -2,7 +2,7 @@ builds:
   - binary: mubeng
     main: cmd/mubeng/main.go
     ldflags:
-      - -s -w -X ktbs.dev/mubeng/common.Version={{.Version}}
+      - -s -w -X ktbs.dev/mubeng/common.Version=v{{.Version}}
     goos:
       - linux
       - windows
