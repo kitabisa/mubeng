@@ -40,12 +40,18 @@ func Options() *common.Options {
 	flag.BoolVar(&doUpdate, "u", false, "")
 	flag.BoolVar(&doUpdate, "update", false, "")
 
+	flag.BoolVar(&version, "V", false, "")
+	flag.BoolVar(&version, "version", false, "")
+
 	flag.Usage = func() {
 		showBanner()
 		showUsage()
 	}
-
 	flag.Parse()
+
+	if version {
+		showVersion()
+	}
 	showBanner()
 
 	if doUpdate {

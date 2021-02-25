@@ -29,6 +29,7 @@ Options:
   -v, --verbose                    Dump HTTP request/responses or show died proxy on check.
   -o, --output <FILE>              Log output from proxy server or live check.
   -u, --update                     Update mubeng to the latest stable version.
+  -V, --version                    Show current mubeng version.
 
 Examples:
   mubeng -f proxies.txt --check --output live.txt

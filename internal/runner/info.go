@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/tcnksm/go-latest"
 	"ktbs.dev/mubeng/common"
 )
 
@@ -30,20 +28,13 @@ func isConnected() bool {
 	return true
 }
 
-// isLatest check if current version is latest
-func isLatest() (bool, string) {
-	if common.Version == "" {
-		return false, ""
+// showVersion and exit
+func showVersion() {
+	version := common.Version
+	if version == "" {
+		version = "unknown (go-get)"
 	}
 
-	res, _ := latest.Check(&latest.GithubTag{
-		Owner:      "kitabisa",
-		Repository: common.App,
-	}, common.Version)
-
-	if strings.Contains(res.Current, "dev") {
-		return false, res.Current
-	}
-
-	return res.Latest, res.Current
+	fmt.Println(common.App, "version", version)
+	os.Exit(1)
 }
