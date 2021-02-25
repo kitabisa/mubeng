@@ -12,8 +12,5 @@ builds:
       - arm64
   
 archives:
-  - id: tgz
-    format: tar.gz
-    format_overrides:
-        - goos: windows
-          format: zip
+  - id: binary
+    format: binary
