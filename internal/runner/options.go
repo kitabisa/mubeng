@@ -2,11 +2,11 @@ package runner
 
 import (
 	"flag"
-	"os"
 	"time"
 
 	"github.com/projectdiscovery/gologger"
 	"ktbs.dev/mubeng/common"
+	"ktbs.dev/mubeng/internal/updater"
 )
 
 // Options defines the values needed to execute the Runner.
@@ -48,29 +48,9 @@ func Options() *common.Options {
 	flag.Parse()
 	showBanner()
 
-	if isConnected() {
-		lat, ver = isLatest()
-		if !lat && ver != "" {
-			gologger.Info().Msgf("New version v%s is available!", ver)
-		}
-	}
-
 	if doUpdate {
-		if !isConnected() {
-			gologger.Fatal().Msgf("No internet connection!")
-		} else {
-			if !lat && ver != "" {
-				gologger.Info().Msgf("Updating...")
-				if err := updateNow(ver); err != nil {
-					gologger.Fatal().Msgf("Error while update! %s.", err)
-				}
-
-				gologger.Info().Msgf("Successfully update!")
-			} else {
-				gologger.Info().Msgf("It's the latest stable version, no need to update.")
-			}
-
-			os.Exit(1)
+		if err := updater.New(); err != nil {
+			gologger.Fatal().Msgf("Error! %s.", err)
 		}
 	}
 
