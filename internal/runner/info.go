@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/logrusorgru/aurora"
 	"github.com/tcnksm/go-latest"
@@ -39,6 +40,10 @@ func isLatest() (bool, string) {
 		Owner:      "kitabisa",
 		Repository: common.App,
 	}, common.Version)
+
+	if strings.Contains(res.Current, "dev") {
+		return false, res.Current
+	}
 
 	return res.Latest, res.Current
 }
