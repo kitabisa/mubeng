@@ -28,8 +28,8 @@ func New(opt *common.Options) error {
 	o["SuccessExitStatus"] = "1 2 8 SIGKILL"
 
 	cfg := &service.Config{
-		Name:        "mubeng",
-		DisplayName: "mubeng",
+		Name:        common.App,
+		DisplayName: common.App,
 		Description: "An incredibly fast proxy checker & IP rotator with ease.",
 		Arguments:   args,
 		Option:      o,

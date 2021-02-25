@@ -1,6 +1,8 @@
 package common
 
 var (
+  // App name
+  App = "mubeng"
   // Version of mubeng itself
   Version = ""
   // Email handles of developer

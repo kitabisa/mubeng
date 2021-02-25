@@ -37,7 +37,7 @@ func isLatest() (bool, string) {
 
 	res, _ := latest.Check(&latest.GithubTag{
 		Owner:      "kitabisa",
-		Repository: "mubeng",
+		Repository: common.App,
 	}, common.Version)
 
 	return res.Latest, res.Current
