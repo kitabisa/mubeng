@@ -48,5 +48,11 @@ func Options() *common.Options {
 		gologger.Fatalf("Error! %s.", err)
 	}
 
+	if isConnected() {
+		if lat, ver := isLatest(); !lat && ver != "" {
+			gologger.Infof("New version v%s is available!", ver)
+		}
+	}
+
 	return opt
 }

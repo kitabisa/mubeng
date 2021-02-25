@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/tcnksm/go-latest"
 	"ktbs.dev/mubeng/common"
 )
 
@@ -26,4 +27,18 @@ func isConnected() bool {
 	}
 
 	return true
+}
+
+// isLatest check if current version is latest
+func isLatest() (bool, string) {
+	if common.Version == "" {
+		return false, ""
+	}
+
+	res, _ := latest.Check(&latest.GithubTag{
+		Owner:      "kitabisa",
+		Repository: "mubeng",
+	}, common.Version)
+
+	return res.Latest, res.Current
 }
