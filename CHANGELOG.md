@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.1.2
+
+- Patch
+  - Add linkerd flag to inject version on Goreleaser action.
+
 ### v0.1.1
 
 - Minor
