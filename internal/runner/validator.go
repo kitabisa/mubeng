@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"ktbs.dev/mubeng/common"
 	"ktbs.dev/mubeng/pkg/mubeng"
@@ -18,12 +19,22 @@ func validate(opt *common.Options) error {
 		return errors.New("no proxy file provided")
 	}
 
+	opt.File, err = filepath.Abs(opt.File)
+	if err != nil {
+		return err
+	}
+
 	opt.List, err = readFile(opt.File)
 	if err != nil {
 		return err
 	}
 
 	if opt.Output != "" {
+		opt.Output, err = filepath.Abs(opt.Output)
+		if err != nil {
+			return err
+		}
+
 		opt.Result, err = os.OpenFile(opt.Output, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 		if err != nil {
 			return err

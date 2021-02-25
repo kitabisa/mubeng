@@ -1,7 +1,6 @@
 package daemon
 
 import (
-	"path/filepath"
 	"strconv"
 
 	"github.com/kardianos/service"
@@ -11,26 +10,13 @@ import (
 
 // New to initialize mubeng in daemon
 func New(opt *common.Options) error {
-	file, err := filepath.Abs(opt.File)
-	if err != nil {
-		return err
-	}
-
-	var out string
-	if opt.Output != "" {
-		out, err = filepath.Abs(opt.Output)
-		if err != nil {
-			return err
-		}
-	}
-
 	// Copying user-supplied arguments
 	args := []string{
-		"-f", file,
+		"-f", opt.File,
 		"-a", opt.Address,
 		"-t", opt.Timeout.String(),
 		"-r", strconv.Itoa(opt.Rotate),
-		"-o", out,
+		"-o", opt.Output,
 	}
 
 	o := make(service.KeyValue)
