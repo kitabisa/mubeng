@@ -8,7 +8,6 @@ import (
 )
 
 // New define HTTP client & request of http.Request itself.
-// Dump HTTP request & responses if verbose mode is enabled using httpretty package as http.Transport
 //
 // also removes Hop-by-hop headers when it is sent to backend (see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html),
 // then add X-Forwarded-For header value with the IP address value of rotator proxy IP.
