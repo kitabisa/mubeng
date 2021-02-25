@@ -3,6 +3,8 @@ module ktbs.dev/mubeng
 go 1.15
 
 require (
+	github.com/AlecAivazis/survey/v2 v2.2.8
+	github.com/briandowns/spinner v1.12.0
 	github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
 	github.com/go-test/deep v1.0.7
 	github.com/google/go-github v17.0.0+incompatible // indirect

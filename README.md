@@ -139,6 +139,7 @@ Here are all the options it supports.
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
 | -o, --output <FILE>           	| Log output from proxy server or live check.          	        |
 | -u, --update                  	| Update mubeng to the latest stable version.          	        |
+| -V, --version                  	| Show current mubeng version.                      	        |
 
 <table>
 	<td>

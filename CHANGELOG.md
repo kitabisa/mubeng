@@ -2,6 +2,14 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.4.2
+
+- Minor
+  - Add updater package.
+- Patch
+  - Deactivated connection checking & get latest release info on every parsing options.
+  - Add version option to show current mubeng version.
+
 ### v0.3.0
 
 - Patch
