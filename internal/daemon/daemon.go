@@ -19,6 +19,10 @@ func New(opt *common.Options) error {
 		"-o", opt.Output,
 	}
 
+	if opt.Verbose {
+		args = append(args, "-v")
+	}
+
 	o := make(service.KeyValue)
 	o["Restart"] = "on-success"
 	o["SuccessExitStatus"] = "1 2 8 SIGKILL"
