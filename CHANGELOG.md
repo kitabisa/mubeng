@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.4.3
+
+- Patch
+  - Fix unable to get latest for go-get binary version
+
 ### v0.4.2
 
 - Minor

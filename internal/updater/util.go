@@ -12,14 +12,15 @@ import (
 
 // isLatest check if current version is latest
 func isLatest() (bool, string) {
-	if common.Version == "" {
-		return false, ""
+	current := common.Version
+	if current == "" {
+		current = "0"
 	}
 
 	res, _ := latest.Check(&latest.GithubTag{
 		Owner:      "kitabisa",
 		Repository: common.App,
-	}, common.Version)
+	}, current)
 
 	if strings.Contains(res.Current, "dev") {
 		return false, res.Current

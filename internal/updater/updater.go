@@ -27,7 +27,7 @@ func New() error {
 
 	s.Start()
 	s.Suffix = " Getting latest version..."
-	if lat, ver := isLatest(); !lat && ver != "" {
+	if lat, ver := isLatest(); !lat {
 		s.Stop()
 		gologger.Info().Msgf("New version v%s is available!", ver)
 		s.Restart()
