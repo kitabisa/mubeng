@@ -1,0 +1,24 @@
+Source: mubeng
+Section: proxy
+Priority: optional
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: dw1 <me@dw1.io>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Homepage: https://github.com/kitabisa/mubeng
+Vcs-Git: https://github.com/kitabisa/mubeng.git
+Vcs-Browser: https://github.com/kitabisa/mubeng
+
+Package: mubeng
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, go
+Description: An incredibly fast proxy checker & IP rotator with ease.
+ mubeng has 2 core functionality:
+ 1. Run proxy server as proxy IP rotation
+ 	This is useful to avoid different kinds of IP ban,
+ 	i.e. bruteforce protection, API rate-limiting or
+ 	WAF blocking based on IP. We also leave it entirely
+ 	up to user to use proxy pool resources from anywhere.
+ 2. Perform proxy checks
+ 	So, you don't need any extra proxy checking tools
+ 	out there if you want to check your proxy pool.

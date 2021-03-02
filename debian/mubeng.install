@@ -1,0 +1,5 @@
+lib usr/share/mubeng/
+mubeng usr/share/mubeng/
+templates usr/share/mubeng/
+gadgetchains usr/share/mubeng/
+debian/helper-script/mubeng usr/bin/
