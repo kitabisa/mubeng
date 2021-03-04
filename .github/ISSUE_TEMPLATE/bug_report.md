@@ -31,7 +31,7 @@ If applicable, add screenshots to help explain your problem.
 
 - OS: [e.g. mac, linux]
 - OS version: [uname -a]
-- mubeng Version:
+- mubeng Version: [mubeng -V]
 
 **Additional context**
 Add any other context about the problem here. Full output log is probably a helpful thing to add here.
