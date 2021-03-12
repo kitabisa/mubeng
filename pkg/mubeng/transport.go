@@ -1,7 +1,7 @@
 package mubeng
 
 import (
-	// "crypto/tls"
+	"crypto/tls"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -36,7 +36,7 @@ func Transport(p string) (tr *http.Transport, err error) {
 	}
 
 	tr.DisableKeepAlives = true
-	// tr.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+	tr.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	return tr, nil
 }
