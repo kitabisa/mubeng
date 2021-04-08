@@ -1,6 +1,7 @@
 package mubeng
 
 import (
+	"crypto/tls"
 	"net/http"
 	"net/url"
 	"testing"
@@ -47,6 +48,7 @@ func TestTransport(t *testing.T) {
 			wantTr: &http.Transport{
 				Proxy:             http.ProxyURL(httpURL),
 				DisableKeepAlives: true,
+				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 			},
 			wantErr: false,
 		},
@@ -58,6 +60,7 @@ func TestTransport(t *testing.T) {
 			wantTr: &http.Transport{
 				Dial:              dialer.Dial,
 				DisableKeepAlives: true,
+				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 			},
 			wantErr: false,
 		},
