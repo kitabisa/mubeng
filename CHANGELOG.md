@@ -2,6 +2,16 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.4.5
+
+- Patch
+  - Fix unit test non-nill tls.Config
+
+### v0.4.4
+
+- Patch
+  - Enable InsecureSkipVerify
+
 ### v0.4.3
 
 - Patch
