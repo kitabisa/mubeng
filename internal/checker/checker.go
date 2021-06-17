@@ -17,7 +17,7 @@ import (
 // Displays proxies that have died if verbose mode is enabled,
 // or save live proxies into user defined files.
 func Do(opt *common.Options) {
-	for _, proxy := range opt.List {
+	for _, proxy := range opt.ProxyManager.Proxies {
 		wg.Add(1)
 
 		go func(address string) {
