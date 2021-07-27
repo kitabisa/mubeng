@@ -1,9 +1,10 @@
 package common
 
 import (
-	"ktbs.dev/mubeng/internal/proxymanager"
 	"os"
 	"time"
+
+	"ktbs.dev/mubeng/internal/proxymanager"
 )
 
 // Options consists of the configuration required.

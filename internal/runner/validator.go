@@ -2,10 +2,11 @@ package runner
 
 import (
 	"errors"
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/internal/proxymanager"
 	"os"
 	"path/filepath"
+
+	"ktbs.dev/mubeng/common"
+	"ktbs.dev/mubeng/internal/proxymanager"
 )
 
 // validate user-supplied option values before Runner.
@@ -21,7 +22,7 @@ func validate(opt *common.Options) error {
 		return err
 	}
 
-	opt.ProxyManager, err = proxymanager.NewManager(opt.File)
+	opt.ProxyManager, err = proxymanager.New(opt.File)
 	if err != nil {
 		return err
 	}
