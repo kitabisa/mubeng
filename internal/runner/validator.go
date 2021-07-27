@@ -1,14 +1,12 @@
 package runner
 
 import (
-	"bufio"
 	"errors"
-	"fmt"
 	"os"
 	"path/filepath"
 
 	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/pkg/mubeng"
+	"ktbs.dev/mubeng/internal/proxymanager"
 )
 
 // validate user-supplied option values before Runner.
@@ -24,7 +22,7 @@ func validate(opt *common.Options) error {
 		return err
 	}
 
-	opt.List, err = readFile(opt.File)
+	opt.ProxyManager, err = proxymanager.New(opt.File)
 	if err != nil {
 		return err
 	}
@@ -42,34 +40,4 @@ func validate(opt *common.Options) error {
 	}
 
 	return nil
-}
-
-// readFile which is returned as a unique slice proxies.
-func readFile(path string) ([]string, error) {
-	keys := make(map[string]bool)
-	var lines []string
-
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		proxy := scanner.Text()
-		if _, value := keys[proxy]; !value {
-			_, err := mubeng.Transport(proxy)
-			if err == nil {
-				keys[proxy] = true
-				lines = append(lines, proxy)
-			}
-		}
-	}
-
-	if len(lines) < 1 {
-		return lines, fmt.Errorf("open %s: has no valid proxy URLs", path)
-	}
-
-	return lines, scanner.Err()
 }

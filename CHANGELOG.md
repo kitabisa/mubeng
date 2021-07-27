@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.5.0
+
+- Minor
+  - Add proxy manager for proxy rotator.
+
 ### v0.4.5
 
 - Patch

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 
 	"github.com/elazarl/goproxy"
@@ -18,7 +17,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
-		rotate = p.Options.List[rand.Intn(len(p.Options.List))]
+		rotate = p.Options.ProxyManager.NextProxy()
 		if ok >= p.Options.Rotate {
 			ok = 1
 		}
