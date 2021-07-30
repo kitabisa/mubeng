@@ -2,6 +2,11 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.5.1
+
+- Patch
+  - Fix starting index for ProxyManager
+
 ### v0.5.0
 
 - Minor
