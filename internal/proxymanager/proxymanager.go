@@ -30,7 +30,9 @@ func New(filename string) (*ProxyManager, error) {
 	}
 	defer file.Close()
 
-	manager := &ProxyManager{Proxies: []string{}, CurrentIndex: 0}
+	manager := &ProxyManager{}
+	manager.CurrentIndex = -1
+
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		proxy := scanner.Text()
