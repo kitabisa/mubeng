@@ -17,7 +17,7 @@ func Transport(p string) (tr *http.Transport, err error) {
 		return nil, err
 	}
 
-	dialer, err := proxy.SOCKS5("tcp", proxyURL.Host, nil, proxy.Direct)
+	dialer, err := proxy.SOCKS5("tcp", proxyURL.Host, getAuth(proxyURL), proxy.Direct)
 	if err != nil {
 		return nil, err
 	}
@@ -39,4 +39,20 @@ func Transport(p string) (tr *http.Transport, err error) {
 	tr.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	return tr, nil
+}
+
+func getAuth(URL *url.URL) *proxy.Auth {
+	auth := &proxy.Auth{}
+	user := URL.User.Username()
+	pass, _ := URL.User.Password()
+
+	if user != "" {
+		auth.User = user
+
+		if pass != "" {
+			auth.Password = pass
+		}
+	}
+
+	return auth
 }
