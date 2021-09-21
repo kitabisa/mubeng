@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.head_commit.message, '[ci skip]') == false && contains(github.event.head_commit.message, '[skip ci]') == false
     steps:
-      - uses: bubkoo/contributors-list@v1.0.8
+      - uses: bubkoo/contributors-list@v1.0.10
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           commitMessage: "misc: Update CONTRIBUTORS"
