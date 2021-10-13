@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/projectdiscovery/gologger"
 	"github.com/tcnksm/go-latest"
 	"ktbs.dev/mubeng/common"
 )
@@ -17,10 +18,15 @@ func isLatest() (bool, string) {
 		current = "0"
 	}
 
-	res, _ := latest.Check(&latest.GithubTag{
+	res, err := latest.Check(&latest.GithubTag{
 		Owner:      "kitabisa",
 		Repository: common.App,
 	}, current)
+
+	if err != nil {
+		println()
+		gologger.Fatal().Msgf("Error! %s", err)
+	}
 
 	if strings.Contains(res.Current, "dev") {
 		return false, res.Current
