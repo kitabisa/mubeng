@@ -17,6 +17,6 @@ require (
 	github.com/mbndr/logo v0.0.1
 	github.com/projectdiscovery/gologger v1.1.4
 	github.com/tcnksm/go-latest v0.0.0-20170313132115-e3007ae9052e
-	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
-	h12.io/socks v1.0.3 // indirect
+	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
+	h12.io/socks v1.0.3
 )
