@@ -53,7 +53,7 @@
 - **Proxy IP rotator**: Rotates your IP address for every specific request.
 - **Proxy checker**: Check your proxy IP which is still alive.
 - **All HTTP/S methods** are supported.
-- **HTTP & SOCKSv5** proxy protocols apply.
+- **HTTP, SOCKS v4(A) & v5** proxy protocols apply.
 - **All parameters & URIs are passed**.
 - **Easy to use**: You can just run it against your proxy file, and choose the action you want!
 - **Cross-platform**: whether you are Windows, Linux, Mac, or even Raspberry Pi, you can run it very well.
@@ -181,6 +181,7 @@ For example, you've proxy pool `(proxies.txt)` as:
 <table>
 	<td>
 		<pre>http://127.0.0.1:8080
+socks4://127.0.0.1:4145
 socks5://127.0.0.1:2121
 ...
 ...</pre>
@@ -245,7 +246,7 @@ Select **Tools** in the menu bar in your ZAP session window, then select the **O
 
 # Limitations
 
-Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv5 protocol, even though the resource you have is SOCKSv5. In other words, the SOCKSv5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
+Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv4/v5 protocol, even though the resource you have is SOCKSv4/v5. In other words, the SOCKSv4/v5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
 
 # Contributors
 

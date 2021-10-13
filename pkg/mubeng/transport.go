@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"golang.org/x/net/proxy"
+	"h12.io/socks"
 )
 
-// Transport to auto-switch transport between HTTP/S or SOCKSv5 proxies.
+// Transport to auto-switch transport between HTTP/S or SOCKS v4(A) & v5 proxies.
 // Depending on the protocol scheme, returning value of http.Transport with Dialer or Proxy.
 func Transport(p string) (tr *http.Transport, err error) {
 	proxyURL, err := url.Parse(p)
@@ -17,15 +17,10 @@ func Transport(p string) (tr *http.Transport, err error) {
 		return nil, err
 	}
 
-	dialer, err := proxy.SOCKS5("tcp", proxyURL.Host, getAuth(proxyURL), proxy.Direct)
-	if err != nil {
-		return nil, err
-	}
-
 	switch proxyURL.Scheme {
-	case "socks5":
+	case "socks4", "socks4a", "socks5":
 		tr = &http.Transport{
-			Dial: dialer.Dial,
+			Dial: socks.Dial(p),
 		}
 	case "http":
 		tr = &http.Transport{
@@ -39,20 +34,4 @@ func Transport(p string) (tr *http.Transport, err error) {
 	tr.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	return tr, nil
-}
-
-func getAuth(URL *url.URL) *proxy.Auth {
-	auth := &proxy.Auth{}
-	user := URL.User.Username()
-	pass, _ := URL.User.Password()
-
-	if user != "" {
-		auth.User = user
-
-		if pass != "" {
-			auth.Password = pass
-		}
-	}
-
-	return auth
 }

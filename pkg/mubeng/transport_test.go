@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"golang.org/x/net/proxy"
+	"h12.io/socks"
 )
 
 func TestTransport(t *testing.T) {
@@ -17,6 +17,7 @@ func TestTransport(t *testing.T) {
 
 	failProxy := "gopher://localhost:70"
 	httpProxy := "http://localhost:80"
+	socks4Proxy := "socks4://localhost:5678"
 	socks5Proxy := "socks5://localhost:3128"
 
 	httpURL, err := url.Parse(httpProxy)
@@ -24,12 +25,7 @@ func TestTransport(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	socks5URL, err := url.Parse(socks5Proxy)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	dialer, err := proxy.SOCKS5("tcp", socks5URL.Host, nil, proxy.Direct)
+	_, err = url.Parse(socks5Proxy)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -58,7 +54,19 @@ func TestTransport(t *testing.T) {
 				p: socks5Proxy,
 			},
 			wantTr: &http.Transport{
-				Dial:              dialer.Dial,
+				Dial:              socks.Dial(socks5Proxy),
+				DisableKeepAlives: true,
+				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
+			},
+			wantErr: false,
+		},
+		{
+			name: "Switch-transport to SOCKSv4",
+			args: args{
+				p: socks4Proxy,
+			},
+			wantTr: &http.Transport{
+				Dial:              socks.Dial(socks4Proxy),
 				DisableKeepAlives: true,
 				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 			},
