@@ -136,6 +136,7 @@ Here are all the options it supports.
 | -c, --check                   	| To perform proxy live check.                                 	|
 | -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
 | -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
+| -m, --method `<METHOD>`        	| Rotation method (sequent/random) (default: sequent).          |
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
 | -o, --output <FILE>           	| Log output from proxy server or live check.          	        |
 | -u, --update                  	| Update mubeng to the latest stable version.          	        |
@@ -211,10 +212,10 @@ The above case also uses `--output` flag to save a live proxy into file `(live.t
 Furthermore, if you wish to do proxy IP rotator from proxies that are still alive earlier from the results of checking `(live.txt)` _(or if you have your own list)_, you must use `-a` _(--address)_ flag instead to run proxy server:
 
 ```bash
-▶ mubeng -a localhost:8089 -f live.txt -r 10
+▶ mubeng -a localhost:8089 -f live.txt -r 10 -m random
 ```
 
-The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value you provide `(10)`.
+The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value you provide `(10)`, and the `-m` _(--method)_ flag will rotate the proxy sequential/randomly.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25837540/108269526-b3ca0780-71a0-11eb-986c-f8e98bab8433.jpg">

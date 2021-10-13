@@ -27,6 +27,15 @@ func validate(opt *common.Options) error {
 		return err
 	}
 
+	validMethod := map[string]bool{
+		"sequent": true,
+		"random":  true,
+	}
+
+	if !validMethod[opt.Method] {
+		return errors.New("undefined method for " + opt.Method)
+	}
+
 	if opt.Output != "" {
 		opt.Output, err = filepath.Abs(opt.Output)
 		if err != nil {

@@ -26,6 +26,7 @@ Options:
   -c, --check                      To perform proxy live check.
   -t, --timeout                    Max. time allowed for proxy server/check (default: 30s).
   -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request (default: 1).
+  -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent).
   -v, --verbose                    Dump HTTP request/responses or show died proxy on check.
   -o, --output <FILE>              Log output from proxy server or live check.
   -u, --update                     Update mubeng to the latest stable version.

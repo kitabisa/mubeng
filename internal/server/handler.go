@@ -17,7 +17,14 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
-		rotate = p.Options.ProxyManager.NextProxy()
+		if p.Options.Method == "sequent" {
+			rotate = p.Options.ProxyManager.NextProxy()
+		}
+
+		if p.Options.Method == "random" {
+			rotate = p.Options.ProxyManager.RandomProxy()
+		}
+
 		if ok >= p.Options.Rotate {
 			ok = 1
 		}
@@ -71,7 +78,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	select {
 	case err := <-errChan:
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		return req, goproxy.NewResponse(req, mime, http.StatusInternalServerError, "Proxy Server Error")
+		return req, goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy server error")
 	case resp := <-resChan:
 		log.Debug(req.RemoteAddr, " ", resp.Status)
 		return req, resp

@@ -28,6 +28,9 @@ func Options() *common.Options {
 	flag.IntVar(&opt.Rotate, "r", 1, "")
 	flag.IntVar(&opt.Rotate, "rotate", 1, "")
 
+	flag.StringVar(&opt.Method, "m", "sequent", "")
+	flag.StringVar(&opt.Method, "method", "sequent", "")
+
 	flag.BoolVar(&opt.Verbose, "v", false, "")
 	flag.BoolVar(&opt.Verbose, "verbose", false, "")
 
