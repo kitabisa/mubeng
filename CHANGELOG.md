@@ -2,6 +2,13 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.6.1
+
+- Minor
+  - Add rotation method for proxy IP rotator
+- Patch
+  - Add support for SOCKSv4(A)
+
 ### v0.5.2
 
 - Patch
