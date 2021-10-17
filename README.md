@@ -147,10 +147,10 @@ Here are all the options it supports.
 		<h4>NOTES:</h4>
 		<ul>
 			<li>Rotations are counted for all requests, even if the request fails.
-				<ul>
+				<!-- <ul>
 					<li>The rotation is incremental starting at the beginning of the list.</li>
-					<!-- <li>Rotation means random, <b>NOT</b> choosing a proxy after/increment from proxy pool. We do not set up conditions if a proxy has been used. So, there is no guarantee if your request reaches the <i>N</i> value <code>(-r/--rotate)</code> your IP proxy will rotate.</li> -->
-				</ul>
+					<li>Rotation means random, <b>NOT</b> choosing a proxy after/increment from proxy pool. We do not set up conditions if a proxy has been used. So, there is no guarantee if your request reaches the <i>N</i> value <code>(-r/--rotate)</code> your IP proxy will rotate.</li>
+				</ul> -->
 			</li>
 			<li>Daemon mode <code>(-d/--daemon)</code> will install mubeng as a service on the (Linux/OSX) system/setting up callback (Windows).
 				<ul>
