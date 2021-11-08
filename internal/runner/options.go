@@ -31,6 +31,9 @@ func Options() *common.Options {
 	flag.StringVar(&opt.Method, "m", "sequent", "")
 	flag.StringVar(&opt.Method, "method", "sequent", "")
 
+	flag.BoolVar(&opt.Sync, "s", false, "")
+	flag.BoolVar(&opt.Sync, "sync", false, "")
+
 	flag.BoolVar(&opt.Verbose, "v", false, "")
 	flag.BoolVar(&opt.Verbose, "verbose", false, "")
 

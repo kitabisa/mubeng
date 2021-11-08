@@ -15,6 +15,11 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	resChan := make(chan *http.Response)
 	errChan := make(chan error, 1)
 
+	if p.Options.Sync {
+		mutex.Lock()
+		defer mutex.Unlock()
+	}
+
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
 		if p.Options.Method == "sequent" {

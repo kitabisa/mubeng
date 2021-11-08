@@ -14,6 +14,7 @@ type Options struct {
 	Check        bool
 	Timeout      time.Duration
 	Rotate       int
+	Sync         bool
 	Method       string
 	Verbose      bool
 	Output       string
