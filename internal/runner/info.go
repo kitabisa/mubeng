@@ -2,7 +2,6 @@ package runner
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/logrusorgru/aurora"
@@ -17,15 +16,6 @@ func showBanner() {
 // showUsage to stderr
 func showUsage() {
 	fmt.Fprint(os.Stderr, "Usage:", common.Usage)
-}
-
-// isConnected to the internet?
-func isConnected() bool {
-	if _, err := http.Get(google204); err != nil {
-		return false
-	}
-
-	return true
 }
 
 // showVersion and exit

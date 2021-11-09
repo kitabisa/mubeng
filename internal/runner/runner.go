@@ -18,17 +18,13 @@ func New(opt *common.Options) error {
 
 		server.Run(opt)
 	} else if opt.Check {
-		if isConnected() {
-			checker.Do(opt)
+		checker.Do(opt)
 
-			if opt.Output != "" {
-				defer opt.Result.Close()
-			}
-		} else {
-			return errors.New("no internet connection")
+		if opt.Output != "" {
+			defer opt.Result.Close()
 		}
 	} else {
-		return errors.New("no action needed")
+		return errors.New("no action to run")
 	}
 
 	return nil
