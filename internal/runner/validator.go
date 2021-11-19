@@ -4,6 +4,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"ktbs.dev/mubeng/common"
 	"ktbs.dev/mubeng/internal/proxymanager"
@@ -32,8 +33,17 @@ func validate(opt *common.Options) error {
 		"random":  true,
 	}
 
-	if !validMethod[opt.Method] {
-		return errors.New("undefined method for " + opt.Method)
+	if opt.Address != "" && !opt.Check {
+		if !validMethod[opt.Method] {
+			return errors.New("undefined method for " + opt.Method)
+		}
+
+		if opt.Auth != "" {
+			auth := strings.SplitN(opt.Auth, ":", 2)
+			if len(auth) != 2 {
+				return errors.New("invalid proxy authorization format")
+			}
+		}
 	}
 
 	if opt.Output != "" {

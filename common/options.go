@@ -11,6 +11,7 @@ import (
 type Options struct {
 	File         string
 	Address      string
+	Auth         string
 	Check        bool
 	Timeout      time.Duration
 	Rotate       int

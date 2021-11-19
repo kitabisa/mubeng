@@ -2,9 +2,11 @@ package server
 
 import (
 	"bytes"
+	"encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"github.com/elazarl/goproxy"
 	"ktbs.dev/mubeng/pkg/mubeng"
@@ -12,9 +14,6 @@ import (
 
 // onRequest handles client request
 func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-	resChan := make(chan *http.Response)
-	errChan := make(chan error, 1)
-
 	if p.Options.Sync {
 		mutex.Lock()
 		defer mutex.Unlock()
@@ -36,6 +35,9 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	} else {
 		ok++
 	}
+
+	resChan := make(chan *http.Response)
+	errChan := make(chan error, 1)
 
 	go func() {
 		if (req.URL.Scheme != "http") && (req.URL.Scheme != "https") {
@@ -92,6 +94,30 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 // onConnect handles CONNECT method
 func (p *Proxy) onConnect(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
+	if p.Options.Auth != "" {
+		auth := ctx.Req.Header.Get("Proxy-Authorization")
+		if auth != "" {
+			creds := strings.SplitN(auth, " ", 2)
+			if len(creds) != 2 {
+				return goproxy.RejectConnect, host
+			}
+
+			auth, err := base64.StdEncoding.DecodeString(creds[1])
+			if err != nil {
+				log.Warnf("%s: Error decoding proxy authorization", ctx.Req.RemoteAddr)
+				return goproxy.RejectConnect, host
+			}
+
+			if string(auth) != p.Options.Auth {
+				log.Errorf("%s: Invalid proxy authorization", ctx.Req.RemoteAddr)
+				return goproxy.RejectConnect, host
+			}
+		} else {
+			log.Warnf("%s: Unathorized proxy request to %s", ctx.Req.RemoteAddr, host)
+			return goproxy.RejectConnect, host
+		}
+	}
+
 	return goproxy.MitmConnect, host
 }
 

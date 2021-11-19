@@ -19,6 +19,9 @@ func Options() *common.Options {
 	flag.StringVar(&opt.Address, "a", "", "")
 	flag.StringVar(&opt.Address, "address", "", "")
 
+	flag.StringVar(&opt.Auth, "A", "", "")
+	flag.StringVar(&opt.Auth, "auth", "", "")
+
 	flag.BoolVar(&opt.Check, "c", false, "")
 	flag.BoolVar(&opt.Check, "check", false, "")
 
