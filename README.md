@@ -132,6 +132,7 @@ Here are all the options it supports.
 |-------------------------------	|--------------------------------------------------------------	|
 | -f, --file `<FILE>`           	| Proxy file.                                                  	|
 | -a, --address `<ADDR>:<PORT>` 	| Run proxy server.                                            	|
+| -A, --auth `<USER>:<PASS>`    	| Set authorization for proxy server.                           |
 | -d, --daemon                      | Daemonize proxy server.                                       |
 | -c, --check                   	| To perform proxy live check.                                 	|
 | -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
