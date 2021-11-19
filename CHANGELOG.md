@@ -2,6 +2,19 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.8.0
+
+- Minor
+  - Add proxy server authentication
+
+### v0.7.0
+
+- Minor
+  - Add `-s/--sync` flag for rotation guarantor
+- Patch
+  - Remove connection checking to perform proxy checks (close #65)
+  - Add handler for latest version check
+
 ### v0.6.1
 
 - Minor
