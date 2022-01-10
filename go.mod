@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/go-version v1.3.0 // indirect
 	github.com/henvic/httpretty v0.0.6
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
-	github.com/kardianos/service v1.2.0
+	github.com/kardianos/service v1.2.1
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/mbndr/logo v0.0.1
 	github.com/projectdiscovery/gologger v1.1.4
