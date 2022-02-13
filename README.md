@@ -34,6 +34,7 @@
   - [Basic](#basic)
   - [Options](#options)
   	- [Notes](#notes)
+  - [Install SSL Certificate](#install-ssl-certificate)
   - [Examples](#examples)
     - [Proxy checker](#proxy-checker)
     - [Proxy IP rotator](#proxy-ip-rotator)
@@ -178,6 +179,12 @@ Here are all the options it supports.
 		</ul>
 	</td>
 </table>
+
+## Install SSL Certificate
+
+mubeng uses built-in certificate authority by [GoProxy](https://github.com/elazarl/goproxy). With mubeng proxy server running, the generated certificate can be exported by visiting `http://mubeng/cert` in a browser.
+
+Installation steps for CA certificate is [similar to other](https://portswigger.net/burp/documentation/desktop/external-browser-config/certificate) proxy tools.
 
 ## Examples
 

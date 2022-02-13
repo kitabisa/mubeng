@@ -38,6 +38,7 @@ func Run(opt *common.Options) {
 	handler.HTTPProxy.OnRequest().DoFunc(handler.onRequest)
 	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.onConnect)
 	handler.HTTPProxy.OnResponse().DoFunc(handler.onResponse)
+	handler.HTTPProxy.NonproxyHandler = http.HandlerFunc(nonProxy)
 
 	server = &http.Server{
 		Addr:    opt.Address,

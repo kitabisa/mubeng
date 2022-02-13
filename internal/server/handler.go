@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/elazarl/goproxy"
+	"ktbs.dev/mubeng/common"
 	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
@@ -128,4 +129,22 @@ func (p *Proxy) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Res
 	}
 
 	return resp
+}
+
+// nonProxy handles non-proxy requests
+func nonProxy(w http.ResponseWriter, req *http.Request) {
+	if common.Version != "" {
+		w.Header().Add("X-Mubeng-Version", common.Version)
+	}
+
+	if req.URL.Path == "/cert" {
+		w.Header().Add("Content-Type", "application/octet-stream")
+		w.Header().Add("Content-Disposition", fmt.Sprint("attachment; filename=", "goproxy-cacert.der"))
+		w.WriteHeader(http.StatusOK)
+		w.Write(goproxy.GoproxyCa.Certificate[0])
+
+		return
+	}
+
+	http.Error(w, "This is a mubeng proxy server. Does not respond to non-proxy requests.", 500)
 }
