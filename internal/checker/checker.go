@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/logrusorgru/aurora"
@@ -21,7 +22,13 @@ func Do(opt *common.Options) {
 		wg.Add(1)
 
 		go func(address string) {
+			defer wg.Done()
+
 			cc, err := check(address, opt.Timeout)
+			if len(opt.Countries) > 0 && !isMatchCC(opt.Countries, cc) {
+				return
+			}
+
 			if err != nil {
 				if opt.Verbose {
 					fmt.Printf("[%s] %s\n", aurora.Red("DIED"), address)
@@ -33,12 +40,24 @@ func Do(opt *common.Options) {
 					fmt.Fprintf(opt.Result, "%s\n", address)
 				}
 			}
-
-			defer wg.Done()
 		}(proxy)
 	}
 
 	wg.Wait()
+}
+
+func isMatchCC(cc []string, code string) bool {
+	if code == "" {
+		return false
+	}
+
+	for _, c := range cc {
+		if code == strings.ToUpper(strings.TrimSpace(c)) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func check(address string, timeout time.Duration) (string, error) {

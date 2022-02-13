@@ -9,17 +9,20 @@ import (
 
 // Options consists of the configuration required.
 type Options struct {
-	File         string
-	Address      string
-	Auth         string
-	Check        bool
-	Timeout      time.Duration
-	Rotate       int
-	Sync         bool
-	Method       string
-	Verbose      bool
-	Output       string
-	Result       *os.File
 	ProxyManager *proxymanager.ProxyManager
-	Daemon       bool
+	Result       *os.File
+	Timeout      time.Duration
+
+	Address   string
+	Auth      string
+	CC        string
+	Check     bool
+	Countries []string
+	Daemon    bool
+	File      string
+	Method    string
+	Output    string
+	Rotate    int
+	Sync      bool
+	Verbose   bool
 }

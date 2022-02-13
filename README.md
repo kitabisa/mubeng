@@ -133,16 +133,17 @@ Here are all the options it supports.
 | -f, --file `<FILE>`           	| Proxy file.                                                  	|
 | -a, --address `<ADDR>:<PORT>` 	| Run proxy server.                                            	|
 | -A, --auth `<USER>:<PASS>`    	| Set authorization for proxy server.                           |
-| -d, --daemon                      | Daemonize proxy server.                                       |
+| -d, --daemon                  	| Daemonize proxy server.                                       |
 | -c, --check                   	| To perform proxy live check.                                 	|
+|     --only-cc `<AA>,<BB>`     	| Only show specific country code (comma separated).            |
 | -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
 | -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
-| -m, --method `<METHOD>`        	| Rotation method (sequent/random) (default: sequent).          |
+| -m, --method `<METHOD>`       	| Rotation method (sequent/random) (default: sequent).          |
 | -s, --sync                    	| Sync will wait for the previous request to complete.          |
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
 | -o, --output <FILE>           	| Save output from proxy server or live check.                  |
-| -u, --update                  	| Update mubeng to the latest stable version.          	        |
-| -V, --version                  	| Show current mubeng version.                      	        |
+| -u, --update                  	| Update mubeng to the latest stable version.                   |
+| -V, --version                 	| Show current mubeng version.                                  |
 
 <table>
 	<td>
@@ -200,10 +201,10 @@ socks5://127.0.0.1:2121
 Pass `--check` flag in command to perform proxy checks:
 
 ```bash
-▶ mubeng -f proxies.txt --check --output live.txt
+▶ mubeng -f proxies.txt --check --only-cc AU,US,UK --output live.txt
 ```
 
-The above case also uses `--output` flag to save a live proxy into file `(live.txt)` from checking result.
+The above case also uses `--output` flag to save a live proxy of specific country code with `--only-cc` flag (`ISO-3166` alpha-2) into file _(live.txt)_ from checking result.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25837540/108407803-cd2d8b00-7256-11eb-8560-f0c99042c970.png">

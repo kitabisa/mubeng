@@ -46,6 +46,10 @@ func validate(opt *common.Options) error {
 		}
 	}
 
+	if opt.CC != "" {
+		opt.Countries = strings.Split(opt.CC, ",")
+	}
+
 	if opt.Output != "" {
 		opt.Output, err = filepath.Abs(opt.Output)
 		if err != nil {

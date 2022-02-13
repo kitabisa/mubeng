@@ -25,6 +25,7 @@ Options:
   -A, --auth <USER>:<PASS>         Set authorization for proxy server.
   -d, --daemon                     Daemonize proxy server.
   -c, --check                      To perform proxy live check.
+      --only-cc <AA>,<BB>          Only show specific country code (comma separated).
   -t, --timeout                    Max. time allowed for proxy server/check (default: 30s).
   -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request (default: 1).
   -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent).
