@@ -15,9 +15,15 @@ func New(opt *common.Options) error {
 	args := []string{
 		"-f", opt.File,
 		"-a", opt.Address,
+		"-A", opt.Auth,
 		"-t", opt.Timeout.String(),
 		"-r", strconv.Itoa(opt.Rotate),
+		"-m", opt.Method,
 		"-o", opt.Output,
+	}
+
+	if opt.Sync {
+		args = append(args, "-s")
 	}
 
 	if opt.Verbose {
