@@ -141,7 +141,11 @@ func nonProxy(w http.ResponseWriter, req *http.Request) {
 		w.Header().Add("Content-Type", "application/octet-stream")
 		w.Header().Add("Content-Disposition", fmt.Sprint("attachment; filename=", "goproxy-cacert.der"))
 		w.WriteHeader(http.StatusOK)
-		w.Write(goproxy.GoproxyCa.Certificate[0])
+
+		if _, err := w.Write(goproxy.GoproxyCa.Certificate[0]); err != nil {
+			http.Error(w, "Failed to get proxy certificate authority.", 500)
+			log.Errorf("%s %s %s %s", req.RemoteAddr, req.Method, req.URL, err.Error())
+		}
 
 		return
 	}
