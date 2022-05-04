@@ -193,6 +193,7 @@ For example, you've proxy pool `(proxies.txt)` as:
 <table>
 	<td>
 		<pre>http://127.0.0.1:8080
+https://127.0.0.1:443
 socks4://127.0.0.1:4145
 socks5://127.0.0.1:2121
 ...
