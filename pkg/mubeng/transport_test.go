@@ -17,10 +17,16 @@ func TestTransport(t *testing.T) {
 
 	failProxy := "gopher://localhost:70"
 	httpProxy := "http://localhost:80"
+	httpsProxy := "https://localhost:443"
 	socks4Proxy := "socks4://localhost:5678"
 	socks5Proxy := "socks5://localhost:3128"
 
 	httpURL, err := url.Parse(httpProxy)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	httpsURL, err := url.Parse(httpsProxy)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -43,6 +49,18 @@ func TestTransport(t *testing.T) {
 			},
 			wantTr: &http.Transport{
 				Proxy:             http.ProxyURL(httpURL),
+				DisableKeepAlives: true,
+				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
+			},
+			wantErr: false,
+		},
+		{
+			name: "Switch-transport to HTTPS",
+			args: args{
+				p: httpProxy,
+			},
+			wantTr: &http.Transport{
+				Proxy:             http.ProxyURL(httpsURL),
 				DisableKeepAlives: true,
 				TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 			},

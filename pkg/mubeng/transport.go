@@ -22,7 +22,7 @@ func Transport(p string) (tr *http.Transport, err error) {
 		tr = &http.Transport{
 			Dial: socks.Dial(p),
 		}
-	case "http":
+	case "http", "https":
 		tr = &http.Transport{
 			Proxy: http.ProxyURL(proxyURL),
 		}
