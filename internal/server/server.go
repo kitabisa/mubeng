@@ -1,11 +1,9 @@
 package server
 
 import (
-	"context"
 	"net/http"
 	"os"
 	"os/signal"
-	"time"
 
 	"github.com/elazarl/goproxy"
 	"github.com/henvic/httpretty"
@@ -32,7 +30,7 @@ func Run(opt *common.Options) {
 		Colors:         true,
 	}
 
-	handler := &Proxy{}
+	handler = &Proxy{}
 	handler.Options = opt
 	handler.HTTPProxy = goproxy.NewProxyHttpServer()
 	handler.HTTPProxy.OnRequest().DoFunc(handler.onRequest)
@@ -47,24 +45,22 @@ func Run(opt *common.Options) {
 
 	log = logo.NewLogger(cli, out)
 
+	if opt.Watch {
+		watcher, err := opt.ProxyManager.Watch()
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer watcher.Close()
+
+		go watch(watcher)
+	}
+
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt)
-	go func() {
-		<-stop
-
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-		defer cancel()
-
-		Stop(ctx)
-	}()
+	go interrupt(stop)
 
 	log.Infof("[PID: %d] Starting proxy server on %s", os.Getpid(), opt.Address)
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}
-}
-
-// Stop will terminate proxy server
-func Stop(ctx context.Context) {
-	_ = server.Shutdown(ctx)
 }

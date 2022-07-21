@@ -25,4 +25,5 @@ type Options struct {
 	Rotate    int
 	Sync      bool
 	Verbose   bool
+	Watch     bool
 }

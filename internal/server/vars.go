@@ -9,13 +9,14 @@ import (
 )
 
 var (
-	rotate string
-	server *http.Server
-	client *http.Client
-	dump   *httpretty.Logger
-	mime   = "text/plain"
-	log    *logo.Logger
-	ok     = 1
+	rotate  string
+	handler *Proxy
+	server  *http.Server
+	client  *http.Client
+	dump    *httpretty.Logger
+	mime    = "text/plain"
+	log     *logo.Logger
+	ok      = 1
 
 	mutex = sync.Mutex{}
 )

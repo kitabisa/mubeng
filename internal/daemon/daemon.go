@@ -30,6 +30,10 @@ func New(opt *common.Options) error {
 		args = append(args, "-v")
 	}
 
+	if opt.Watch {
+		args = append(args, "-w")
+	}
+
 	o := make(service.KeyValue)
 	o["Restart"] = "on-success"
 	o["SuccessExitStatus"] = "1 2 8 SIGKILL"
