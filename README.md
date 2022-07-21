@@ -115,6 +115,10 @@ Manual building executable from source code:
 
 For usage, it's always required to provide your proxy list, whether it is used to check or as a proxy pool for your proxy IP rotation.
 
+<center>
+  <a href="#"><img alt="kitabisa mubeng" src="https://user-images.githubusercontent.com/25837540/180201570-4b8f3609-4285-4f27-9dff-e1d0e06c4413.png" width="50%"></a>
+</center>
+
 ## Basic
 
 ```bash
@@ -144,6 +148,7 @@ Here are all the options it supports.
 | -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
 | -o, --output <FILE>           	| Save output from proxy server or live check.                  |
 | -u, --update                  	| Update mubeng to the latest stable version.                   |
+| -w, --watch                   	| Watch proxy file, live-reload from changes.                   |
 | -V, --version                 	| Show current mubeng version.                                  |
 
 <table>

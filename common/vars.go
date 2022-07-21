@@ -20,24 +20,30 @@ var (
   mubeng [-c|-a :8080] -f file.txt [options...]
 
 Options:
-  -f, --file <FILE>                Proxy file.
-  -a, --address <ADDR>:<PORT>      Run proxy server.
-  -A, --auth <USER>:<PASS>         Set authorization for proxy server.
-  -d, --daemon                     Daemonize proxy server.
-  -c, --check                      To perform proxy live check.
-      --only-cc <AA>,<BB>          Only show specific country code (comma separated).
-  -t, --timeout                    Max. time allowed for proxy server/check (default: 30s).
-  -r, --rotate <AFTER>             Rotate proxy IP for every AFTER request (default: 1).
-  -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent).
-  -s, --sync                       Sync will wait for the previous request to complete.
-  -v, --verbose                    Dump HTTP request/responses or show died proxy on check.
-  -o, --output <FILE>              Save output from proxy server or live check.
-  -u, --update                     Update mubeng to the latest stable version.
-  -V, --version                    Show current mubeng version.
+  GENERAL
+    -f, --file <FILE>                Proxy file (required)
+    -o, --output <FILE>              Write log output to FILE
+    -t, --timeout <TIME>             Max. time allowed for connection (default: 30s)
+    -u, --update                     Update mubeng to the latest stable version
+    -v, --verbose                    Verbose mode
+    -V, --version                    Show current mubeng version
+  
+  PROXY CHECKER
+    -c, --check                      Perform proxy check
+        --only-cc <AA>,<BB>          Only for specific country code (comma separated)
+  
+  IP ROTATOR
+    -a, --address <ADDR>:<PORT>      Run proxy server
+    -A, --auth <USER>:<PASS>         Set authorization for proxy server
+    -d, --daemon                     Daemonize proxy server
+    -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent)
+    -r, --rotate <N>                 Rotate proxy IP after N request (default: 1)
+    -s, --sync                       Syncrounus mode
+    -w, --watch                      Watch proxy file, live-reload from changes
 
 Examples:
   mubeng -f proxies.txt --check --output live.txt
-  mubeng -a localhost:8080 -f live.txt -r 10
+  mubeng -a localhost:8080 -f live.txt -r 10 -w
 
 `
 )

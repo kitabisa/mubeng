@@ -54,6 +54,9 @@ func Options() *common.Options {
 	flag.BoolVar(&version, "V", false, "")
 	flag.BoolVar(&version, "version", false, "")
 
+	flag.BoolVar(&opt.Watch, "w", false, "")
+	flag.BoolVar(&opt.Watch, "watch", false, "")
+
 	flag.Usage = func() {
 		showBanner()
 		showUsage()
