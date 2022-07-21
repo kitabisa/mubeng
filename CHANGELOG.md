@@ -2,6 +2,32 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.10.0
+
+- Minor
+  - Add proxy file `--watch`er with live-reload proxy manager
+
+### v0.9.3
+
+- Patch
+  - Add error check before write response writer
+
+### v0.9.2
+
+- Patch
+  - Fix missing some arguments for daemon mode
+
+### v0.9.1
+
+- Patch
+  - Fix non-proxy handler
+  - Add CA certificate endpoint
+
+### v0.9.0
+
+- Minor
+  - Add only show specific country code using `--only-cc` flag
+
 ### v0.8.0
 
 - Minor
