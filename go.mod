@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.2.12
-	github.com/briandowns/spinner v1.15.0
+	github.com/briandowns/spinner v1.18.1
 	github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
 	github.com/fsnotify/fsnotify v1.5.4
 	github.com/go-test/deep v1.0.7
