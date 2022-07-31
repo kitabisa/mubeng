@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/elazarl/goproxy"
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/pkg/mubeng"
+	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/pkg/mubeng"
 )
 
 // onRequest handles client request

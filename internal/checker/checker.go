@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/pkg/mubeng"
 	"github.com/logrusorgru/aurora"
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
 // Do checks proxy from list.

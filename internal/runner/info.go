@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/kitabisa/mubeng/common"
 	"github.com/logrusorgru/aurora"
-	"ktbs.dev/mubeng/common"
 )
 
 // showBanner to stderr

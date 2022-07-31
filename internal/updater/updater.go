@@ -12,9 +12,9 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/briandowns/spinner"
 	"github.com/inconshreveable/go-update"
+	"github.com/kitabisa/mubeng/common"
 	"github.com/logrusorgru/aurora"
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/mubeng/common"
 )
 
 // New to initialize updater, such as:

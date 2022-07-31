@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/internal/proxymanager"
+	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/internal/proxymanager"
 )
 
 // validate user-supplied option values before Runner.

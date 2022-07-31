@@ -8,7 +8,7 @@
 <p align="center">
 	<a href="#"><img src="https://img.shields.io/badge/kitabisa-security%20project-blue"></a>
 	<a href="https://golang.org"><img src="https://img.shields.io/badge/made%20with-Go-brightgreen"></a>
-	<a href="https://goreportcard.com/report/ktbs.dev/mubeng"><img src="https://goreportcard.com/badge/ktbs.dev/mubeng"></a>
+	<a href="https://goreportcard.com/report/github.com/kitabisa/mubeng"><img src="https://goreportcard.com/badge/github.com/kitabisa/mubeng"></a>
 	<a href="https://github.com/kitabisa/mubeng/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen"></a>
 	<a href="#"><img src="https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green"></a>
 	<a href="https://github.com/kitabisa/mubeng/releases"><img src="https://img.shields.io/github/release/kitabisa/mubeng"></a>
@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md">Contributing</a> •
   <a href="https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md">What's new</a> •
-  <a href="https://pkg.go.dev/ktbs.dev/mubeng/pkg/mubeng">Documentation</a> •
+  <a href="https://pkg.go.dev/github.com/kitabisa/mubeng/pkg/mubeng">Documentation</a> •
   <a href="https://github.com/kitabisa/mubeng/issues/new/choose">Report Issues</a>
 </p>
 
@@ -92,7 +92,7 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 Using [Go _(v1.15+)_](https://golang.org/doc/install) compiler:
 
 ```bash
-▶ GO111MODULE=on go get -u ktbs.dev/mubeng/cmd/mubeng
+▶ GO111MODULE=on go get -u github.com/kitabisa/mubeng/cmd/mubeng
 ```
 
 <table>
@@ -206,7 +206,7 @@ socks5://127.0.0.1:2121
 </table>
 
 > Because we use auto-switch transport, `mubeng` can accept multiple proxy protocol schemes at once.<br>
-> Please refer to [documentation](https://pkg.go.dev/ktbs.dev/mubeng/pkg/mubeng#Transport) for this package.
+> Please refer to [documentation](https://pkg.go.dev/github.com/kitabisa/mubeng/pkg/mubeng#Transport) for this package.
 
 ### Proxy checker
 

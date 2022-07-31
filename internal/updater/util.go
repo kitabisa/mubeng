@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/kitabisa/mubeng/common"
 	"github.com/projectdiscovery/gologger"
 	"github.com/tcnksm/go-latest"
-	"ktbs.dev/mubeng/common"
 )
 
 // isLatest check if current version is latest

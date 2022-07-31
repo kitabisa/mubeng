@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/kardianos/service"
+	"github.com/kitabisa/mubeng/common"
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/mubeng/common"
 )
 
 // New to initialize mubeng in daemon

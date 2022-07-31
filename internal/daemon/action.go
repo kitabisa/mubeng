@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/kardianos/service"
-	"ktbs.dev/mubeng/internal/server"
+	"github.com/kitabisa/mubeng/internal/server"
 )
 
 func (p *program) Start(s service.Service) error {
