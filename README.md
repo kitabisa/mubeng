@@ -285,4 +285,4 @@ For changes, see [CHANGELOG.md](https://github.com/kitabisa/mubeng/blob/master/C
 
 # License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/mubeng/blob/master/LICENSE). Kitabisa mubeng and any contributions are Copyright © by Dwi Siswanto 2021.
+This program is developed and maintained by members of Kitabisa Security Team, and this is not an officially supported Kitabisa product. This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/mubeng/blob/master/LICENSE). Kitabisa mubeng and any contributions are copyright © by Dwi Siswanto 2021-2022.
