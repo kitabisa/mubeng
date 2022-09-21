@@ -40,6 +40,8 @@
     - [Proxy IP rotator](#proxy-ip-rotator)
       - [Burp Suite Upstream Proxy](#burp-suite-upstream-proxy)
       - [OWASP ZAP Proxy Chain](#owasp-zap-proxy-chain)
+    - [Proxy format](#proxy-format)
+    	- [Templating](#templating)
 - [Limitations](#limitations)
 	- [Known Bugs](#known-bugs)
 - [Contributors](#contributors)
@@ -262,9 +264,53 @@ It acts the same way when you using an upstream proxy. OWASP ZAP allows you to c
 
 Select **Tools** in the menu bar in your ZAP session window, then select the **Options** _(shortcut: Ctrl+Alt+O)_ submenu, and go to **Connection** section. In that window, scroll to **Use proxy chain** part then check **Use an outgoing proxy server**. After that, fill required columns _(Address/Domain Name & Port)_ with correct details. Click **OK** to save settings.
 
+### Proxy format
+
+Currently mubeng supports HTTP(S) & SOCKSv4(A)/v5 protocol, see [examples](#examples) above. But, not limited by that we also support proxy string substitution and helper functions for your proxy pool.
+
+#### Templating
+
+If you have an authenticated proxy, you definitely don't want to write credentials constantly to the proxy pool file. **mubeng** can evaluate environment variable with `{{VARIABLE}}` writing style.
+
+For example:
+
+1. String substitute
+
+```console
+$ export USERNAME="FOO"
+$ export PASSWORD="BAR"
+$ echo "http://{{USERNAME}}:{{PASSWORD}}@192.168.0.1:31337" > list.txt
+$ mubeng -f list.txt -a :8080
+```
+
+2. Helper function
+
+Available functions currently supported:
+
+- `uint32`, and
+- `uint32n N`.
+
+Those following above functions are thread-safe pseudo-randomness.
+
+As an example of its use, we will be utilizing stream isolation over Tor SOCKS. With this method, you just need one Tor instance and each request can use a different stream with a different exit node, but that doesn't guarantee that your _ass_ will be rotated. Thus, we have to create unique `USER:PASS` pair to isolate streams for every connection. In order to pass pseudo-random proxy authorization, use `uint32` or `uint32n` function on your proxy pool, like:
+
+```console
+$ echo "socks5://{{uint32}}:{{uint32}}@127.0.0.1:9050" > list.txt
+$ while :; do mubeng -f list.txt -c 2>/dev/null; done
+[LIVE] [XX] [23.**.177.2] socks5://2123347975:3094119616@127.0.0.1:9050
+[LIVE] [XX] [199.**.253.156] socks5://1646373938:2740927425@127.0.0.1:9050
+[LIVE] [XX] [185.**.101.137] socks5://814036283:1382144874@127.0.0.1:9050
+[LIVE] [XX] [185.**.83.83] socks5://2895805939:2276057153@127.0.0.1:9050
+[LIVE] [XX] [103.**.167.10] socks5://408584795:1244204083@127.0.0.1:9050
+[LIVE] [XX] [198.**.84.99] socks5://3015151335:251835794@127.0.0.1:9050
+[LIVE] [XX] [179.**.159.197] socks5://3952852758:324998250@127.0.0.1:9050
+^C
+
+```
+
 # Limitations
 
-Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv4/v5 protocol, even though the resource you have is SOCKSv4/v5. In other words, the SOCKSv4/v5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
+Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCKSv4(A)/v5 protocol, even though the resource you have is SOCKSv4(A)/v5. In other words, the SOCKSv4(A)/v5 resource that you provide is used properly because it uses auto-switch transport on the client, but this proxy server **DOES NOT** switch to anything other than HTTP protocol.
 
 # Contributors
 
