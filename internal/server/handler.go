@@ -10,6 +10,7 @@ import (
 
 	"github.com/elazarl/goproxy"
 	"ktbs.dev/mubeng/common"
+	"ktbs.dev/mubeng/pkg/helper"
 	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
@@ -37,6 +38,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		ok++
 	}
 
+	rotate = helper.EvalFunc(rotate)
 	resChan := make(chan *http.Response)
 	errChan := make(chan error, 1)
 
