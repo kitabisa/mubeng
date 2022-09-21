@@ -1,3 +1,8 @@
 package proxymanager
 
-var manager *ProxyManager
+import "regexp"
+
+var (
+	manager     *ProxyManager
+	placeholder = regexp.MustCompile(`\{\{.*?\}\}`)
+)

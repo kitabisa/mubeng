@@ -10,6 +10,7 @@ import (
 
 	"github.com/logrusorgru/aurora"
 	"ktbs.dev/mubeng/common"
+	"ktbs.dev/mubeng/pkg/helper"
 	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
@@ -40,7 +41,7 @@ func Do(opt *common.Options) {
 					fmt.Fprintf(opt.Result, "%s\n", address)
 				}
 			}
-		}(proxy)
+		}(helper.EvalFunc(proxy))
 	}
 
 	wg.Wait()

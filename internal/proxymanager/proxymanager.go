@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"ktbs.dev/mubeng/pkg/helper"
 	"ktbs.dev/mubeng/pkg/mubeng"
 )
 
@@ -39,9 +40,10 @@ func New(filename string) (*ProxyManager, error) {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		proxy := scanner.Text()
+		proxy := helper.Eval(scanner.Text())
 		if _, value := keys[proxy]; !value {
-			if _, err = mubeng.Transport(proxy); err == nil {
+			_, err = mubeng.Transport(placeholder.ReplaceAllString(proxy, ""))
+			if err == nil {
 				keys[proxy] = true
 				manager.Proxies = append(manager.Proxies, proxy)
 			}
