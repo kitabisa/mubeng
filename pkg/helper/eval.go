@@ -10,6 +10,8 @@ import (
 
 // Eval subtitute `i` strings
 func Eval(i string) string {
+	m = getEnviron()
+
 	t := fasttemplate.New(i, "{{", "}}")
 	s := t.ExecuteStringStd(m)
 
