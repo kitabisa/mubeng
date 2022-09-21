@@ -10,6 +10,7 @@ mubeng: test build
 test:
 	@echo "Testing ${APP_NAME} package ${VERSION}"
 	@go test -short ktbs.dev/mubeng/pkg/mubeng
+	@go test -short ktbs.dev/mubeng/pkg/helper
 
 test-extra: golangci-lint test
 
