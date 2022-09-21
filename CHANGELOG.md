@@ -2,6 +2,12 @@
 
 All notable changes to this project should be documented in this file.
 
+### v0.11.0
+
+- Minor
+  - Add HTTPS proxy protocol support
+  - Add helper function for proxy formatting
+
 ### v0.10.0
 
 - Minor
