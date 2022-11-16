@@ -96,10 +96,5 @@ func doUpdate(ver string) error {
 	}
 	defer resp.Body.Close()
 
-	err = update.Apply(resp.Body, opt)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return update.Apply(resp.Body, opt)
 }
