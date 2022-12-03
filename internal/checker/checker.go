@@ -97,6 +97,7 @@ func check(address string, timeout time.Duration) (myIP, error) {
 	}
 
 	defer resp.Body.Close()
+	defer tr.CloseIdleConnections()
 
 	return myip, nil
 }
