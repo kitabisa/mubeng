@@ -1,10 +1,8 @@
 package server
 
 import (
-	"bytes"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -73,14 +71,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		}
 		defer resp.Body.Close()
 
-		// Copying response body
-		buf, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			resChan <- err
-			return
-		}
-
-		resp.Body = ioutil.NopCloser(bytes.NewBuffer(buf))
 		resChan <- resp
 	}()
 
