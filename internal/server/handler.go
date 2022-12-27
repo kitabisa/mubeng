@@ -80,8 +80,8 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	case res := <-resChan:
 		switch res.(type) {
 		case *http.Response:
-			log.Debug(req.RemoteAddr, " ", resp.Status)
 			resp = res.(*http.Response)
+			log.Debug(req.RemoteAddr, " ", resp.Status)
 			break
 		case error:
 			err := res.(error)
