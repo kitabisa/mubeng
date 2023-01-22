@@ -20,6 +20,7 @@ type Options struct {
 	Countries []string
 	Daemon    bool
 	File      string
+	Goroutine int
 	Method    string
 	Output    string
 	Rotate    int

@@ -3,12 +3,13 @@ package checker
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"time"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sourcegraph/conc/pool"
 	"ktbs.dev/mubeng/common"
 	"ktbs.dev/mubeng/pkg/helper"
 	"ktbs.dev/mubeng/pkg/mubeng"
@@ -19,12 +20,12 @@ import (
 // Displays proxies that have died if verbose mode is enabled,
 // or save live proxies into user defined files.
 func Do(opt *common.Options) {
+	p := pool.New().WithMaxGoroutines(opt.Goroutine)
+
 	for _, proxy := range opt.ProxyManager.Proxies {
-		wg.Add(1)
+		address := helper.EvalFunc(proxy)
 
-		go func(address string) {
-			defer wg.Done()
-
+		p.Go(func() {
 			addr, err := check(address, opt.Timeout)
 			if len(opt.Countries) > 0 && !isMatchCC(opt.Countries, addr.CC) {
 				return
@@ -41,10 +42,10 @@ func Do(opt *common.Options) {
 					fmt.Fprintf(opt.Result, "%s\n", address)
 				}
 			}
-		}(helper.EvalFunc(proxy))
+		})
 	}
 
-	wg.Wait()
+	p.Wait()
 }
 
 func isMatchCC(cc []string, code string) bool {
@@ -86,7 +87,7 @@ func check(address string, timeout time.Duration) (myIP, error) {
 		return myip, err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return myip, err
 	}

@@ -13,7 +13,7 @@ jobs:
       - name: "Set up Go"
         uses: actions/setup-go@v3
         with:
-          go-version: 1.14
+          go-version: 1.19
 
       - name: "Check out code"
         uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
       - name: "GolangCI-Lint"
         uses: golangci/golangci-lint-action@v3.2.0
         with:
-          version: v1.29
+          version: v1.50
 
       - name: "Initialize CodeQL"
         uses: github/codeql-action/init@v2

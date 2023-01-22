@@ -76,20 +76,15 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 	var resp *http.Response
 
-	select {
-	case res := <-resChan:
-		switch res.(type) {
-		case *http.Response:
-			resp = res.(*http.Response)
-			log.Debug(req.RemoteAddr, " ", resp.Status)
-			break
-		case error:
-			err := res.(error)
-
-			log.Errorf("%s %s", req.RemoteAddr, err)
-			resp = goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy server error")
-			break
-		}
+	res := <-resChan
+	switch res := res.(type) {
+	case *http.Response:
+		resp = res
+		log.Debug(req.RemoteAddr, " ", resp.Status)
+	case error:
+		err := res
+		log.Errorf("%s %s", req.RemoteAddr, err)
+		resp = goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy server error")
 	}
 
 	return req, resp

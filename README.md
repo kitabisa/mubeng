@@ -91,7 +91,7 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 
 ## Source
 
-Using [Go _(v1.15+)_](https://golang.org/doc/install) compiler:
+Using [Go _(v1.19)_](https://golang.org/doc/install) compiler:
 
 ```bash
 ▶ GO111MODULE=on go get -u ktbs.dev/mubeng/cmd/mubeng
@@ -136,22 +136,23 @@ Here are all the options it supports.
 ```
 
 | **Flag**                      	| **Description**                                              	|
-|-------------------------------	|--------------------------------------------------------------	|
-| -f, --file `<FILE>`           	| Proxy file.                                                  	|
-| -a, --address `<ADDR>:<PORT>` 	| Run proxy server.                                            	|
-| -A, --auth `<USER>:<PASS>`    	| Set authorization for proxy server.                           |
-| -d, --daemon                  	| Daemonize proxy server.                                       |
-| -c, --check                   	| To perform proxy live check.                                 	|
-|     --only-cc `<AA>,<BB>`     	| Only show specific country code (comma separated).            |
-| -t, --timeout                 	| Max. time allowed for proxy server/check (default: 30s).      |
-| -r, --rotate `<AFTER>`        	| Rotate proxy IP for every `AFTER` request (default: 1).       |
-| -m, --method `<METHOD>`       	| Rotation method (sequent/random) (default: sequent).          |
-| -s, --sync                    	| Sync will wait for the previous request to complete.          |
-| -v, --verbose                 	| Dump HTTP request/responses or show died proxy on check.      |
-| -o, --output <FILE>           	| Save output from proxy server or live check.                  |
-| -u, --update                  	| Update mubeng to the latest stable version.                   |
-| -w, --watch                   	| Watch proxy file, live-reload from changes.                   |
-| -V, --version                 	| Show current mubeng version.                                  |
+|-------------------------------  |-------------------------------------------------------------- |
+| -f, --file `<FILE>`             | Proxy file.                                                   |
+| -a, --address `<ADDR>:<PORT>`   | Run proxy server.                                             |
+| -A, --auth `<USER>:<PASS>`      | Set authorization for proxy server.                           |
+| -d, --daemon                    | Daemonize proxy server.                                       |
+| -c, --check                     | To perform proxy live check.                                  |
+| -g, --goroutine `<N>`           | Max. goroutine to use (default: 10).                          |
+|     --only-cc `<AA>,<BB>`       | Only show specific country code (comma separated).            |
+| -t, --timeout                   | Max. time allowed for proxy server/check (default: 30s).      |
+| -r, --rotate `<AFTER>`          | Rotate proxy IP for every `AFTER` request (default: 1).       |
+| -m, --method `<METHOD>`         | Rotation method (sequent/random) (default: sequent).          |
+| -s, --sync                      | Sync will wait for the previous request to complete.          |
+| -v, --verbose                   | Dump HTTP request/responses or show died proxy on check.      |
+| -o, --output `<FILE>`           | Save output from proxy server or live check.                  |
+| -u, --update                    | Update mubeng to the latest stable version.                   |
+| -w, --watch                     | Watch proxy file, live-reload from changes.                   |
+| -V, --version                   | Show current mubeng version.                                  |
 
 <table>
 	<td>
