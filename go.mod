@@ -17,7 +17,7 @@ require (
 	github.com/sourcegraph/conc v0.2.0
 	github.com/tcnksm/go-latest v0.0.0-20170313132115-e3007ae9052e
 	github.com/valyala/fastrand v1.1.0
-	github.com/valyala/fasttemplate v1.2.1
+	github.com/valyala/fasttemplate v1.2.2
 	h12.io/socks v1.0.3
 )
 
