@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.2.12
-	github.com/briandowns/spinner v1.15.0
+	github.com/briandowns/spinner v1.22.0
 	github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-test/deep v1.0.7
@@ -47,6 +47,6 @@ require (
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/net v0.0.0-20220526153639-5463443f8c37 // indirect
 	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
-	golang.org/x/term v0.0.0-20220411215600-e5f449aeb171 // indirect
+	golang.org/x/term v0.1.0 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
