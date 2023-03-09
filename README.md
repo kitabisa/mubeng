@@ -86,7 +86,7 @@ Simply, download a pre-built binary from [releases page](https://github.com/kita
 Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 
 ```bash
-▶ docker pull kitabisa/mubeng
+▶ docker pull ghcr.io/kitabisa/mubeng:latest
 ```
 
 ## Source
