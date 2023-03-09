@@ -27,7 +27,7 @@ func Do(opt *common.Options) {
 
 		p.Go(func() {
 			addr, err := check(address, opt.Timeout)
-			if len(opt.Countries) > 0 && !isMatchCC(opt.Countries, addr.CC) {
+			if len(opt.Countries) > 0 && !isMatchCC(opt.Countries, addr.Country) {
 				return
 			}
 
@@ -36,7 +36,7 @@ func Do(opt *common.Options) {
 					fmt.Printf("[%s] %s\n", aurora.Red("DIED"), address)
 				}
 			} else {
-				fmt.Printf("[%s] [%s] [%s] %s\n", aurora.Green("LIVE"), aurora.Magenta(addr.CC), aurora.Cyan(addr.IP), address)
+				fmt.Printf("[%s] [%s] [%s] %s\n", aurora.Green("LIVE"), aurora.Magenta(addr.Country), aurora.Cyan(addr.IP), address)
 
 				if opt.Output != "" {
 					fmt.Fprintf(opt.Result, "%s\n", address)
@@ -62,15 +62,15 @@ func isMatchCC(cc []string, code string) bool {
 	return false
 }
 
-func check(address string, timeout time.Duration) (myIP, error) {
+func check(address string, timeout time.Duration) (IPInfo, error) {
 	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
-		return myip, err
+		return ipinfo, err
 	}
 
 	tr, err := mubeng.Transport(address)
 	if err != nil {
-		return myip, err
+		return ipinfo, err
 	}
 
 	proxy := &mubeng.Proxy{
@@ -84,21 +84,21 @@ func check(address string, timeout time.Duration) (myIP, error) {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return myip, err
+		return ipinfo, err
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return myip, err
+		return ipinfo, err
 	}
 
-	err = json.Unmarshal([]byte(body), &myip)
+	err = json.Unmarshal([]byte(body), &ipinfo)
 	if err != nil {
-		return myip, err
+		return ipinfo, err
 	}
 
 	defer resp.Body.Close()
 	defer tr.CloseIdleConnections()
 
-	return myip, nil
+	return ipinfo, nil
 }

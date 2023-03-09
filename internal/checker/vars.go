@@ -6,7 +6,7 @@ import (
 
 var (
 	client *http.Client
-	myip   myIP
+	ipinfo IPInfo
 
-	endpoint = "https://api.myip.com/"
+	endpoint = "https://ipinfo.io/json"
 )
