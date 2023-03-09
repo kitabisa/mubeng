@@ -57,6 +57,7 @@ func Options() *common.Options {
 	flag.BoolVar(&opt.Watch, "w", false, "")
 	flag.BoolVar(&opt.Watch, "watch", false, "")
 
+	flag.IntVar(&opt.Goroutine, "g", 10, "")
 	flag.IntVar(&opt.Goroutine, "goroutine", 10, "")
 
 	flag.Usage = func() {
