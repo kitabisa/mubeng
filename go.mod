@@ -8,7 +8,7 @@ require (
 	github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-test/deep v1.0.7
-	github.com/henvic/httpretty v0.0.6
+	github.com/henvic/httpretty v0.1.2
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
 	github.com/kardianos/service v1.2.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
