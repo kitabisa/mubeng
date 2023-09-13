@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       
       - name: "Build Docker Images"
-        uses: docker/build-push-action@v4.1.1
+        uses: docker/build-push-action@v5.0.0
         with:
           push: false
           build-args: "VERSION=${{ github.ref_name }}"
