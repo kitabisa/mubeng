@@ -41,13 +41,13 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	rotate = helper.EvalFunc(rotate)
 	resChan := make(chan interface{})
 
-	go func() {
-		if (req.URL.Scheme != "http") && (req.URL.Scheme != "https") {
-			resChan <- fmt.Errorf("Unsupported protocol scheme: %s", req.URL.Scheme)
+	go func(r *http.Request) {
+		if (r.URL.Scheme != "http") && (r.URL.Scheme != "https") {
+			resChan <- fmt.Errorf("Unsupported protocol scheme: %s", r.URL.Scheme)
 			return
 		}
 
-		log.Debugf("%s %s %s", req.RemoteAddr, req.Method, req.URL)
+		log.Debugf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
 
 		tr, err := mubeng.Transport(rotate)
 		if err != nil {
@@ -82,7 +82,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		resp.Body = io.NopCloser(bytes.NewBuffer(buf))
 
 		resChan <- resp
-	}()
+	}(req)
 
 	var resp *http.Response
 
