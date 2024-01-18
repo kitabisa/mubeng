@@ -60,7 +60,7 @@ func Run(opt *common.Options) {
 	go interrupt(stop)
 
 	log.Infof("[PID: %d] Starting proxy server on %s", os.Getpid(), opt.Address)
-	if err := server.ListenAndServe(); err != nil {
+	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Fatal(err)
 	}
 }
