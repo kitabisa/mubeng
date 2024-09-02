@@ -60,7 +60,12 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			Transport: tr,
 		}
 
-		client, req = proxy.New(req)
+		client, err := proxy.New(req)
+		if err != nil {
+			resChan <- err
+			return
+		}
+
 		client.Timeout = p.Options.Timeout
 		if p.Options.Verbose {
 			client.Transport = dump.RoundTripper(tr)
