@@ -16,13 +16,19 @@ import (
 // An active log have 2 receivers, especially stdout and into file if opt.Output isn't empty.
 // Then close the proxy server if it receives a signal that interrupts the program.
 func Run(opt *common.Options) {
+	var recs []*logo.Receiver
+
 	cli := logo.NewReceiver(os.Stderr, "")
 	cli.Color = true
 	cli.Level = logo.DEBUG
+	recs = append(recs, cli)
 
-	file, _ := logo.Open(opt.Output)
-	out := logo.NewReceiver(file, "")
-	out.Format = "%s: %s"
+	file, err := logo.Open(opt.Output)
+	if err == nil {
+		out := logo.NewReceiver(file, "")
+		out.Format = "%s: %s"
+		recs = append(recs, out)
+	}
 
 	dump = &httpretty.Logger{
 		RequestHeader:  true,
@@ -43,7 +49,7 @@ func Run(opt *common.Options) {
 		Handler: handler.HTTPProxy,
 	}
 
-	log = logo.NewLogger(cli, out)
+	log = logo.NewLogger(recs...)
 
 	if opt.Watch {
 		watcher, err := opt.ProxyManager.Watch()
