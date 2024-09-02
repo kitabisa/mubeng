@@ -11,7 +11,7 @@ import (
 //
 // also removes Hop-by-hop headers when it is sent to backend (see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html),
 // then add X-Forwarded-For header value with the IP address value of rotator proxy IP.
-func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
+func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 	client = &http.Client{Transport: proxy.Transport}
 
 	// http: Request.RequestURI can't be set in client requests.
@@ -22,7 +22,10 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
 		req.Header.Del(h)
 	}
 
-	proxyURL, _ := url.Parse(proxy.Address)
+	proxyURL, err := url.Parse(proxy.Address)
+	if err != nil {
+		return client, err
+	}
 
 	if host, _, err := net.SplitHostPort(proxyURL.Host); err == nil {
 		if prior, ok := req.Header["X-Forwarded-For"]; ok {
@@ -33,5 +36,5 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, *http.Request) {
 
 	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
 
-	return client, req
+	return client, nil
 }
