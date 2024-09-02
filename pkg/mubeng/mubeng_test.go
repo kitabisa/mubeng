@@ -39,7 +39,7 @@ func TestProxyNew(t *testing.T) {
 		fields fields
 		args   args
 		want   *http.Client
-		want1  *http.Request
+		want1  error
 	}{
 		{
 			name: "New Proxy",
@@ -53,7 +53,7 @@ func TestProxyNew(t *testing.T) {
 			want: &http.Client{
 				Transport: tr,
 			},
-			want1: req,
+			want1: nil,
 		},
 	}
 
