@@ -218,7 +218,7 @@ Pass `--check` flag in command to perform proxy checks:
 The above case also uses `--output` flag to save a live proxy of specific country code with `--only-cc` flag (`ISO-3166` alpha-2) into file _(live.txt)_ from checking result.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25837540/108407803-cd2d8b00-7256-11eb-8560-f0c99042c970.png">
+  <img src="https://github.com/user-attachments/assets/97b9e5ad-64bd-403a-bd3a-1bc4eb7fb3f1" height="400"><br />
   <i>(Figure: Checking proxies mubeng with max. 5s timeout)</i>
 </p>
 
@@ -233,7 +233,7 @@ Furthermore, if you wish to do proxy IP rotator from proxies that are still aliv
 The `-r` _(--rotate)_ flag works to rotate your IP for every _N_ request value you provide `(10)`, and the `-m` _(--method)_ flag will rotate the proxy sequential/randomly.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25837540/108269526-b3ca0780-71a0-11eb-986c-f8e98bab8433.jpg">
+  <img src="https://github.com/user-attachments/assets/b86a5bf4-41e6-43ac-8077-9f82442e9577">
   <i>(Figure: Running mubeng as proxy IP rotator with verbose mode)</i>
 </p>
 
