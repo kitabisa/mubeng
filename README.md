@@ -91,15 +91,11 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 
 ## Source
 
-Using [Go _(v1.19)_](https://golang.org/doc/install) compiler:
+Using [Go](https://golang.org/doc/install) compiler:
 
 ```bash
-▶ GO111MODULE=on go get -u github.com/kitabisa/mubeng/cmd/mubeng
+▶ go install -v github.com/kitabisa/mubeng/cmd/mubeng@latest
 ```
-
-<table>
-	<td><b>NOTE:</b> The same command above also works for updating.</td>
-</table>
 
 ### — or
 
@@ -109,8 +105,7 @@ Manual building executable from source code:
 ▶ git clone https://github.com/kitabisa/mubeng
 ▶ cd mubeng
 ▶ make build
-▶ (sudo) mv ./bin/mubeng /usr/local/bin
-▶ make clean
+▶ (sudo) install ./bin/mubeng /usr/local/bin
 ```
 
 # Usage
