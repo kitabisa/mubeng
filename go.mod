@@ -1,4 +1,4 @@
-module ktbs.dev/mubeng
+module github.com/kitabisa/mubeng
 
 go 1.19
 

@@ -10,9 +10,9 @@ import (
 
 	"github.com/logrusorgru/aurora"
 	"github.com/sourcegraph/conc/pool"
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/pkg/helper"
-	"ktbs.dev/mubeng/pkg/mubeng"
+	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/pkg/helper"
+	"github.com/kitabisa/mubeng/pkg/mubeng"
 )
 
 // Do checks proxy from list.

@@ -11,7 +11,7 @@ COPY ./go.mod .
 RUN go mod download
 
 COPY . .
-RUN go build -ldflags "-s -w -X ktbs.dev/mubeng/common.Version=${VERSION}" \
+RUN go build -ldflags "-s -w -X github.com/kitabisa/mubeng/common.Version=${VERSION}" \
 	-o ./bin/mubeng ./cmd/mubeng 
 
 FROM alpine:latest

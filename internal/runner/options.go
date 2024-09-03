@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/mubeng/common"
-	"ktbs.dev/mubeng/internal/updater"
+	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/internal/updater"
 )
 
 // Options defines the values needed to execute the Runner.

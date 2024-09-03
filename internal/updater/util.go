@@ -8,7 +8,7 @@ import (
 
 	"github.com/projectdiscovery/gologger"
 	"github.com/tcnksm/go-latest"
-	"ktbs.dev/mubeng/common"
+	"github.com/kitabisa/mubeng/common"
 )
 
 // isLatest check if current version is latest
