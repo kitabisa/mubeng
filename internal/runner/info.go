@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/logrusorgru/aurora"
-	"ktbs.dev/mubeng/common"
+	"github.com/kitabisa/mubeng/common"
 )
 
 // showBanner to stderr

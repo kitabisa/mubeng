@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/elazarl/goproxy"
-	"ktbs.dev/mubeng/common"
+	"github.com/kitabisa/mubeng/common"
 )
 
 // Proxy as ServeMux in proxy server handler.

@@ -6,7 +6,7 @@ import (
 
 	"github.com/kardianos/service"
 	"github.com/projectdiscovery/gologger"
-	"ktbs.dev/mubeng/common"
+	"github.com/kitabisa/mubeng/common"
 )
 
 // New to initialize mubeng in daemon
