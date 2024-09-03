@@ -40,6 +40,7 @@ Options:
     -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent)
     -r, --rotate <N>                 Rotate proxy IP after N request (default: 1)
         --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
+        --max-redirects <N>          Max. redirects for HTTP requests (default: 10)
     -s, --sync                       Syncrounus mode
     -w, --watch                      Watch proxy file, live-reload from changes
 

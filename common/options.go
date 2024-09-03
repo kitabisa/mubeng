@@ -28,4 +28,5 @@ type Options struct {
 	Verbose    bool
 	Watch      bool
 	MaxRetries int
+	MaxRedirects int
 }

@@ -62,6 +62,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		if p.Options.Verbose {
 			client.Transport = dump.RoundTripper(tr)
 		}
+		client = mubeng.SetMaxRedirects(client, p.Options.MaxRedirects)
 
 		retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
 		retryablehttpClient.RetryMax = p.Options.MaxRetries

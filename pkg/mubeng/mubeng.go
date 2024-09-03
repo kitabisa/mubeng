@@ -48,3 +48,16 @@ func ToRetryableHTTPClient(client *http.Client) *retryablehttp.Client {
 
 	return retryablehttpClient
 }
+
+// SetMaxRedirects sets the maximum number of redirects that the client will follow.
+// If the client follows the maximum number of redirects, it returns the last response it receives.
+func SetMaxRedirects(client *http.Client, maxRedirects int) *http.Client {
+	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
+		if len(via) >= maxRedirects {
+			return http.ErrUseLastResponse
+		}
+		return nil
+	}
+
+	return client
+}
