@@ -2,6 +2,7 @@ package runner
 
 import (
 	"errors"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -13,6 +14,27 @@ import (
 // validate user-supplied option values before Runner.
 func validate(opt *common.Options) error {
 	var err error
+
+	if hasStdin() {
+		tmp, err := os.CreateTemp("", "mubeng-stdin-*")
+		if err != nil {
+			return err
+		}
+		defer tmp.Close()
+
+		data, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			return err
+		}
+
+		if _, err := tmp.Write(data); err != nil {
+			return err
+		}
+
+		opt.File = tmp.Name()
+
+		defer os.Remove(opt.File)
+	}
 
 	if opt.File == "" {
 		return errors.New("no proxy file provided")
