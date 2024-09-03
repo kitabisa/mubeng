@@ -38,6 +38,13 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 
 	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
 
+	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
+		if len(via) >= proxy.MaxRedirects {
+			return http.ErrUseLastResponse
+		}
+		return nil
+	}
+
 	return client, nil
 }
 
@@ -47,17 +54,4 @@ func ToRetryableHTTPClient(client *http.Client) *retryablehttp.Client {
 	retryablehttpClient.HTTPClient = client
 
 	return retryablehttpClient
-}
-
-// SetMaxRedirects sets the maximum number of redirects that the client will follow.
-// If the client follows the maximum number of redirects, it returns the last response it receives.
-func SetMaxRedirects(client *http.Client, maxRedirects int) *http.Client {
-	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
-		if len(via) >= maxRedirects {
-			return http.ErrUseLastResponse
-		}
-		return nil
-	}
-
-	return client
 }

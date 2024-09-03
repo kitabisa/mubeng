@@ -48,8 +48,9 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		}
 
 		proxy := &mubeng.Proxy{
-			Address:   rotate,
-			Transport: tr,
+			Address:      rotate,
+			Transport:    tr,
+			MaxRedirects: p.Options.MaxRedirects,
 		}
 
 		client, err := proxy.New(r)
@@ -62,7 +63,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		if p.Options.Verbose {
 			client.Transport = dump.RoundTripper(tr)
 		}
-		client = mubeng.SetMaxRedirects(client, p.Options.MaxRedirects)
 
 		retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
 		retryablehttpClient.RetryMax = p.Options.MaxRetries
