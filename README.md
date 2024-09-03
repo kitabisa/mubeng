@@ -141,6 +141,7 @@ Here are all the options it supports.
 |     --only-cc `<AA>,<BB>`       | Only show specific country code (comma separated).            |
 | -t, --timeout                   | Max. time allowed for proxy server/check (default: 30s).      |
 | -r, --rotate `<AFTER>`          | Rotate proxy IP for every `AFTER` request (default: 1).       |
+|     --max-retries `<N>`         | Max. retries for failed HTTP requests (default: 3).           |
 | -m, --method `<METHOD>`         | Rotation method (sequent/random) (default: sequent).          |
 | -s, --sync                      | Sync will wait for the previous request to complete.          |
 | -v, --verbose                   | Dump HTTP request/responses or show died proxy on check.      |

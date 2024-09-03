@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/elazarl/goproxy"
+	"github.com/hashicorp/go-retryablehttp"
 	"github.com/kitabisa/mubeng/common"
 	"github.com/kitabisa/mubeng/pkg/helper"
 	"github.com/kitabisa/mubeng/pkg/mubeng"
@@ -60,7 +61,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			Transport: tr,
 		}
 
-		client, err := proxy.New(req)
+		client, err := proxy.New(r)
 		if err != nil {
 			resChan <- err
 			return
@@ -71,7 +72,23 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			client.Transport = dump.RoundTripper(tr)
 		}
 
-		resp, err := client.Do(req)
+		retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
+		retryablehttpClient.RetryMax = p.Options.MaxRetries
+		retryablehttpClient.RetryWaitMin = client.Timeout
+		retryablehttpClient.RetryWaitMax = client.Timeout
+		retryablehttpClient.Logger = ReleveledLogo{
+			Logger:  log,
+			Request: r,
+			Verbose: p.Options.Verbose,
+		}
+
+		retryablehttpRequest, err := retryablehttp.FromRequest(r)
+		if err != nil {
+			resChan <- err
+			return
+		}
+
+		resp, err := retryablehttpClient.Do(retryablehttpRequest)
 		if err != nil {
 			resChan <- err
 			return

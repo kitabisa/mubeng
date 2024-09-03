@@ -5,9 +5,11 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/hashicorp/go-retryablehttp"
 )
 
-// New define HTTP client & request of http.Request itself.
+// New define HTTP client request of the [http.Request] itself.
 //
 // also removes Hop-by-hop headers when it is sent to backend (see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html),
 // then add X-Forwarded-For header value with the IP address value of rotator proxy IP.
@@ -37,4 +39,12 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
 
 	return client, nil
+}
+
+// ToRetryableHTTPClient converts standard [http.Client] to [retryablehttp.Client]
+func ToRetryableHTTPClient(client *http.Client) *retryablehttp.Client {
+	retryablehttpClient := retryablehttp.NewClient()
+	retryablehttpClient.HTTPClient = client
+
+	return retryablehttpClient
 }
