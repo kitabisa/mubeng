@@ -21,6 +21,10 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		defer mutex.Unlock()
 	}
 
+	if (req.URL.Scheme != "http") && (req.URL.Scheme != "https") {
+		return req, serverErr(req)
+	}
+
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
 		rotate = p.Options.ProxyManager.Rotate(p.Options.Method)
@@ -35,11 +39,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	resChan := make(chan interface{})
 
 	go func(r *http.Request) {
-		if (r.URL.Scheme != "http") && (r.URL.Scheme != "https") {
-			resChan <- fmt.Errorf("Unsupported protocol scheme: %s", r.URL.Scheme)
-			return
-		}
-
 		log.Debugf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
 
 		tr, err := mubeng.Transport(rotate)
@@ -108,7 +107,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	case error:
 		err := res
 		log.Errorf("%s %s", req.RemoteAddr, err)
-		resp = goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy server error")
+		resp = serverErr(req)
 	}
 
 	return req, resp
@@ -172,4 +171,8 @@ func nonProxy(w http.ResponseWriter, req *http.Request) {
 	}
 
 	http.Error(w, "This is a mubeng proxy server. Does not respond to non-proxy requests.", 500)
+}
+
+func serverErr(req *http.Request) *http.Response {
+	return goproxy.NewResponse(req, mime, http.StatusBadGateway, "Proxy server error")
 }
