@@ -2,6 +2,7 @@ package runner
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -57,7 +58,7 @@ func validate(opt *common.Options) error {
 
 	if opt.Address != "" && !opt.Check {
 		if !validMethod[opt.Method] {
-			return errors.New("undefined method for " + opt.Method)
+			return fmt.Errorf("unknown method for %q", opt.Method)
 		}
 
 		if opt.Auth != "" {
