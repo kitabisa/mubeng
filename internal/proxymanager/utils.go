@@ -4,6 +4,7 @@ import (
 	"math/rand"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/kitabisa/mubeng/pkg/helper"
 )
 
 // NextProxy will navigate the next proxy to use
@@ -21,6 +22,26 @@ func (p *ProxyManager) NextProxy() string {
 // RandomProxy will choose a proxy randomly from the list
 func (p *ProxyManager) RandomProxy() string {
 	return p.Proxies[rand.Intn(len(p.Proxies))]
+}
+
+// Rotate proxy based on method
+//
+// Valid methods are "sequent" and "random", default return empty string.
+func (p *ProxyManager) Rotate(method string) string {
+	var proxy string
+
+	switch method {
+	case "sequent":
+		proxy = p.NextProxy()
+	case "random":
+		proxy = p.RandomProxy()
+	}
+
+	if proxy != "" {
+		proxy = helper.EvalFunc(proxy)
+	}
+
+	return proxy
 }
 
 // Watch proxy file from events
