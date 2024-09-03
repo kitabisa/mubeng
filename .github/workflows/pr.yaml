@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - '**.go'
 
 jobs:
   checks:
