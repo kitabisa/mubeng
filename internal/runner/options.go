@@ -4,9 +4,9 @@ import (
 	"flag"
 	"time"
 
-	"github.com/projectdiscovery/gologger"
 	"github.com/kitabisa/mubeng/common"
 	"github.com/kitabisa/mubeng/internal/updater"
+	"github.com/projectdiscovery/gologger"
 )
 
 // Options defines the values needed to execute the Runner.
@@ -57,8 +57,8 @@ func Options() *common.Options {
 	flag.BoolVar(&opt.Watch, "w", false, "")
 	flag.BoolVar(&opt.Watch, "watch", false, "")
 
-	flag.IntVar(&opt.Goroutine, "g", 10, "")
-	flag.IntVar(&opt.Goroutine, "goroutine", 10, "")
+	flag.IntVar(&opt.Goroutine, "g", 50, "")
+	flag.IntVar(&opt.Goroutine, "goroutine", 50, "")
 
 	flag.Usage = func() {
 		showBanner()
