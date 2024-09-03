@@ -60,7 +60,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			Transport: tr,
 		}
 
-		client, err := proxy.New(req)
+		client, err := proxy.New(r)
 		if err != nil {
 			resChan <- err
 			return
@@ -71,7 +71,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			client.Transport = dump.RoundTripper(tr)
 		}
 
-		resp, err := client.Do(req)
+		resp, err := client.Do(r)
 		if err != nil {
 			resChan <- err
 			return
