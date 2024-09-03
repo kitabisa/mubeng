@@ -73,7 +73,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		}
 
 		retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
-		retryablehttpClient.RetryMax = 3
+		retryablehttpClient.RetryMax = p.Options.MaxRetries
 		retryablehttpClient.RetryWaitMin = client.Timeout
 		retryablehttpClient.RetryWaitMax = client.Timeout
 		retryablehttpClient.Logger = ReleveledLogo{
