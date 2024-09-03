@@ -11,7 +11,6 @@ import (
 	"github.com/elazarl/goproxy"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/pkg/helper"
 	"github.com/kitabisa/mubeng/pkg/mubeng"
 )
 
@@ -24,13 +23,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 	// Rotate proxy IP for every AFTER request
 	if (rotate == "") || (ok >= p.Options.Rotate) {
-		if p.Options.Method == "sequent" {
-			rotate = p.Options.ProxyManager.NextProxy()
-		}
-
-		if p.Options.Method == "random" {
-			rotate = p.Options.ProxyManager.RandomProxy()
-		}
+		rotate = p.Options.ProxyManager.Rotate(p.Options.Method)
 
 		if ok >= p.Options.Rotate {
 			ok = 1
@@ -39,7 +32,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		ok++
 	}
 
-	rotate = helper.EvalFunc(rotate)
 	resChan := make(chan interface{})
 
 	go func(r *http.Request) {
