@@ -39,8 +39,8 @@ Options:
     -d, --daemon                     Daemonize proxy server
     -m, --method <METHOD>            Rotation method (sequent/random) (default: sequent)
     -r, --rotate <N>                 Rotate proxy IP after N request (default: 1)
-        --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
         --max-redirs <N>             Max. redirects allowed (default: 10)
+        --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
     -s, --sync                       Syncrounus mode
     -w, --watch                      Watch proxy file, live-reload from changes
 

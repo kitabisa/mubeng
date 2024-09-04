@@ -60,8 +60,9 @@ func Options() *common.Options {
 	flag.IntVar(&opt.Goroutine, "g", 50, "")
 	flag.IntVar(&opt.Goroutine, "goroutine", 50, "")
 
-	flag.IntVar(&opt.MaxRetries, "max-retries", 0, "")
 	flag.IntVar(&opt.MaxRedirects, "max-redirs", 10, "")
+
+	flag.IntVar(&opt.MaxRetries, "max-retries", 0, "")
 
 	flag.Usage = func() {
 		showBanner()
