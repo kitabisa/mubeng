@@ -49,8 +49,9 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 		proxy := &mubeng.Proxy{
 			Address:      rotate,
-			Transport:    tr,
 			MaxRedirects: p.Options.MaxRedirects,
+			Timeout:      p.Options.Timeout,
+			Transport:    tr,
 		}
 
 		client, err := proxy.New(r)
@@ -59,7 +60,6 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 			return
 		}
 
-		client.Timeout = p.Options.Timeout
 		if p.Options.Verbose {
 			client.Transport = dump.RoundTripper(tr)
 		}
