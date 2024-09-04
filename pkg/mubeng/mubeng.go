@@ -38,6 +38,13 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 
 	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
 
+	client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
+		if len(via) >= proxy.MaxRedirects {
+			return http.ErrUseLastResponse
+		}
+		return nil
+	}
+
 	return client, nil
 }
 

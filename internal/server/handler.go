@@ -48,8 +48,9 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		}
 
 		proxy := &mubeng.Proxy{
-			Address:   rotate,
-			Transport: tr,
+			Address:      rotate,
+			Transport:    tr,
+			MaxRedirects: p.Options.MaxRedirects,
 		}
 
 		client, err := proxy.New(r)
