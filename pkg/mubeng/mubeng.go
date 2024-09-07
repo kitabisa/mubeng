@@ -4,7 +4,6 @@ import (
 	"net"
 	"net/http"
 	"net/url"
-	"strings"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -14,7 +13,7 @@ import (
 // also removes Hop-by-hop headers when it is sent to backend (see http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html),
 // then add X-Forwarded-For header value with the IP address value of rotator proxy IP.
 func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
-	client = &http.Client{
+	client := &http.Client{
 		CheckRedirect: proxy.redirectPolicy,
 		Timeout:       proxy.Timeout,
 		Transport:     proxy.Transport,
@@ -34,9 +33,9 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 	}
 
 	if host, _, err := net.SplitHostPort(proxyURL.Host); err == nil {
-		if prior, ok := req.Header["X-Forwarded-For"]; ok {
-			host = strings.Join(prior, ", ") + ", " + host
-		}
+		// if prior, ok := req.Header["X-Forwarded-For"]; ok {
+		// 	host = strings.Join(prior, ", ") + ", " + host
+		// }
 		req.Header.Set("X-Forwarded-For", host)
 	}
 
