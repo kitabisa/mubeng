@@ -113,7 +113,7 @@ Manual building executable from source code:
 For usage, it's always required to provide your proxy list, whether it is used to check or as a proxy pool for your proxy IP rotation.
 
 <center>
-  <a href="#"><img alt="kitabisa mubeng" src="https://user-images.githubusercontent.com/25837540/180201570-4b8f3609-4285-4f27-9dff-e1d0e06c4413.png" width="50%"></a>
+  <a href="#"><img alt="kitabisa mubeng" src="https://github.com/user-attachments/assets/850460b5-0c6d-48e9-a0b8-fb4992e804bf" width="80%"></a>
 </center>
 
 ## Basic
