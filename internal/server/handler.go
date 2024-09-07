@@ -25,77 +25,55 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		return req, serverErr(req)
 	}
 
-	// Rotate proxy IP for every AFTER request
-	if (rotate == "") || (ok >= p.Options.Rotate) {
-		rotate = p.Options.ProxyManager.Rotate(p.Options.Method)
-
-		if ok >= p.Options.Rotate {
-			ok = 1
-		}
-	} else {
-		ok++
-	}
-
 	resChan := make(chan interface{})
 
 	go func(r *http.Request) {
 		log.Debugf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
 
-		tr, err := mubeng.Transport(rotate)
-		if err != nil {
-			resChan <- err
+		for i := 0; i <= p.Options.MaxErrors; i++ {
+			retryablehttpClient, err := p.getClient(r, p.rotateProxy())
+			if err != nil {
+				resChan <- err
+
+				return
+			}
+
+			retryablehttpRequest, err := retryablehttp.FromRequest(r)
+			if err != nil {
+				resChan <- err
+
+				return
+			}
+
+			resp, err := retryablehttpClient.Do(retryablehttpRequest)
+			if err != nil {
+				if p.Options.RotateOnErr && i < p.Options.MaxErrors {
+					log.Debugf(
+						"%s Retrying (rotated) %s %s [remaining=%q]",
+						r.RemoteAddr, r.Method, r.URL, fmt.Sprint(p.Options.MaxErrors-i),
+					)
+
+					continue
+				} else {
+					resChan <- err
+
+					return
+				}
+			}
+			defer resp.Body.Close()
+
+			buf, err := io.ReadAll(resp.Body)
+			if err != nil {
+				resChan <- err
+
+				return
+			}
+			resp.Body = io.NopCloser(bytes.NewBuffer(buf))
+
+			resChan <- resp
+
 			return
 		}
-
-		proxy := &mubeng.Proxy{
-			Address:      rotate,
-			MaxRedirects: p.Options.MaxRedirects,
-			Timeout:      p.Options.Timeout,
-			Transport:    tr,
-		}
-
-		client, err := proxy.New(r)
-		if err != nil {
-			resChan <- err
-			return
-		}
-
-		if p.Options.Verbose {
-			client.Transport = dump.RoundTripper(tr)
-		}
-
-		retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
-		retryablehttpClient.RetryMax = p.Options.MaxRetries
-		retryablehttpClient.RetryWaitMin = client.Timeout
-		retryablehttpClient.RetryWaitMax = client.Timeout
-		retryablehttpClient.Logger = ReleveledLogo{
-			Logger:  log,
-			Request: r,
-			Verbose: p.Options.Verbose,
-		}
-
-		retryablehttpRequest, err := retryablehttp.FromRequest(r)
-		if err != nil {
-			resChan <- err
-			return
-		}
-
-		resp, err := retryablehttpClient.Do(retryablehttpRequest)
-		if err != nil {
-			resChan <- err
-			return
-		}
-		defer resp.Body.Close()
-
-		buf, err := io.ReadAll(resp.Body)
-		if err != nil {
-			resChan <- err
-			return
-		}
-
-		resp.Body = io.NopCloser(bytes.NewBuffer(buf))
-
-		resChan <- resp
 	}(req)
 
 	var resp *http.Response
@@ -150,6 +128,57 @@ func (p *Proxy) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Res
 	}
 
 	return resp
+}
+
+func (p *Proxy) rotateProxy() string {
+	var proxyAddr string
+
+	if ok >= p.Options.Rotate {
+		proxyAddr = p.Options.ProxyManager.Rotate(p.Options.Method)
+
+		if ok >= p.Options.Rotate {
+			ok = 1
+		}
+	} else {
+		ok++
+	}
+
+	return proxyAddr
+}
+
+func (p *Proxy) getClient(req *http.Request, proxyAddr string) (*retryablehttp.Client, error) {
+	tr, err := mubeng.Transport(proxyAddr)
+	if err != nil {
+		return nil, err
+	}
+
+	proxy := &mubeng.Proxy{
+		Address:      proxyAddr,
+		MaxRedirects: p.Options.MaxRedirects,
+		Timeout:      p.Options.Timeout,
+		Transport:    tr,
+	}
+
+	client, err := proxy.New(req)
+	if err != nil {
+		return nil, err
+	}
+
+	if p.Options.Verbose {
+		client.Transport = dump.RoundTripper(tr)
+	}
+
+	retryablehttpClient := mubeng.ToRetryableHTTPClient(client)
+	retryablehttpClient.RetryMax = p.Options.MaxRetries
+	retryablehttpClient.RetryWaitMin = client.Timeout
+	retryablehttpClient.RetryWaitMax = client.Timeout
+	retryablehttpClient.Logger = ReleveledLogo{
+		Logger:  log,
+		Request: req,
+		Verbose: p.Options.Verbose,
+	}
+
+	return retryablehttpClient, nil
 }
 
 // nonProxy handles non-proxy requests

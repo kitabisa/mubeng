@@ -9,7 +9,6 @@ import (
 )
 
 var (
-	rotate  string
 	handler *Proxy
 	server  *http.Server
 	dump    *httpretty.Logger
