@@ -50,7 +50,7 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 				if p.Options.RotateOnErr && i < p.Options.MaxErrors {
 					log.Debugf(
 						"%s Retrying (rotated) %s %s [remaining=%q]",
-						r.RemoteAddr, r.Method, r.URL, string(p.Options.MaxErrors-i),
+						r.RemoteAddr, r.Method, r.URL, fmt.Sprint(p.Options.MaxErrors-i),
 					)
 
 					continue
