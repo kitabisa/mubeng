@@ -24,9 +24,11 @@ type Options struct {
 	Method       string
 	Output       string
 	Rotate       int
+	RotateOnErr  bool
 	Sync         bool
 	Verbose      bool
 	Watch        bool
-	MaxRetries   int
+	MaxErrors    int
 	MaxRedirects int
+	MaxRetries   int
 }
