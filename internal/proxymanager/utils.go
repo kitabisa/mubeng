@@ -1,6 +1,7 @@
 package proxymanager
 
 import (
+	"fmt"
 	"math/rand"
 
 	"github.com/fsnotify/fsnotify"
@@ -22,6 +23,19 @@ func (p *ProxyManager) NextProxy() string {
 // RandomProxy will choose a proxy randomly from the list
 func (p *ProxyManager) RandomProxy() string {
 	return p.Proxies[rand.Intn(len(p.Proxies))]
+}
+
+// RemoveProxy removes target proxy from proxy pool
+func (p *ProxyManager) RemoveProxy(target string) error {
+	for i, v := range p.Proxies {
+		if v == target {
+			p.Proxies = append(p.Proxies[:i], p.Proxies[i+1:]...)
+
+			return nil
+		}
+	}
+
+	return fmt.Errorf("Unable to find %q in the proxy pool", target)
 }
 
 // Rotate proxy based on method
