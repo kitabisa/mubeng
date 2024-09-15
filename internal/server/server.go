@@ -7,8 +7,8 @@ import (
 
 	"github.com/elazarl/goproxy"
 	"github.com/henvic/httpretty"
-	"github.com/mbndr/logo"
 	"github.com/kitabisa/mubeng/common"
+	"github.com/mbndr/logo"
 )
 
 // Run proxy server with a user defined listener.
@@ -64,6 +64,8 @@ func Run(opt *common.Options) {
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt)
 	go interrupt(stop)
+
+	log.Infof("%d proxies loaded", opt.ProxyManager.Count())
 
 	log.Infof("[PID: %d] Starting proxy server on %s", os.Getpid(), opt.Address)
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
