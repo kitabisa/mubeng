@@ -50,7 +50,8 @@ func New(filename string) (*ProxyManager, error) {
 		}
 	}
 
-	manager.Length = len(manager.Proxies)
+	manager.Count()
+
 	if manager.Length < 1 {
 		return manager, fmt.Errorf("open %s: has no valid proxy URLs", filename)
 	}

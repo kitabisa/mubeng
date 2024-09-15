@@ -8,10 +8,17 @@ import (
 	"github.com/kitabisa/mubeng/pkg/helper"
 )
 
+// Count counts total proxies
+func (p *ProxyManager) Count() int {
+	p.Length = len(p.Proxies)
+
+	return p.Length
+}
+
 // NextProxy will navigate the next proxy to use
 func (p *ProxyManager) NextProxy() string {
 	p.CurrentIndex++
-	if p.CurrentIndex > len(p.Proxies)-1 {
+	if p.CurrentIndex > p.Count()-1 {
 		p.CurrentIndex = 0
 	}
 
@@ -22,7 +29,7 @@ func (p *ProxyManager) NextProxy() string {
 
 // RandomProxy will choose a proxy randomly from the list
 func (p *ProxyManager) RandomProxy() string {
-	return p.Proxies[rand.Intn(len(p.Proxies))]
+	return p.Proxies[rand.Intn(p.Count())]
 }
 
 // RemoveProxy removes target proxy from proxy pool
