@@ -30,7 +30,8 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 	go func(r *http.Request) {
 		log.Debugf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
 
-		for i := 0; i <= p.Options.MaxErrors; i++ {
+		i := 0
+		for {
 			proxy := p.rotateProxy()
 
 			retryablehttpClient, err := p.getClient(r, proxy)
@@ -49,6 +50,12 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 			resp, err := retryablehttpClient.Do(retryablehttpRequest)
 			if err != nil {
+				if i >= p.Options.MaxErrors && p.Options.MaxErrors >= 0 {
+					resChan <- err
+
+					return
+				}
+
 				if p.Options.RemoveOnErr {
 					p.removeProxy(proxy)
 
@@ -58,11 +65,18 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 					)
 				}
 
-				if p.Options.RotateOnErr && i < p.Options.MaxErrors {
+				if p.Options.RotateOnErr && (i < p.Options.MaxErrors || p.Options.MaxErrors <= 0) {
+					remaining := fmt.Sprint(p.Options.MaxErrors - i)
+					if p.Options.MaxErrors <= 0 {
+						remaining = "∞"
+					}
+
 					log.Debugf(
 						"%s Retrying (rotated) %s %s [remaining=%q]",
-						r.RemoteAddr, r.Method, r.URL, fmt.Sprint(p.Options.MaxErrors-i),
+						r.RemoteAddr, r.Method, r.URL, remaining,
 					)
+
+					i++
 
 					continue
 				} else {

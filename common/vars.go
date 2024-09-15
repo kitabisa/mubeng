@@ -43,6 +43,8 @@ Options:
         --remove-on-error            Remove proxy IP from proxy pool on failed HTTP requests
         --max-errors <N>             Max. errors allowed during rotation (default: 3)
                                      Use this with --rotate-on-error
+                                     If value is less than 0 (e.g., -1), rotation will
+                                     continue indefinitely
         --max-redirs <N>             Max. redirects allowed (default: 10)
         --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
     -s, --sync                       Syncrounus mode
