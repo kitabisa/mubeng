@@ -25,6 +25,7 @@ type Options struct {
 	Output       string
 	Rotate       int
 	RotateOnErr  bool
+	RemoveOnErr  bool
 	Sync         bool
 	Verbose      bool
 	Watch        bool

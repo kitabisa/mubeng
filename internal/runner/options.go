@@ -34,6 +34,7 @@ func Options() *common.Options {
 	flag.IntVar(&opt.Rotate, "rotate", 1, "")
 
 	flag.BoolVar(&opt.RotateOnErr, "rotate-on-error", false, "")
+	flag.BoolVar(&opt.RemoveOnErr, "remove-on-error", false, "")
 
 	flag.StringVar(&opt.Method, "m", "sequent", "")
 	flag.StringVar(&opt.Method, "method", "sequent", "")
