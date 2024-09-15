@@ -145,6 +145,8 @@ Here are all the options it supports.
 |     --remove-on-error           | Remove proxy IP from proxy pool on failed HTTP requests.      |
 |     --max-errors `<N>`          | Max. errors allowed during rotation (default: 3).             |
 |                                 | Use this with `--rotate-on-error`.                            |
+|                                 | If value is less than 0 (e.g., -1), rotation will             |
+|                                 | continue indefinitely.                                        |
 |     --max-redirs `<N>`          | Max. redirects allowed (default: 10).                         |
 |     --max-retries `<N>`         | Max. retries for failed HTTP requests (default: 0).           |
 | -m, --method `<METHOD>`         | Rotation method (sequent/random) (default: sequent).          |
@@ -185,6 +187,13 @@ Here are all the options it supports.
 					<li>Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", and "h".</li>
 				</ul>
 			</li>
+			<li>The max. errors <code>(--max-errors)</code> ≠ max. retries <code>(--max-retries)</code>.</li>
+			<ul>
+					<li>The max. retries <code>(--max-retries)</code> apply to retrying a failed HTTP request with the same proxy.</li>
+					<li>Meanwhile, max. errors <code>(--max-errors)</code> refer to the total failed HTTP requests from the proxies used.</li>
+					<li>For example, once the max. retries <code>(--max-retries)</code> are reached <i>(if supplied)</i>, the error is counted, and the proxy IP will rotate for the same failed HTTP request until the max. errors <code>(--max-errors)</code> are reached, whereas max. retries <code>(--max-retries)</code> <b>DO NOT</b> trigger a proxy rotation.</li>
+				</ul>
+			<li>If the value of max. errors <code>(--max-errors)</code> is less than <b>0</b> (e.g. <b>-1</b>), rotation will continue indefinitely.</li>
 		</ul>
 	</td>
 </table>
