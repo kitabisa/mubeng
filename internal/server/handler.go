@@ -31,7 +31,9 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 		log.Debugf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
 
 		for i := 0; i <= p.Options.MaxErrors; i++ {
-			retryablehttpClient, err := p.getClient(r, p.rotateProxy())
+			proxy := p.rotateProxy()
+
+			retryablehttpClient, err := p.getClient(r, proxy)
 			if err != nil {
 				resChan <- err
 
@@ -47,6 +49,15 @@ func (p *Proxy) onRequest(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Reque
 
 			resp, err := retryablehttpClient.Do(retryablehttpRequest)
 			if err != nil {
+				if p.Options.RemoveOnErr {
+					p.removeProxy(proxy)
+
+					log.Debugf(
+						"%s Removing proxy IP from proxy pool [proxies=%q]",
+						r.RemoteAddr, fmt.Sprint(p.Options.ProxyManager.Count()),
+					)
+				}
+
 				if p.Options.RotateOnErr && i < p.Options.MaxErrors {
 					log.Debugf(
 						"%s Retrying (rotated) %s %s [remaining=%q]",
@@ -131,10 +142,14 @@ func (p *Proxy) onResponse(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Res
 }
 
 func (p *Proxy) rotateProxy() string {
-	var proxyAddr string
+	var proxy string
+	var err error
 
 	if ok >= p.Options.Rotate {
-		proxyAddr = p.Options.ProxyManager.Rotate(p.Options.Method)
+		proxy, err = p.Options.ProxyManager.Rotate(p.Options.Method)
+		if err != nil {
+			log.Fatalf("Could not rotate proxy IP: %s", err)
+		}
 
 		if ok >= p.Options.Rotate {
 			ok = 1
@@ -143,7 +158,14 @@ func (p *Proxy) rotateProxy() string {
 		ok++
 	}
 
-	return proxyAddr
+	return proxy
+}
+
+func (p *Proxy) removeProxy(target string) {
+	err := p.Options.ProxyManager.RemoveProxy(target)
+	if err != nil {
+		log.Error(err)
+	}
 }
 
 func (p *Proxy) getClient(req *http.Request, proxyAddr string) (*retryablehttp.Client, error) {
