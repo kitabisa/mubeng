@@ -4,15 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"net/http"
 	"strings"
 	"time"
 
-	"github.com/logrusorgru/aurora"
-	"github.com/sourcegraph/conc/pool"
+	"github.com/hashicorp/go-retryablehttp"
 	"github.com/kitabisa/mubeng/common"
 	"github.com/kitabisa/mubeng/pkg/helper"
 	"github.com/kitabisa/mubeng/pkg/mubeng"
+	"github.com/logrusorgru/aurora"
+	"github.com/sourcegraph/conc/pool"
 )
 
 // Do checks proxy from list.
@@ -21,12 +21,15 @@ import (
 // or save live proxies into user defined files.
 func Do(opt *common.Options) {
 	p := pool.New().WithMaxGoroutines(opt.Goroutine)
+	c := retryablehttp.NewClient()
+	c.RetryMax = opt.MaxRetries
+	c.Logger = nil
 
 	for _, proxy := range opt.ProxyManager.Proxies {
 		address := helper.EvalFunc(proxy)
 
 		p.Go(func() {
-			addr, err := check(address, opt.Timeout)
+			addr, err := check(c, address, opt.Timeout)
 			if len(opt.Countries) > 0 && !isMatchCC(opt.Countries, addr.Country) {
 				return
 			}
@@ -36,7 +39,11 @@ func Do(opt *common.Options) {
 					fmt.Printf("[%s] %s\n", aurora.Red("DIED"), address)
 				}
 			} else {
-				fmt.Printf("[%s] [%s] [%s] %s\n", aurora.Green("LIVE"), aurora.Magenta(addr.Country), aurora.Cyan(addr.IP), address)
+				fmt.Printf(
+					"[%s] [%s] [%s] %s (%s)\n",
+					aurora.Green("LIVE"), aurora.Magenta(addr.Country),
+					aurora.Cyan(addr.IP), address, aurora.Yellow(addr.Duration),
+				)
 
 				if opt.Output != "" {
 					fmt.Fprintf(opt.Result, "%s\n", address)
@@ -62,11 +69,12 @@ func isMatchCC(cc []string, code string) bool {
 	return false
 }
 
-func check(address string, timeout time.Duration) (IPInfo, error) {
-	req, err := http.NewRequest("GET", endpoint, nil)
+func check(c *retryablehttp.Client, address string, timeout time.Duration) (IPInfo, error) {
+	req, err := retryablehttp.NewRequest("GET", endpoint, nil)
 	if err != nil {
 		return ipinfo, err
 	}
+	req.Header.Add("Connection", "close")
 
 	tr, err := mubeng.Transport(address)
 	if err != nil {
@@ -78,28 +86,31 @@ func check(address string, timeout time.Duration) (IPInfo, error) {
 		Transport: tr,
 	}
 
-	client, err := proxy.New(req)
+	client, err := proxy.New(req.Request)
 	if err != nil {
 		return ipinfo, err
 	}
 
-	client.Timeout = timeout
-	req.Header.Add("Connection", "close")
+	c.HTTPClient = client
+	c.HTTPClient.Timeout = timeout
 
-	resp, err := client.Do(req)
+	start := time.Now()
+	resp, err := c.Do(req)
 	if err != nil {
 		return ipinfo, err
 	}
+	duration := time.Since(start)
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return ipinfo, err
 	}
 
-	err = json.Unmarshal([]byte(body), &ipinfo)
+	err = json.Unmarshal(body, &ipinfo)
 	if err != nil {
 		return ipinfo, err
 	}
+	ipinfo.Duration = duration.Truncate(time.Millisecond)
 
 	defer resp.Body.Close()
 	defer tr.CloseIdleConnections()
