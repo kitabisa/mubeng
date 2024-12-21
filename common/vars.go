@@ -27,6 +27,7 @@ Options:
     -u, --update                     Update mubeng to the latest stable version
     -v, --verbose                    Verbose mode
     -V, --version                    Show current mubeng version
+        --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
 
   PROXY CHECKER
     -c, --check                      Perform proxy check
@@ -46,7 +47,6 @@ Options:
                                      If value is less than 0 (e.g., -1), rotation will
                                      continue indefinitely
         --max-redirs <N>             Max. redirects allowed (default: 10)
-        --max-retries <N>            Max. retries for failed HTTP requests (default: 0)
     -s, --sync                       Syncrounus mode
     -w, --watch                      Watch proxy file, live-reload from changes
 

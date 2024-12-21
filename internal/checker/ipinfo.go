@@ -1,5 +1,7 @@
 package checker
 
+import "time"
+
 type IPInfo struct {
 	City     string `json:"city"`
 	Country  string `json:"country"`
@@ -10,4 +12,5 @@ type IPInfo struct {
 	Readme   string `json:"readme"`
 	Region   string `json:"region"`
 	Timezone string `json:"timezone"`
+	Duration time.Duration
 }
