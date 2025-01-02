@@ -8,6 +8,7 @@ import (
 	"github.com/elazarl/goproxy"
 	"github.com/henvic/httpretty"
 	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/internal/proxygateway"
 	"github.com/mbndr/logo"
 )
 
@@ -43,6 +44,7 @@ func Run(opt *common.Options) {
 	handler.HTTPProxy.OnRequest().HandleConnectFunc(handler.onConnect)
 	handler.HTTPProxy.OnResponse().DoFunc(handler.onResponse)
 	handler.HTTPProxy.NonproxyHandler = http.HandlerFunc(nonProxy)
+	handler.Gateways = make(map[string]*proxygateway.ProxyGateway)
 
 	server = &http.Server{
 		Addr:    opt.Address,
