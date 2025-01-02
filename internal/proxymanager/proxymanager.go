@@ -2,6 +2,7 @@ package proxymanager
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"math/rand"
 	"os"
@@ -42,8 +43,9 @@ func New(filename string) (*ProxyManager, error) {
 	for scanner.Scan() {
 		proxy := helper.Eval(scanner.Text())
 		if _, value := keys[proxy]; !value {
-			_, err = mubeng.Transport(placeholder.ReplaceAllString(proxy, ""))
-			if err == nil {
+			proxy := placeholder.ReplaceAllString(proxy, "")
+			_, err = mubeng.Transport(proxy)
+			if err == nil || errors.Is(err, mubeng.ErrSwitchTransportAWSProtocolScheme) {
 				keys[proxy] = true
 				manager.Proxies = append(manager.Proxies, proxy)
 			}
