@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	"github.com/hashicorp/go-retryablehttp"
+	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
 )
 
 // New define HTTP client request of the [http.Request] itself.
@@ -27,6 +28,13 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 		req.Header.Del(h)
 	}
 
+	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
+
+	// if the proxy address is an AWS URL, return early.
+	if awsurl.IsURL(proxy.Address) {
+		return client, nil
+	}
+
 	proxyURL, err := url.Parse(proxy.Address)
 	if err != nil {
 		return client, err
@@ -38,8 +46,6 @@ func (proxy *Proxy) New(req *http.Request) (*http.Client, error) {
 		// }
 		req.Header.Set("X-Forwarded-For", host)
 	}
-
-	req.Header.Set("X-Forwarded-Proto", req.URL.Scheme)
 
 	return client, nil
 }

@@ -5,8 +5,8 @@ var (
 	App = "mubeng"
 	// Version of mubeng itself
 	Version = ""
-	// Email handles of developer
-	Email = "infosec@kitabisa.com"
+	// Author of mubeng
+	Author = "@dwisiswant0"
 	// Banner of mubeng
 	Banner = `
            _   ` + Version + `
@@ -14,7 +14,7 @@ var (
 |     | | | . | -_|   | . |
 |_|_|_|___|___|___|_|_|_  |
                       |___|
- ` + Email
+  by ` + Author
 	// Usage of mubeng
 	Usage = `
   mubeng [-c|-a :8080] -f file.txt [options...]

@@ -59,7 +59,7 @@ func (p *ProxyManager) RemoveProxy(target string) error {
 		}
 	}
 
-	return fmt.Errorf("Unable to find %q in the proxy pool", target)
+	return fmt.Errorf("could not find %q in the proxy pool", target)
 }
 
 // Rotate proxy based on method

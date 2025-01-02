@@ -2,15 +2,20 @@ package server
 
 import (
 	"bytes"
+	"context"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
+	"path/filepath"
 	"strings"
 
 	"github.com/elazarl/goproxy"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/kitabisa/mubeng/common"
+	"github.com/kitabisa/mubeng/internal/proxygateway"
+	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
 	"github.com/kitabisa/mubeng/pkg/mubeng"
 )
 
@@ -184,7 +189,7 @@ func (p *Proxy) removeProxy(target string) {
 
 func (p *Proxy) getClient(req *http.Request, proxyAddr string) (*retryablehttp.Client, error) {
 	tr, err := mubeng.Transport(proxyAddr)
-	if err != nil {
+	if err != nil && !errors.Is(err, mubeng.ErrSwitchTransportAWSProtocolScheme) {
 		return nil, err
 	}
 
@@ -198,6 +203,64 @@ func (p *Proxy) getClient(req *http.Request, proxyAddr string) (*retryablehttp.C
 	client, err := proxy.New(req)
 	if err != nil {
 		return nil, err
+	}
+
+	if awsurl.IsURL(proxyAddr) {
+		var pg *proxygateway.ProxyGateway
+
+		awsURL, err := awsurl.Parse(proxyAddr)
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = awsURL.Credentials("")
+		if err != nil {
+			return nil, err
+		}
+
+		accessKeyID := awsURL.AccessKeyID
+		secretAccessKey := awsURL.SecretAccessKey
+		region := awsURL.Region
+
+		baseURL, _, err := proxygateway.GetBaseURL(req.URL.String())
+		if err != nil {
+			return nil, err
+		}
+
+		gatewayKey := getGatewayKey(baseURL, region)
+
+		if p.Gateways[gatewayKey] == nil {
+			ctx := context.Background()
+			gateway, err := proxygateway.New(ctx, accessKeyID, secretAccessKey, region)
+			if err != nil {
+				return nil, err
+			}
+
+			err = gateway.SetBaseURL(baseURL)
+			if err != nil {
+				return nil, err
+			}
+
+			err = gateway.Start(ctx)
+			if err != nil {
+				return nil, err
+			}
+
+			pg = gateway
+
+			p.mu.Lock()
+			p.Gateways[gatewayKey] = pg
+			p.mu.Unlock()
+		} else {
+			pg = p.Gateways[gatewayKey]
+		}
+
+		// rewrite request URL to API Gateway endpoint URL
+		gatewayEndpoint := pg.GetEndpoint()
+		req.URL.Path = filepath.Join("/", proxygateway.StageName, req.URL.Path)
+		req.URL.Host = gatewayEndpoint.Host
+		req.URL.Scheme = gatewayEndpoint.Scheme
+		req.Host = gatewayEndpoint.Host
 	}
 
 	if p.Options.Verbose {
