@@ -12,7 +12,7 @@ RUN go mod download
 
 COPY . .
 RUN go build -ldflags "-s -w -X github.com/mubeng/mubeng/common.Version=${VERSION}" \
-	-o ./bin/mubeng ./cmd/mubeng 
+	-o ./bin/mubeng .
 
 FROM alpine:latest
 

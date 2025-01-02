@@ -18,7 +18,7 @@ build:
 	@echo "Building ${APP_NAME} ${VERSION}"
 	@echo "GOPATH=${GOPATH}"
 	@mkdir -p bin/
-	@go build -ldflags "-s -w -X github.com/mubeng/mubeng/common.Version=${VERSION}" -o ./bin/${APP_NAME} ./cmd/${APP_NAME}
+	@go build -ldflags "-s -w -X github.com/mubeng/mubeng/common.Version=${VERSION}" -o ./bin/${APP_NAME} .
 
 
 golangci-lint:

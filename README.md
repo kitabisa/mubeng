@@ -94,7 +94,7 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 Using [Go](https://golang.org/doc/install) compiler:
 
 ```bash
-▶ go install -v github.com/mubeng/mubeng/cmd/mubeng@latest
+▶ go install -v github.com/mubeng/mubeng@latest
 ```
 
 ### — or
