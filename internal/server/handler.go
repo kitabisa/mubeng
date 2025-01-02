@@ -13,10 +13,10 @@ import (
 
 	"github.com/elazarl/goproxy"
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/proxygateway"
-	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
-	"github.com/kitabisa/mubeng/pkg/mubeng"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/proxygateway"
+	"github.com/mubeng/mubeng/pkg/helper/awsurl"
+	"github.com/mubeng/mubeng/pkg/mubeng"
 )
 
 // onRequest handles client request

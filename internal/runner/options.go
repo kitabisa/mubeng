@@ -4,8 +4,8 @@ import (
 	"flag"
 	"time"
 
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/updater"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/updater"
 	"github.com/projectdiscovery/gologger"
 )
 

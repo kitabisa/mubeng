@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/proxymanager"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/proxymanager"
 )
 
 // validate user-supplied option values before Runner.

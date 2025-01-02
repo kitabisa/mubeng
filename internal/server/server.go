@@ -7,8 +7,8 @@ import (
 
 	"github.com/elazarl/goproxy"
 	"github.com/henvic/httpretty"
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/proxygateway"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/proxygateway"
 	"github.com/mbndr/logo"
 )
 

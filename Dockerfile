@@ -3,7 +3,7 @@ FROM golang:1.21-alpine AS build
 ARG VERSION
 
 LABEL description="An incredibly fast proxy checker & IP rotator with ease."
-LABEL repository="https://github.com/kitabisa/mubeng"
+LABEL repository="https://github.com/mubeng/mubeng"
 LABEL maintainer="dwisiswant0"
 
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY ./go.mod .
 RUN go mod download
 
 COPY . .
-RUN go build -ldflags "-s -w -X github.com/kitabisa/mubeng/common.Version=${VERSION}" \
+RUN go build -ldflags "-s -w -X github.com/mubeng/mubeng/common.Version=${VERSION}" \
 	-o ./bin/mubeng ./cmd/mubeng 
 
 FROM alpine:latest

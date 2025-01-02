@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/kitabisa/mubeng/pkg/helper"
-	"github.com/kitabisa/mubeng/pkg/mubeng"
+	"github.com/mubeng/mubeng/pkg/helper"
+	"github.com/mubeng/mubeng/pkg/mubeng"
 )
 
 // ProxyManager defines the proxy list and current proxy position

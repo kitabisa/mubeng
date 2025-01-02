@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
+	"github.com/mubeng/mubeng/pkg/helper/awsurl"
 	"h12.io/socks"
 )
 

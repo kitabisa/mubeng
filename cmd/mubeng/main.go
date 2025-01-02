@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/projectdiscovery/gologger"
-	"github.com/kitabisa/mubeng/internal/runner"
+	"github.com/mubeng/mubeng/internal/runner"
 )
 
 func main() {

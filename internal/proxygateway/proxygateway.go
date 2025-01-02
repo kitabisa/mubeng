@@ -15,7 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/apigateway"
 	"github.com/aws/aws-sdk-go-v2/service/apigateway/types"
-	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
+	"github.com/mubeng/mubeng/pkg/helper/awsurl"
 )
 
 // ProxyGateway contains information to interact with AWS API Gateway.

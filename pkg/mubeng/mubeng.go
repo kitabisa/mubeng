@@ -6,7 +6,7 @@ import (
 	"net/url"
 
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/kitabisa/mubeng/pkg/helper/awsurl"
+	"github.com/mubeng/mubeng/pkg/helper/awsurl"
 )
 
 // New define HTTP client request of the [http.Request] itself.
