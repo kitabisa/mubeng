@@ -10,12 +10,11 @@ jobs:
   checks:
     name: "Pull Request Checks"
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '[ci skip]') == false && contains(github.event.head_commit.message, '[skip ci]') == false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version-file: '**/go.mod'
+          go-version-file: 'go.mod'
       - uses: golangci/golangci-lint-action@v6
         with:
           version: v1.50
