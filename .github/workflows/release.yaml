@@ -4,8 +4,12 @@ on:
     tags:
       - v*
 
+permissions:
+  contents: write
+  packages: write
+
 jobs: 
-  release: 
+  release:
     name: "Release binary"
     runs-on: ubuntu-latest
     steps: 
@@ -22,7 +26,7 @@ jobs:
           args: "release --clean"
           version: latest
 
-  publish: 
+  publish:
     name: "Publish to GHCR"
     runs-on: ubuntu-latest
     steps:
