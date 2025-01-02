@@ -1,4 +1,4 @@
-module github.com/kitabisa/mubeng
+module github.com/mubeng/mubeng
 
 go 1.21
 

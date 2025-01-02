@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/kitabisa/mubeng/internal/proxymanager"
+	"github.com/mubeng/mubeng/internal/proxymanager"
 )
 
 // Options consists of the configuration required.

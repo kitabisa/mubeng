@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/pkg/helper"
-	"github.com/kitabisa/mubeng/pkg/mubeng"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/pkg/helper"
+	"github.com/mubeng/mubeng/pkg/mubeng"
 	"github.com/logrusorgru/aurora"
 	"github.com/sourcegraph/conc/pool"
 )

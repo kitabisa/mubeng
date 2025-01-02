@@ -2,7 +2,7 @@ package daemon
 
 import (
 	// "github.com/kardianos/service"
-	"github.com/kitabisa/mubeng/common"
+	"github.com/mubeng/mubeng/common"
 )
 
 func init() {

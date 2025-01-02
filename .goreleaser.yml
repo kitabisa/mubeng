@@ -1,8 +1,8 @@
 builds:
   - binary: mubeng
-    main: cmd/mubeng/main.go
+    main: .
     ldflags:
-      - -s -w -X github.com/kitabisa/mubeng/common.Version=v{{.Version}}
+      - -s -w -X github.com/mubeng/mubeng/common.Version=v{{.Version}}
     goos:
       - linux
       - windows

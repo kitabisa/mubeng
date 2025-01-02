@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/elazarl/goproxy"
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/proxygateway"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/proxygateway"
 )
 
 // Proxy as ServeMux in proxy server handler.

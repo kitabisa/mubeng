@@ -8,7 +8,7 @@ labels: 'Status: On Hold, Type: Documentation'
 <!--
   To make it easier for us to help you, please include as much useful information as possible.
 
-  Before opening a new issue, please search existing issues https://github.com/kitabisa/mubeng/issues
+  Before opening a new issue, please search existing issues https://github.com/mubeng/mubeng/issues
 -->
 
 ## Summary

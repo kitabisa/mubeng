@@ -3,10 +3,10 @@ package runner
 import (
 	"errors"
 
-	"github.com/kitabisa/mubeng/common"
-	"github.com/kitabisa/mubeng/internal/checker"
-	"github.com/kitabisa/mubeng/internal/daemon"
-	"github.com/kitabisa/mubeng/internal/server"
+	"github.com/mubeng/mubeng/common"
+	"github.com/mubeng/mubeng/internal/checker"
+	"github.com/mubeng/mubeng/internal/daemon"
+	"github.com/mubeng/mubeng/internal/server"
 )
 
 // New to switch an action, whether to check or run a proxy server.

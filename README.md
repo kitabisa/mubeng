@@ -7,18 +7,18 @@
 
 <p align="center">
 	<a href="https://golang.org"><img src="https://img.shields.io/badge/made%20with-Go-brightgreen"></a>
-	<a href="https://goreportcard.com/report/github.com/kitabisa/mubeng"><img src="https://goreportcard.com/badge/github.com/kitabisa/mubeng"></a>
-	<a href="https://github.com/kitabisa/mubeng/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen"></a>
+	<a href="https://goreportcard.com/report/github.com/mubeng/mubeng"><img src="https://goreportcard.com/badge/github.com/mubeng/mubeng"></a>
+	<a href="https://github.com/mubeng/mubeng/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen"></a>
 	<a href="#"><img src="https://img.shields.io/badge/platform-osx%2Flinux%2Fwindows-green"></a>
-	<a href="https://github.com/kitabisa/mubeng/releases"><img src="https://img.shields.io/github/release/kitabisa/mubeng"></a>
-	<a href="https://github.com/kitabisa/mubeng/issues"><img src="https://img.shields.io/github/issues/kitabisa/mubeng"></a>
+	<a href="https://github.com/mubeng/mubeng/releases"><img src="https://img.shields.io/github/release/mubeng/mubeng"></a>
+	<a href="https://github.com/mubeng/mubeng/issues"><img src="https://img.shields.io/github/issues/mubeng/mubeng"></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md">Contributing</a> •
-  <a href="https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md">What's new</a> •
-  <a href="https://pkg.go.dev/github.com/kitabisa/mubeng/pkg/mubeng">Documentation</a> •
-  <a href="https://github.com/kitabisa/mubeng/issues/new/choose">Report Issues</a>
+  <a href="https://github.com/mubeng/mubeng/blob/master/.github/CONTRIBUTING.md">Contributing</a> •
+  <a href="https://github.com/mubeng/mubeng/blob/master/CHANGELOG.md">What's new</a> •
+  <a href="https://pkg.go.dev/github.com/mubeng/mubeng/pkg/mubeng">Documentation</a> •
+  <a href="https://github.com/mubeng/mubeng/issues/new/choose">Report Issues</a>
 </p>
 
 ---
@@ -79,14 +79,14 @@ So, you don't need any extra proxy checking tools out there if you want to check
 
 ## Binary
 
-Simply, download a pre-built binary from [releases page](https://github.com/kitabisa/mubeng/releases) and run!
+Simply, download a pre-built binary from [releases page](https://github.com/mubeng/mubeng/releases) and run!
 
 ## Docker
 
 Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 
 ```bash
-▶ docker pull ghcr.io/kitabisa/mubeng:latest
+▶ docker pull ghcr.io/mubeng/mubeng:latest
 ```
 
 ## Source
@@ -94,7 +94,7 @@ Pull the [Docker](https://docs.docker.com/get-docker/) image by running:
 Using [Go](https://golang.org/doc/install) compiler:
 
 ```bash
-▶ go install -v github.com/kitabisa/mubeng/cmd/mubeng@latest
+▶ go install -v github.com/mubeng/mubeng@latest
 ```
 
 ### — or
@@ -102,7 +102,7 @@ Using [Go](https://golang.org/doc/install) compiler:
 Manual building executable from source code:
 
 ```bash
-▶ git clone https://github.com/kitabisa/mubeng
+▶ git clone https://github.com/mubeng/mubeng
 ▶ cd mubeng
 ▶ make build
 ▶ (sudo) install ./bin/mubeng /usr/local/bin
@@ -220,7 +220,7 @@ socks5://127.0.0.1:2121
 </table>
 
 > Because we use auto-switch transport, `mubeng` can accept multiple proxy protocol schemes at once.<br>
-> Please refer to [documentation](https://pkg.go.dev/github.com/kitabisa/mubeng/pkg/mubeng#Transport) for this package.
+> Please refer to [documentation](https://pkg.go.dev/github.com/mubeng/mubeng/pkg/mubeng#Transport) for this package.
 
 ### Proxy checker
 
@@ -374,11 +374,11 @@ Currently IP rotation runs the proxy server only as an HTTP protocol, not a SOCK
 
 # Contributors
 
-[![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitabisa/mubeng/issues)
+[![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/mubeng/mubeng/issues)
 
-This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/kitabisa/mubeng/blob/master/.github/CONTRIBUTING.md).
+This project exists thanks to all the people who contribute. To learn how to setup a development environment and for contribution guidelines, see [CONTRIBUTING.md](https://github.com/mubeng/mubeng/blob/master/.github/CONTRIBUTING.md).
 
-<a href="https://github.com/kitabisa/mubeng/graphs/contributors">
+<a href="https://github.com/mubeng/mubeng/graphs/contributors">
 	<img src=".github/CONTRIBUTORS.svg">
 </a>
 
@@ -388,8 +388,8 @@ This project exists thanks to all the people who contribute. To learn how to set
 
 # Changes
 
-For changes, see [CHANGELOG.md](https://github.com/kitabisa/mubeng/blob/master/CHANGELOG.md).
+For changes, see [CHANGELOG.md](https://github.com/mubeng/mubeng/blob/master/CHANGELOG.md).
 
 # License
 
-This program is developed and maintained by members of Kitabisa Security Team, and this is not an officially supported Kitabisa product. This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/kitabisa/mubeng/blob/master/LICENSE). Kitabisa mubeng and any contributions are copyright © by Dwi Siswanto 2021-2022.
+This program is free software: you can redistribute it and/or modify it under the terms of the [Apache license](https://github.com/mubeng/mubeng/blob/master/LICENSE). mubeng and any contributions are copyright © by Dwi Siswanto 2021-2025.

@@ -5,8 +5,8 @@ import (
 	"math/rand"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/kitabisa/mubeng/common/errors"
-	"github.com/kitabisa/mubeng/pkg/helper"
+	"github.com/mubeng/mubeng/common/errors"
+	"github.com/mubeng/mubeng/pkg/helper"
 )
 
 // Count counts total proxies

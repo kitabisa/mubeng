@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/mubeng/mubeng/common"
 	"github.com/projectdiscovery/gologger"
 	"github.com/tcnksm/go-latest"
-	"github.com/kitabisa/mubeng/common"
 )
 
 // isLatest check if current version is latest
@@ -19,7 +19,7 @@ func isLatest() (bool, string) {
 	}
 
 	res, err := latest.Check(&latest.GithubTag{
-		Owner:      "kitabisa",
+		Owner:      common.App, // Repository owner
 		Repository: common.App,
 	}, current)
 
