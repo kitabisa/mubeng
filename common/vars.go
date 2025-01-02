@@ -14,7 +14,7 @@ var (
 |     | | | . | -_|   | . |
 |_|_|_|___|___|___|_|_|_  |
                       |___|
- ` + Author
+  by ` + Author
 	// Usage of mubeng
 	Usage = `
   mubeng [-c|-a :8080] -f file.txt [options...]
