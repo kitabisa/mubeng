@@ -6,7 +6,6 @@
 <h4 align="center">An incredibly fast proxy checker & IP rotator with ease.</h4>
 
 <p align="center">
-	<a href="#"><img src="https://img.shields.io/badge/kitabisa-security%20project-blue"></a>
 	<a href="https://golang.org"><img src="https://img.shields.io/badge/made%20with-Go-brightgreen"></a>
 	<a href="https://goreportcard.com/report/github.com/kitabisa/mubeng"><img src="https://goreportcard.com/badge/github.com/kitabisa/mubeng"></a>
 	<a href="https://github.com/kitabisa/mubeng/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen"></a>
@@ -42,6 +41,7 @@
       - [OWASP ZAP Proxy Chain](#owasp-zap-proxy-chain)
     - [Proxy format](#proxy-format)
     	- [Templating](#templating)
+    	- [Amazon API Gateway](#amazon-api-gateway)
 - [Limitations](#limitations)
 	- [Known Bugs](#known-bugs)
 - [Contributors](#contributors)
@@ -53,13 +53,13 @@
 
 # Features
 
-- **Proxy IP rotator**: Rotates your IP address for every specific request.
-- **Proxy checker**: Check your proxy IP which is still alive.
-- **All HTTP/S methods** are supported.
-- **HTTP, SOCKS v4(A) & v5** proxy protocols apply.
-- **All parameters & URIs are passed**.
-- **Easy to use**: You can just run it against your proxy file, and choose the action you want!
-- **Cross-platform**: whether you are Windows, Linux, Mac, or even Raspberry Pi, you can run it very well.
+- **Proxy IP rotator**: Rotates your IP address for every specified request.
+- **Proxy checker**: Verifies the availability of your proxy IPs.
+- **Supports all HTTP/S methods**.
+- **Compatible with HTTP, SOCKS v4(A), v5, and Amazon API Gateway** proxy protocols.
+- **Passes all parameters and URIs**.
+- **User-friendly**: Simply run it against your proxy file and select the desired action.
+- **Cross-platform**: Runs seamlessly on Windows, Linux, Mac, and even Raspberry Pi.
 
 # Why mubeng?
 
@@ -316,8 +316,57 @@ $ while :; do mubeng -f list.txt -c 2>/dev/null; done
 [LIVE] [XX] [198.**.84.99] socks5://3015151335:251835794@127.0.0.1:9050
 [LIVE] [XX] [179.**.159.197] socks5://3952852758:324998250@127.0.0.1:9050
 ^C
+```
+
+#### Amazon API Gateway
+
+The mubeng proxy rotator also supports integration with Amazon API Gateway. This allows you to route traffic through multiple AWS regions for enhanced redundancy and geographic distribution.
+
+Format for AWS proxy strings:
 
 ```
+aws://AWS_ACCESS_KEY_ID:AWS_SECRET_ACCESS_KEY@REGION
+```
+
+> [!TIP]
+> Since it uses a custom parser, the AWS secret access key (or any other parts) can be quoted for better readability. Example: `aws://AKIAIOSFODNN7EXAMPLE:"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"@us-west-1`.
+> 
+> This quoting feature only works for the **`aws`** protocol scheme.
+
+To get started, you'll need to:
+
+1. Export your AWS credentials as environment variables
+
+```bash
+export AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
+export AWS_SECRET_ACCESS_KEY="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" 
+```
+
+2. Create a proxy list file containing AWS regions
+
+Generate proxy entries for multiple AWS regions:
+
+```bash
+echo "aws://{{AWS_ACCESS_KEY_ID}}:{{AWS_SECRET_ACCESS_KEY}}@"{us,eu}"-"{east,west}"-"{1,2} | tr ' ' '\n' > list.txt
+```
+
+This will create entries for regions like:
+
+* `aws://{{AWS_ACCESS_KEY_ID}}:{{AWS_SECRET_ACCESS_KEY}}@us-east-1`
+* `aws://{{AWS_ACCESS_KEY_ID}}:{{AWS_SECRET_ACCESS_KEY}}@us-east-2`
+* `aws://{{AWS_ACCESS_KEY_ID}}:{{AWS_SECRET_ACCESS_KEY}}@us-west-1`
+* ...
+
+3. Start mubeng proxy server pointing to your AWS proxy list:
+
+```bash
+$ mubeng -f list.txt -a :8080
+```
+
+This setup enables mubeng to automatically rotate traffic through multiple AWS regions via API Gateway. When running the proxy server, mubeng will dynamically substitute your AWS credentials from environment variables using the [templating](#templating) feature described above.
+
+> [!NOTE]
+> Ensure your AWS credentials have the appropriate permissions to access API Gateway in the specified regions.
 
 # Limitations
 
