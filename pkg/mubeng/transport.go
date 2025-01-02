@@ -32,6 +32,8 @@ func Transport(p string) (*http.Transport, error) {
 
 	switch proxyURL.Scheme {
 	case "socks4", "socks4a", "socks5":
+		// TODO(dwisiswant0): deprecated, update this later.
+		// nolint: staticcheck
 		tr.Dial = socks.Dial(p)
 	case "http", "https":
 		tr.Proxy = http.ProxyURL(proxyURL)
