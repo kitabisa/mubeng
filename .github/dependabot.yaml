@@ -6,6 +6,10 @@ updates:
       interval: "daily"
     labels:
       - "Type: Maintenance"
+    groups:
+      gomod:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -13,3 +17,7 @@ updates:
       interval: "daily"
     labels:
       - "Type: Maintenance"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
