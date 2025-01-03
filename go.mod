@@ -1,7 +1,6 @@
 module github.com/mubeng/mubeng
 
 go 1.21
-
 toolchain go1.23.4
 
 require (
@@ -10,15 +9,15 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.28.7
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.48
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.2
-	github.com/briandowns/spinner v1.23.0
-	github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
-	github.com/fsnotify/fsnotify v1.6.0
-	github.com/go-test/deep v1.0.7
+	github.com/briandowns/spinner v1.23.1
+	github.com/elazarl/goproxy v1.2.5
+	github.com/fsnotify/fsnotify v1.8.0
+	github.com/go-test/deep v1.1.1
 	github.com/gosimple/slug v1.15.0
 	github.com/hashicorp/go-retryablehttp v0.7.7
-	github.com/henvic/httpretty v0.1.2
+	github.com/henvic/httpretty v0.1.4
 	github.com/inconshreveable/go-update v0.0.0-20160112193335-8152e7eb6ccf
-	github.com/kardianos/service v1.2.0
+	github.com/kardianos/service v1.2.2
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/mbndr/logo v0.0.1
 	github.com/projectdiscovery/gologger v1.1.4
@@ -57,8 +56,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
-	golang.org/x/net v0.0.0-20220722155237-a158d28d115b // indirect
-	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/term v0.1.0 // indirect
-	golang.org/x/text v0.4.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/term v0.27.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 )
